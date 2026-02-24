@@ -1,0 +1,150 @@
+
+============================================================
+FILTERED MULTIWOZ 2.2 STATISTICS — TRAIN
+============================================================
+
+Analyzing 2850 dialogues of train split...
+
+============================================================
+1. DIALOGUE-LEVEL STATISTICS
+============================================================
+Total dialogues: 2850
+Unique dialogue_ids: 2850
+Average turns per dialogue: 10.15
+Total turns: 28928
+Min turns: 2
+Max turns: 42
+Average services per dialogue: 1.03
+
+============================================================
+2. SPEAKER DISTRIBUTION
+============================================================
+  USER       : 14464 turns
+  SYSTEM     : 14464 turns
+
+============================================================
+3. SERVICES (DOMAINS) DISTRIBUTION
+============================================================
+Total unique services: 2
+
+  restaurant : 1776 dialogues (62.32%)
+  hotel      : 1163 dialogues (40.81%)
+
+============================================================
+4. ACTIVE INTENTS DISTRIBUTION
+============================================================
+Total unique intents: 9
+
+  find_restaurant : 4934 occurrences
+  find_hotel      : 3633 occurrences
+  book_hotel      : 1681 occurrences
+  book_restaurant : 1604 occurrences
+  find_police     : 461 occurrences
+  find_hospital   : 401 occurrences
+  find_train      : 85 occurrences
+  find_taxi       : 51 occurrences
+  find_attraction : 22 occurrences
+
+============================================================
+5. REQUESTED SLOTS DISTRIBUTION (Top 15)
+============================================================
+Total unique requested slots: 35
+
+  restaurant-address        : 708 occurrences
+  restaurant-phone          : 694 occurrences
+  restaurant-postcode       : 298 occurrences
+  restaurant-ref            : 170 occurrences
+  hotel-postcode            : 139 occurrences
+  hotel-ref                 : 135 occurrences
+  hotel-address             : 133 occurrences
+  restaurant-name           : 120 occurrences
+  police-address            : 120 occurrences
+  hotel-phone               : 119 occurrences
+  hotel-name                : 100 occurrences
+  restaurant-pricerange     : 99 occurrences
+  police-postcode           : 95 occurrences
+  hospital-phone            : 88 occurrences
+  hospital-address          : 86 occurrences
+
+============================================================
+6. SLOT NAMES DISTRIBUTION (Top 20)
+============================================================
+Total unique slot names: 17
+
+  restaurant-food           : 4505 occurrences
+  restaurant-area           : 4262 occurrences
+  restaurant-pricerange     : 4212 occurrences
+  hotel-area                : 2716 occurrences
+  hotel-type                : 2616 occurrences
+  hotel-pricerange          : 2510 occurrences
+  restaurant-name           : 2284 occurrences
+  hotel-stars               : 2238 occurrences
+  hotel-parking             : 2112 occurrences
+  hotel-internet            : 2051 occurrences
+  hotel-name                : 1908 occurrences
+  hotel-bookstay            : 1611 occurrences
+  hotel-bookday             : 1604 occurrences
+  hotel-bookpeople          : 1594 occurrences
+  restaurant-bookpeople     : 1563 occurrences
+  restaurant-bookday        : 1556 occurrences
+  restaurant-booktime       : 1526 occurrences
+
+============================================================
+7. ACTION TYPES DISTRIBUTION (Top 20)
+============================================================
+Total unique action types: 32
+
+  Restaurant-Inform    : 8157 occurrences
+  Hotel-Inform         : 6625 occurrences
+  general-bye          : 3607 occurrences
+  general-reqmore      : 2677 occurrences
+  Restaurant-Request   : 2544 occurrences
+  general-thank        : 1964 occurrences
+  Booking-Inform       : 1670 occurrences
+  Hotel-Request        : 1644 occurrences
+  Booking-Book         : 1506 occurrences
+  general-welcome      : 1094 occurrences
+  Booking-Request      : 710 occurrences
+  Police-Inform        : 683 occurrences
+  Restaurant-NoOffer   : 599 occurrences
+  Booking-NoBook       : 555 occurrences
+  Hospital-Inform      : 515 occurrences
+  Restaurant-Recommend : 488 occurrences
+  Hotel-Recommend      : 419 occurrences
+  Restaurant-Select    : 379 occurrences
+  general-greet        : 377 occurrences
+  Hotel-Select         : 352 occurrences
+
+============================================================
+8. ACTION SLOT NAMES DISTRIBUTION (Top 15)
+============================================================
+Total unique action slot names: 27
+
+  none            : 13661 occurrences
+  name            : 6108 occurrences
+  area            : 5823 occurrences
+  pricerange      : 5210 occurrences
+  food            : 4711 occurrences
+  address         : 2797 occurrences
+  choice          : 2480 occurrences
+  phone           : 2310 occurrences
+  bookday         : 2299 occurrences
+  type            : 2153 occurrences
+  bookpeople      : 2003 occurrences
+  ref             : 1732 occurrences
+  postcode        : 1615 occurrences
+  stars           : 1593 occurrences
+  bookstay        : 1311 occurrences
+
+============================================================
+OVERVIEW — ALL SPLITS
+============================================================
+  train       : 2850 dialogues, 28928 turns
+  validation  : 171 dialogues, 2076 turns
+  test        : 186 dialogues, 2200 turns
+
+  Total: 3207 dialogues, 33204 turns
+
+============================================================
+STATISTICS COMPLETE
+============================================================

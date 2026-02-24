@@ -1,0 +1,81 @@
+
+============================================================
+MULTIWOZ 2.2 FEATURES GUIDE FOR MAS4CS
+============================================================
+
+This guide explains which dataset features we are going to use and how.
+Focus: Building agents that understand, track, and respond to user requests.
+This is an initial estimate. During implementation, we re-consider our options.
+
+============================================================
+DATASET OVERVIEW
+============================================================
+MultiWOZ 2.2 contains 8437 training dialogues about:
+  - Hotels, Restaurants, Trains, Taxis, Attractions
+  - Average 13.5 turns per conversation
+  - Multi-domain conversations (users can switch between services)
+
+============================================================
+9 CORE FEATURES WE USE
+============================================================
+1. dialogue_id
+   What: Unique name for each conversation
+   Example: 'PMUL4398.json'
+   How we use it: Track which conversation we're processing
+
+2. turn_id
+   What: Order of turn in conversation
+   Example: ['0', '1', '2']
+   How we use it: Keep conversation in correct order
+
+3. services
+   What: Which domains are involved (hotel, restaurant, etc.)
+   Example: ['restaurant', 'hotel']
+   How we use it: Detect and Validate the correct domain
+
+4. speaker + utterance
+   What: Who said what (USER or SYSTEM)
+   Example speaker: USER
+   Example utterance: 'i need a place to dine in the center thats expensive'
+   How we use it: Understand what user wants and generate appropriate responses and actions
+
+5. active_intent
+   What: What task the user wants to do
+   Example: 'find_restaurant'
+   How we use it: Decide which route to follow (e.g., action or policy) and also Validate intent detection
+
+6. requested_slots
+   What: Information the user asks for
+   Example: ['hotel-phone', 'hotel-address']
+   How we use it: Know what info to provide in response
+
+7. slots_values
+   What: User's specific requirements (the belief state)
+   Example: {'restaurant-area': ['centre'], 'restaurant-pricerange': ['expensive']}
+   How we use it: Validate our predictions for hotels/restaurants matching these criteria
+
+8. act_type (dialogue_acts)
+   What: Type of action being performed
+   Example: 'Restaurant-Inform'
+   How we use it: Validate we're doing the right type of action
+
+9. act_slots (dialogue_acts)
+   What: Which slot-value pairs go with the action
+   Example: slot='area', value='centre'
+   How we use it: Ensure we extracted the right information
+
+============================================================
+EXAMPLES OF HOW THESE MAY CONNECT TO EVALUATION
+============================================================
+slots_values → Joint Goal Accuracy (JGA)
+  Did we track all user requirements correctly?
+
+active_intent + act_type → Task Success Rate (One point of view)
+  Did we complete the right task?
+
+requested_slots + act_slots → Policy Compliance
+  Did we ask for required information before booking?
+
+============================================================
+GUIDE COMPLETE
+============================================================

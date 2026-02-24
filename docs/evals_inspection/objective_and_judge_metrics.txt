@@ -1,0 +1,659 @@
+
+============================================================
+EVALUATION METRICS - COMPREHENSIVE TEST SUITE
+============================================================
+
+============================================================
+PART A: OBJECTIVE METRICS
+============================================================
+
+============================================================
+TEST DOMAIN ACCURACY (1): CORRECT ROUTING
+============================================================
+
+Predicted domain: restaurant
+Ground truth intent: find_restaurant
+
+Accuracy: 1.0
+Is Correct: True
+Extracted ground truth domain: restaurant
+
+============================================================
+TEST DOMAIN ACCURACY (2): WRONG DOMAIN
+============================================================
+
+Predicted domain: hotel
+Ground truth intent: find_restaurant
+
+Accuracy: 0.0
+Is Correct: False
+Extracted ground truth domain: restaurant
+
+============================================================
+TEST DOMAIN ACCURACY (3): CASE INSENSITIVE
+============================================================
+
+Predicted domain: Restaurant
+Ground truth intent: book_restaurant
+
+Accuracy: 1.0
+Is Correct: True
+Extracted ground truth domain: restaurant
+
+============================================================
+TEST DOMAIN ACCURACY (4): DIFFERENT INTENT, SAME DOMAIN
+============================================================
+
+Predicted domain: Hotel
+Ground truth intent: book_hotel
+
+Accuracy: 1.0
+Is Correct: True
+Extracted ground truth domain: hotel
+
+============================================================
+TEST INTENT ACCURACY (1): PERFECT MATCH
+============================================================
+
+Predicted: find_restaurant
+Ground truth: find_restaurant
+
+Accuracy: 1.0
+Is Correct: True
+
+============================================================
+TEST INTENT ACCURACY (2): WRONG INTENT
+============================================================
+
+Predicted: find_hotel
+Ground truth: find_restaurant
+
+Accuracy: 0.0
+Is Correct: False
+
+============================================================
+TEST INTENT ACCURACY (3): SIMILAR BUT WRONG
+============================================================
+
+Predicted: book_restaurant
+Ground truth: find_restaurant
+
+Accuracy: 0.0
+Is Correct: False
+
+============================================================
+TEST ACCURACY FOR MULTIPLE INTENTS (4): WRONG INTENT
+============================================================
+
+Predicted: ('find_hotel', 'find_restaurant')
+Ground truth: ('find_restaurant', 'book_restaurant')
+
+Accuracy: 0.0
+Is Correct: False
+
+Recall: 0.50, Precision: 0.50 (1/2, 1/2)
+
+============================================================
+TEST ACTION-TYPE ACCURACY (1): SINGLE ACT MATCH
+============================================================
+
+Predicted: ['Restaurant-Inform']
+Ground truth: ['Restaurant-Inform']
+
+Accuracy: 1.0
+Is Correct: True
+Recall: 1.00, Precision: 1.00 (1/1, 1/1)
+
+============================================================
+TEST ACTION-TYPE ACCURACY (2): WRONG ACT
+============================================================
+
+Predicted: ['Restaurant-Request']
+Ground truth: ['Restaurant-Inform']
+
+Accuracy: 0.0
+Is Correct: False
+Recall: 0.00, Precision: 0.00 (0/1, 0/1)
+
+============================================================
+TEST ACTION-TYPE ACCURACY (3): MULTI-ACT MATCH
+============================================================
+
+Predicted: ['Hotel-Inform', 'Hotel-Request']
+Ground truth: ['Hotel-Request', 'Hotel-Inform']
+
+Accuracy: 1.0
+Is Correct: True
+Recall: 1.00, Precision: 1.00 (2/2, 2/2)
+
+============================================================
+TEST ACTION-TYPE ACCURACY (4): MULTI-ACT MISMATCH
+============================================================
+
+Predicted: ['Hotel-Inform', 'Hotel-Request']
+Ground truth: ['Hotel-Request', 'Restaurant-Inform']
+
+Accuracy: 0.0
+Is Correct: False
+Recall: 0.50, Precision: 0.50 (1/2, 1/2)
+
+============================================================
+TEST ACTION-TYPE ACCURACY (5): MISSING ACT
+============================================================
+
+Predicted: ['Restaurant-Inform']
+Ground truth: ['Restaurant-Inform', 'Restaurant-Request']
+
+Accuracy: 0.0
+Is Correct: False
+Recall: 0.50, Precision: 1.00 (1/2, 1/1)
+
+============================================================
+TEST ACTION-TYPE ACCURACY (6): EXTRA ACT
+============================================================
+
+Predicted: ['Hotel-Inform', 'Hotel-Request', 'Hotel-Book']
+Ground truth: ['Hotel-Inform', 'Hotel-Request']
+
+Accuracy: 0.0
+Is Correct: False
+Recall: 1.00, Precision: 0.67 (2/2, 2/3)
+
+============================================================
+TEST SLOT ACCURACY (1): PERFECT MATCH
+============================================================
+
+Predicted: {'restaurant': {'area': 'centre', 'pricerange': 'expensive'}}
+Ground truth: {'restaurant': {'area': 'centre', 'pricerange': 'expensive'}}
+
+Slot Accuracy: 1.00 (2/2)
+
+============================================================
+TEST SLOT ACCURACY (2): PARTIAL MATCH
+============================================================
+
+Predicted: {'restaurant': {'area': 'centre', 'pricerange': 'cheap'}}
+Ground truth: {'restaurant': {'area': 'centre', 'pricerange': 'expensive'}}
+
+Slot Accuracy: 0.50 (1/2)
+
+============================================================
+TEST SLOT ACCURACY (3): MISSING DOMAIN
+============================================================
+
+Predicted: {'restaurant': {'area': 'centre'}}
+Ground truth: {'restaurant': {'area': 'centre'}, 'hotel': {'pricerange': 'cheap'}}
+
+Slot Accuracy: 0.50 (1/2)
+
+============================================================
+TEST SLOT ACCURACY (4): EXTRA PREDICTION SLOTS
+============================================================
+
+Predicted: {'restaurant': {'area': 'centre', 'pricerange': 'cheap', 'food': 'italian'}}
+Ground truth: {'restaurant': {'area': 'centre', 'pricerange': 'cheap'}}
+
+Slot Accuracy: 1.00 (2/2)
+
+============================================================
+TEST JGA (1): PERFECT MATCH
+============================================================
+
+Predicted: {'hotel': {'area': 'centre', 'price': 'cheap'}, 'restaurant': {'food': 'indian'}}
+Ground truth: {'hotel': {'area': 'centre', 'price': 'cheap'}, 'restaurant': {'food': 'indian'}}
+
+JGA: 1.0
+Breakdown: {'hotel': True, 'restaurant': True}
+
+============================================================
+TEST JGA (2): PARTIAL MATCH
+============================================================
+
+Predicted: {'hotel': {'area': 'north', 'price': 'cheap'}, 'restaurant': {'food': 'indian'}}
+Ground truth: {'hotel': {'area': 'centre', 'price': 'cheap'}, 'restaurant': {'food': 'indian'}}
+
+JGA: 0.0
+Breakdown: {'hotel': False, 'restaurant': True}
+
+============================================================
+TEST JGA (3): MISSING DOMAIN
+============================================================
+
+Predicted: {'hotel': {'area': 'centre'}}
+Ground truth: {'hotel': {'area': 'centre'}, 'taxi': {'destination': 'hotel'}}
+
+JGA: 0.0
+Breakdown: {'hotel': True, 'taxi': False}
+
+============================================================
+TEST JGA (4): EXTRA PREDICTED DOMAIN
+============================================================
+
+Predicted: {'hotel': {'area': 'centre'}, 'taxi': {'destination': 'hotel'}}
+Ground truth: {'hotel': {'area': 'centre'}}
+
+JGA: 0.0
+Breakdown: {'hotel': True, 'taxi': False}
+
+============================================================
+TEST HALLUCINATION (1): NO HALLUCINATIONS
+============================================================
+
+Predicted: {'restaurant': {'area': 'centre', 'pricerange': 'cheap'}}
+Ground truth: {'restaurant': {'area': 'centre', 'pricerange': 'cheap'}}
+
+Hallucination Rate: 0.00 (0/2)
+
+============================================================
+TEST HALLUCINATION (2): HALLUCINATED DOMAIN (1)
+============================================================
+
+Predicted: {'hotel': {'pricerange': 'cheap'}}
+Ground truth: {'restaurant': {'area': 'centre'}}
+
+Hallucination Rate: 1.00 (1/1)
+
+============================================================
+TEST HALLUCINATION (3): HALLUCINATED DOMAIN (2)
+============================================================
+
+Predicted: {'restaurant': {'area': 'centre'}, 'hotel': {'pricerange': 'cheap'}}
+Ground truth: {'restaurant': {'area': 'centre'}}
+
+Hallucination Rate: 0.50 (1/2)
+
+============================================================
+TEST HALLUCINATION (4): HALLUCINATED SLOT NAME
+============================================================
+
+Predicted: {'restaurant': {'pricerange': 'expensive'}}
+Ground truth: {'restaurant': {'area': 'centre'}}
+
+Hallucination Rate: 1.00 (1/1)
+
+============================================================
+TEST HALLUCINATION (5): WRONG SLOT VALUE
+============================================================
+
+Predicted: {'restaurant': {'area': 'centre', 'pricerange': 'expensive'}}
+Ground truth: {'restaurant': {'area': 'centre', 'pricerange': 'cheap'}}
+
+Hallucination Rate: 0.50 (1/2)
+
+============================================================
+TEST HALLUCINATION (6): COMPLETE HALLUCINATION
+============================================================
+
+Predicted: {'taxi': {'destination': 'airport', 'departure': 'hotel'}}
+Ground truth: {'restaurant': {'area': 'centre'}}
+
+Hallucination Rate: 1.00 (2/2)
+
+============================================================
+TEST MEMORY TRANSFER (1): SUCCESSFUL TRANSFER
+============================================================
+
+Dialogue history:
+{'turn_id': 1, 'domain': 'restaurant', 'predicted_slots': {'restaurant': {'area': 'centre', 'food': 'indian'}}}
+{'turn_id': 2, 'domain': 'hotel', 'predicted_slots': {'restaurant': {'area': 'centre', 'food': 'indian'}, 'hotel': {'area': 'centre', 'pricerange': 'cheap'}}}
+
+Transfer Accuracy: 1.00 (1/1)
+Transfer Events: [{'turn_id': 2, 'from_domain': 'restaurant', 'to_domain': 'hotel', 'slot': 'area', 'value': 'centre', 'transferred': True}]
+
+============================================================
+TEST MEMORY TRANSFER (2): FAILED TRANSFER
+============================================================
+
+Dialogue history:
+{'turn_id': 1, 'domain': 'restaurant', 'predicted_slots': {'restaurant': {'area': 'centre', 'pricerange': 'expensive'}}}
+{'turn_id': 2, 'domain': 'hotel', 'predicted_slots': {'restaurant': {'area': 'centre', 'pricerange': 'expensive'}, 'hotel': {'pricerange': 'cheap'}}}
+
+Transfer Accuracy: 0.00 (0/2)
+Transfer Events:
+  - {'turn_id': 2, 'from_domain': 'restaurant', 'to_domain': 'hotel', 'slot': 'area', 'value': 'centre', 'transferred': False}
+  - {'turn_id': 2, 'from_domain': 'restaurant', 'to_domain': 'hotel', 'slot': 'pricerange', 'value': 'expensive', 'transferred': False}
+
+============================================================
+TEST MEMORY TRANSFER (3): PARTIAL TRANSFER
+============================================================
+
+Dialogue history:
+{'turn_id': 1, 'domain': 'restaurant', 'predicted_slots': {'restaurant': {'area': 'north', 'pricerange': 'moderate'}}}
+{'turn_id': 2, 'domain': 'hotel', 'predicted_slots': {'restaurant': {'area': 'north', 'pricerange': 'moderate'}, 'hotel': {'area': 'north'}}}
+
+Transfer Accuracy: 0.50 (1/2)
+Transfer Events:
+  - Slot 'area': north - Transferred: True
+  - Slot 'pricerange': moderate - Transferred: False
+
+============================================================
+TEST MEMORY TRANSFER (4): MULTIPLE SWITCHES
+============================================================
+
+Dialogue history:
+{'turn_id': 1, 'domain': 'restaurant', 'predicted_slots': {'restaurant': {'area': 'centre'}}}
+{'turn_id': 2, 'domain': 'hotel', 'predicted_slots': {'restaurant': {'area': 'centre'}, 'hotel': {'area': 'centre'}}}
+{'turn_id': 3, 'domain': 'taxi', 'predicted_slots': {'restaurant': {'area': 'centre'}, 'hotel': {'area': 'centre'}, 'taxi': {'departure': 'hotel', 'destination': 'restaurant'}}}
+
+Transfer Accuracy: 0.50 (1/2)
+Number of transfer events: 2
+
+============================================================
+TEST MEMORY TRANSFER (5): NO DOMAIN SWITCHES
+============================================================
+
+Dialogue history:
+{'turn_id': 1, 'domain': 'restaurant', 'predicted_slots': {'restaurant': {'area': 'centre'}}}
+{'turn_id': 2, 'domain': 'restaurant', 'predicted_slots': {'restaurant': {'area': 'centre', 'food': 'italian'}}}
+
+Transfer Accuracy: 0.00 (0/0)
+Number of transfer events: 0
+
+============================================================
+TEST POLICY (1): COMPLIANT BOOKING
+============================================================
+
+Action: book_hotel
+Current slots: {'hotel': {'name': 'acorn guest house', 'bookday': 'monday', 'bookpeople': '2', 'bookstay': '3'}}
+
+Compliant: True
+Reason: All required slots present for book_hotel
+
+============================================================
+TEST POLICY (2): MISSING REQUIRED SLOT
+============================================================
+
+Action: book_hotel
+Current slots: {'hotel': {'name': 'acorn guest house', 'bookday': 'monday', 'bookpeople': '2'}}
+
+Compliant: False
+Reason: Policy violation: Attempted book_hotel with missing slots: ['bookstay']
+
+============================================================
+TEST POLICY (3): ACTION NOT IN POLICY
+============================================================
+
+Action: request_slots
+Current slots: {'hotel': {'name': 'acorn guest house'}}
+
+Compliant: True
+Reason: No policy constraints for this action
+
+============================================================
+TEST POLICY (4): NO CONSTRAINTS
+============================================================
+
+Action: search_restaurant
+Current slots: {'restaurant': {'food': 'indian'}}
+
+Compliant: True
+Reason: No policy constraints for this action
+
+============================================================
+TEST SYSTEM CORRECTNESS (1): INCOMPLETE BOOKING - REQUEST
+============================================================
+
+Predicted action: request
+Predicted intent: book_hotel
+Predicted slots: {'hotel': {'pricerange': 'expensive', 'bookpeople': '2'}}
+Hallucination detected: False
+Policy compliant: True
+Current domain: hotel
+
+System Correct: True
+Reason: System correctly requested missing booking slots
+
+============================================================
+TEST SYSTEM CORRECTNESS (2): COMPLETE SLOTS - WRONG ACTION
+============================================================
+
+Predicted action: search
+Predicted intent: book_hotel
+Predicted slots: {'hotel': {'name': 'hilton', 'bookday': 'monday', 'bookpeople': '2', 'bookstay': '3'}}
+Hallucination detected: False
+Policy compliant: True
+Current domain: hotel
+
+System Correct: False
+Reason: System had all slots but didn't book
+
+============================================================
+TEST SYSTEM CORRECTNESS (3): COMPLETE BOOKING - SUCCESS
+============================================================
+
+Predicted action: book
+Predicted intent: book_hotel
+Predicted slots: {'hotel': {'name': 'hilton', 'bookday': 'monday', 'bookpeople': '2', 'bookstay': '3'}}
+Hallucination detected: False
+Policy compliant: True
+Current domain: hotel
+
+System Correct: True
+Reason: System correctly completed booking with all slots
+
+============================================================
+TEST SYSTEM CORRECTNESS (4): HALLUCINATION DETECTED
+============================================================
+
+Predicted action: inform
+Predicted intent: find_restaurant
+Predicted slots: {'restaurant': {'area': 'centre'}}
+Hallucination detected: True
+Policy compliant: True
+Current domain: restaurant
+
+System Correct: False
+Reason: System hallucinated slot values
+
+============================================================
+TEST SYSTEM CORRECTNESS (5): SEARCH INTENT - SUCCESS
+============================================================
+
+Predicted action: search
+Predicted intent: find_restaurant
+Predicted slots: {'restaurant': {'area': 'centre', 'pricerange': 'expensive'}}
+Hallucination detected: False
+Policy compliant: True
+Current domain: restaurant
+
+System Correct: True
+Reason: System correctly handled search intent
+
+============================================================
+TEST SYSTEM CORRECTNESS (6): POLICY VIOLATION - CORRECT REQUEST
+============================================================
+
+Predicted action: request
+Predicted intent: book_hotel
+Predicted slots: {'hotel': {'pricerange': 'expensive'}}
+Hallucination detected: False
+Policy compliant: False
+Current domain: hotel
+
+System Correct: True
+Reason: System correctly requested missing policy-required slots
+
+============================================================
+TEST TASK SUCCESS (1): SUCCESSFUL BOOKING
+============================================================
+
+Turn results: 2 turns
+Final slots: {'hotel': {'name': 'hilton', 'bookday': 'monday', 'bookpeople': '2', 'bookstay': '3'}}
+Goal: {'domains': ['hotel'], 'requires_booking': True}
+
+Success: False
+Reason: Booking required but missing slots in hotel: ['name', 'bookday', 'bookpeople', 'bookstay']
+
+============================================================
+TEST TASK SUCCESS (2): MISSING BOOKING SLOTS
+============================================================
+
+Turn results: 2 turns
+Final slots: {'hotel': {'bookpeople': '2', 'bookstay': '3'}}
+Goal: {'domains': ['hotel'], 'requires_booking': True}
+
+Success: False
+Reason: Booking required but missing slots in hotel: ['name', 'bookday', 'bookpeople', 'bookstay']
+
+============================================================
+TEST TASK SUCCESS (3): INFO-ONLY SUCCESS
+============================================================
+
+Turn results: 2 turns
+Final slots: {'restaurant': {'area': 'centre', 'food': 'italian'}}
+Goal: {'domains': ['restaurant'], 'requires_booking': False}
+
+Success: True
+Reason: All goals achieved
+
+============================================================
+PART B: SUBJECTIVE METRICS
+============================================================
+
+============================================================
+TEST LLM JUDGE PROMPT FORMATTING
+============================================================
+
+Generated Prompt:
+You are evaluating a customer service dialogue turn. Rate the system's response on a scale of 1-5 using this rubric:
+
+**RUBRIC:**
+1 = Poor: Wrong information, ignores user, violates policy
+2 = Below Average: Partially correct but missing key info or unclear
+3 = Average: Correct but could be more complete or clear
+4 = Good: Correct, complete, clear with minor issues
+5 = Excellent: Perfect response, fully addresses user needs
+
+**USER MESSAGE:**
+I want a cheap hotel in the centre
+
+**SYSTEM RESPONSE:**
+I found the Acorn Guest House in the centre with cheap prices. Would you like to book it?
+
+**EXPECTED INFORMATION (Ground Truth):**
+{
+  "hotel": {
+    "area": "centre",
+    "pricerange": "cheap",
+    "name": "acorn guest house"
+  }
+}
+
+**POLICY RULES:**
+[
+  "Must not book without: name, day, people, stay",
+  "Must offer alternatives if no exact match"
+]
+
+**EVALUATE ON:**
+- Correctness: Does it provide accurate information matching ground truth?
+- Completeness: Does it address all aspects of the user's request?
+- Clarity: Is the response clear and easy to understand?
+- Policy Adherence: Does it follow the policy rules?
+
+**OUTPUT FORMAT (respond with valid JSON only):**
+{
+    "score": <1-5>,
+    "correctness": "<brief comment>",
+    "completeness": "<brief comment>",
+    "clarity": "<brief comment>",
+    "policy_adherence": "<brief comment>",
+    "overall_reasoning": "<brief explanation of score>"
+}
+
+Prompt includes:
+- User message: ✓
+- System response: ✓
+- Ground truth: ✓
+- Policy rules: ✓
+- Rubric scale: ✓
+
+============================================================
+TEST PARSING (1): VALID JSON
+============================================================
+
+Simulated LLM Response:
+ {
+    "score": 4,
+    "correctness": "Accurate hotel name and attributes",
+    "completeness": "Addresses all user constraints",
+    "clarity": "Clear and professional",
+    "policy_adherence": "Correctly does not book without required info",
+    "overall_reasoning": "Good response, offers booking without forcing it"
+}
+
+After Parsing:
+Score: 4
+Correctness: Accurate hotel name and attributes
+Error: None
+
+============================================================
+TEST PARSING (2): MARKDOWN CODE BLOCK
+============================================================
+
+Simulated LLM Response:
+ Here's my evaluation:
+```json
+{
+    "score": 3,
+    "correctness": "Partially correct",
+    "completeness": "Missing some details",
+    "clarity": "Adequate",
+    "policy_adherence": "Follows policies",
+    "overall_reasoning": "Average response"
+}
+```
+
+Hope this helps!
+
+After Parsing:
+Score: 3
+Overall: Average response
+Error: None
+
+============================================================
+TEST PARSING (3): INVALID SCORE
+============================================================
+
+Simulated LLM Response:
+ {
+    "score": 7,
+    "correctness": "Good",
+    "completeness": "Good",
+    "clarity": "Good",
+    "policy_adherence": "Good",
+    "overall_reasoning": "Good"
+}
+
+After Parsing:
+Score: 0
+Error: Score 7.0 out of valid range [1-5]
+
+============================================================
+TEST PARSING (4): MISSING SCORE
+============================================================
+
+Simulated LLM Response:
+ {
+    "correctness": "Good",
+    "completeness": "Good"
+}
+
+After Parsing:
+Score: 0
+Error: Missing 'score' field in judge response
+
+============================================================
+TEST PARSING (5): MALFORMED JSON
+============================================================
+
+Simulated LLM Response:
+ This is not valid JSON at all!
+
+After Parsing:
+Score: 0
+Error: JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+
+============================================================
+ALL TESTS COMPLETED SUCCESSFULLY
+============================================================

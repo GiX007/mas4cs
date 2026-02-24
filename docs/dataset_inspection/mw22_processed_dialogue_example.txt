@@ -1,0 +1,430 @@
+
+============================================================
+PROCESSED DIALOGUE EXAMPLE — TRAIN [0]
+============================================================
+{
+  "dialogue_id": "PMUL4398.json",
+  "services": [
+    "restaurant",
+    "hotel"
+  ],
+  "turns": [
+    {
+      "turn_id": 0,
+      "speaker": "USER",
+      "utterance": "i need a place to dine in the center thats expensive",
+      "frames": {
+        "restaurant": {
+          "active_intent": "find_restaurant",
+          "requested_slots": [],
+          "slots_values": {
+            "restaurant-area": "centre",
+            "restaurant-pricerange": "expensive"
+          }
+        },
+        "hotel": {
+          "active_intent": "find_hotel",
+          "requested_slots": [],
+          "slots_values": {}
+        }
+      },
+      "dialogue_acts": [
+        "Restaurant-Inform"
+      ],
+      "dialogue_act_slots": [
+        {
+          "slot": "area",
+          "value": "centre"
+        },
+        {
+          "slot": "pricerange",
+          "value": "expensive"
+        }
+      ],
+      "span_info": [
+        {
+          "slot": "area",
+          "value": "centre"
+        },
+        {
+          "slot": "pricerange",
+          "value": "expensive"
+        }
+      ]
+    },
+    {
+      "turn_id": 1,
+      "speaker": "SYSTEM",
+      "utterance": "I have several options for you; do you prefer African, Asian, or British food?",
+      "frames": {},
+      "dialogue_acts": [
+        "Restaurant-Inform",
+        "Restaurant-Select"
+      ],
+      "dialogue_act_slots": [
+        {
+          "slot": "choice",
+          "value": "several"
+        },
+        {
+          "slot": "food",
+          "value": "African"
+        },
+        {
+          "slot": "food",
+          "value": "Asian"
+        },
+        {
+          "slot": "food",
+          "value": "British"
+        }
+      ],
+      "span_info": [
+        {
+          "slot": "choice",
+          "value": "several"
+        },
+        {
+          "slot": "food",
+          "value": "African"
+        },
+        {
+          "slot": "food",
+          "value": "Asian"
+        },
+        {
+          "slot": "food",
+          "value": "British"
+        }
+      ]
+    },
+    {
+      "turn_id": 2,
+      "speaker": "USER",
+      "utterance": "Any sort of food would be fine, as long as it is a bit expensive. Could I get the phone number for your recommendation?",
+      "frames": {
+        "restaurant": {
+          "active_intent": "find_restaurant",
+          "requested_slots": [
+            "restaurant-food"
+          ],
+          "slots_values": {
+            "restaurant-area": "centre",
+            "restaurant-pricerange": "expensive"
+          }
+        },
+        "hotel": {
+          "active_intent": "find_hotel",
+          "requested_slots": [],
+          "slots_values": {}
+        }
+      },
+      "dialogue_acts": [
+        "Restaurant-Request"
+      ],
+      "dialogue_act_slots": [
+        {
+          "slot": "food",
+          "value": "?"
+        }
+      ],
+      "span_info": []
+    },
+    {
+      "turn_id": 3,
+      "speaker": "SYSTEM",
+      "utterance": "There is an Afrian place named Bedouin in the centre. How does that sound?",
+      "frames": {},
+      "dialogue_acts": [
+        "Restaurant-Inform"
+      ],
+      "dialogue_act_slots": [
+        {
+          "slot": "area",
+          "value": "centre"
+        },
+        {
+          "slot": "food",
+          "value": "Afrian"
+        },
+        {
+          "slot": "name",
+          "value": "Bedouin"
+        }
+      ],
+      "span_info": [
+        {
+          "slot": "food",
+          "value": "Afrian"
+        },
+        {
+          "slot": "name",
+          "value": "Bedouin"
+        },
+        {
+          "slot": "area",
+          "value": "centre"
+        }
+      ]
+    },
+    {
+      "turn_id": 4,
+      "speaker": "USER",
+      "utterance": "Sounds good, could I get that phone number? Also, could you recommend me an expensive hotel?",
+      "frames": {
+        "restaurant": {
+          "active_intent": "find_restaurant",
+          "requested_slots": [
+            "restaurant-phone"
+          ],
+          "slots_values": {
+            "restaurant-area": "centre",
+            "restaurant-name": "bedouin",
+            "restaurant-pricerange": "expensive"
+          }
+        },
+        "hotel": {
+          "active_intent": "find_hotel",
+          "requested_slots": [],
+          "slots_values": {
+            "hotel-pricerange": "expensive",
+            "hotel-type": "hotel"
+          }
+        }
+      },
+      "dialogue_acts": [
+        "Hotel-Inform",
+        "Restaurant-Request"
+      ],
+      "dialogue_act_slots": [
+        {
+          "slot": "pricerange",
+          "value": "expensive"
+        },
+        {
+          "slot": "type",
+          "value": "hotel"
+        },
+        {
+          "slot": "phone",
+          "value": "?"
+        }
+      ],
+      "span_info": [
+        {
+          "slot": "pricerange",
+          "value": "expensive"
+        },
+        {
+          "slot": "type",
+          "value": "hotel"
+        }
+      ]
+    },
+    {
+      "turn_id": 5,
+      "speaker": "SYSTEM",
+      "utterance": "Bedouin's phone is 01223367660. As far as hotels go, I recommend the University Arms Hotel in the center of town.",
+      "frames": {},
+      "dialogue_acts": [
+        "Hotel-Recommend",
+        "Restaurant-Inform"
+      ],
+      "dialogue_act_slots": [
+        {
+          "slot": "area",
+          "value": "center of town"
+        },
+        {
+          "slot": "name",
+          "value": "the University Arms Hotel"
+        },
+        {
+          "slot": "name",
+          "value": "Bedouin"
+        },
+        {
+          "slot": "phone",
+          "value": "01223367660"
+        }
+      ],
+      "span_info": [
+        {
+          "slot": "name",
+          "value": "Bedouin"
+        },
+        {
+          "slot": "phone",
+          "value": "01223367660"
+        },
+        {
+          "slot": "name",
+          "value": "the University Arms Hotel"
+        },
+        {
+          "slot": "area",
+          "value": "center of town"
+        }
+      ]
+    },
+    {
+      "turn_id": 6,
+      "speaker": "USER",
+      "utterance": "Yes. Can you book it for me?",
+      "frames": {
+        "hotel": {
+          "active_intent": "find_hotel",
+          "requested_slots": [],
+          "slots_values": {
+            "hotel-name": "university arms hotel",
+            "hotel-pricerange": "expensive",
+            "hotel-type": "hotel"
+          }
+        }
+      },
+      "dialogue_acts": [
+        "Hotel-Inform"
+      ],
+      "dialogue_act_slots": [
+        {
+          "slot": "none",
+          "value": "none"
+        }
+      ],
+      "span_info": []
+    },
+    {
+      "turn_id": 7,
+      "speaker": "SYSTEM",
+      "utterance": "Sure, when would you like that reservation?",
+      "frames": {},
+      "dialogue_acts": [
+        "Booking-Request"
+      ],
+      "dialogue_act_slots": [
+        {
+          "slot": "bookday",
+          "value": "?"
+        }
+      ],
+      "span_info": []
+    },
+    {
+      "turn_id": 8,
+      "speaker": "USER",
+      "utterance": "i want to book it for 2 people and 2 nights starting from saturday.",
+      "frames": {
+        "hotel": {
+          "active_intent": "book_hotel",
+          "requested_slots": [],
+          "slots_values": {
+            "hotel-bookday": "saturday",
+            "hotel-bookpeople": "2",
+            "hotel-bookstay": "2",
+            "hotel-name": "university arms hotel",
+            "hotel-pricerange": "expensive",
+            "hotel-type": "hotel"
+          }
+        }
+      },
+      "dialogue_acts": [
+        "Hotel-Inform"
+      ],
+      "dialogue_act_slots": [
+        {
+          "slot": "bookday",
+          "value": "saturday"
+        },
+        {
+          "slot": "bookpeople",
+          "value": "2"
+        },
+        {
+          "slot": "bookstay",
+          "value": "2"
+        }
+      ],
+      "span_info": [
+        {
+          "slot": "bookstay",
+          "value": "2"
+        },
+        {
+          "slot": "bookpeople",
+          "value": "2"
+        },
+        {
+          "slot": "bookday",
+          "value": "saturday"
+        }
+      ]
+    },
+    {
+      "turn_id": 9,
+      "speaker": "SYSTEM",
+      "utterance": "Your booking was successful. Your reference number is FRGZWQL2 . May I help you further?",
+      "frames": {},
+      "dialogue_acts": [
+        "Booking-Book",
+        "general-reqmore"
+      ],
+      "dialogue_act_slots": [
+        {
+          "slot": "ref",
+          "value": "FRGZWQL2"
+        },
+        {
+          "slot": "none",
+          "value": "none"
+        }
+      ],
+      "span_info": [
+        {
+          "slot": "ref",
+          "value": "FRGZWQL2"
+        }
+      ]
+    },
+    {
+      "turn_id": 10,
+      "speaker": "USER",
+      "utterance": "That is all I need to know. Thanks, good bye.",
+      "frames": {},
+      "dialogue_acts": [
+        "general-bye"
+      ],
+      "dialogue_act_slots": [
+        {
+          "slot": "none",
+          "value": "none"
+        }
+      ],
+      "span_info": []
+    },
+    {
+      "turn_id": 11,
+      "speaker": "SYSTEM",
+      "utterance": "Thank you so much for Cambridge TownInfo centre. Have a great day!",
+      "frames": {},
+      "dialogue_acts": [
+        "general-bye",
+        "general-welcome"
+      ],
+      "dialogue_act_slots": [
+        {
+          "slot": "none",
+          "value": "none"
+        },
+        {
+          "slot": "none",
+          "value": "none"
+        }
+      ],
+      "span_info": []
+    }
+  ]
+}
+
+============================================================
+END OF DIALOGUE EXAMPLE
+============================================================

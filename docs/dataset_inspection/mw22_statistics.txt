@@ -1,0 +1,151 @@
+
+============================================================
+MULTIWOZ 2.2 STATISTICS — TRAIN
+============================================================
+
+Analyzing 8437 dialogues of train split...
+
+============================================================
+1. DIALOGUE-LEVEL STATISTICS
+============================================================
+Total dialogues: 8437
+Unique dialogue_ids: 8437
+Average turns per dialogue: 13.46
+Total turns: 113552
+Min turns: 2
+Max turns: 44
+Average services per dialogue: 1.71
+
+============================================================
+2. SPEAKER DISTRIBUTION
+============================================================
+  USER       : 56776 turns
+  SYSTEM     : 56776 turns
+
+============================================================
+3. SERVICES (DOMAINS) DISTRIBUTION
+============================================================
+Total unique services: 7
+
+  restaurant : 3836 dialogues (45.47%)
+  hotel      : 3369 dialogues (39.93%)
+  train      : 2963 dialogues (35.12%)
+  attraction : 2681 dialogues (31.78%)
+  taxi       : 1463 dialogues (17.34%)
+  hospital   : 107 dialogues (1.27%)
+  bus        : 6 dialogues (0.07%)
+
+============================================================
+4. ACTIVE INTENTS DISTRIBUTION
+============================================================
+Total unique intents: 11
+
+  find_restaurant : 10773 occurrences
+  find_hotel      : 10540 occurrences
+  find_train      : 9594 occurrences
+  find_attraction : 8133 occurrences
+  book_restaurant : 4409 occurrences
+  book_hotel      : 4403 occurrences
+  find_taxi       : 3695 occurrences
+  book_train      : 2409 occurrences
+  find_hospital   : 707 occurrences
+  find_police     : 477 occurrences
+  find_bus        : 8 occurrences
+
+============================================================
+5. REQUESTED SLOTS DISTRIBUTION (Top 15)
+============================================================
+Total unique requested slots: 46
+
+  restaurant-address        : 1163 occurrences
+  attraction-postcode       : 1108 occurrences
+  attraction-address        : 1107 occurrences
+  attraction-phone          : 1059 occurrences
+  restaurant-phone          : 1047 occurrences
+  attraction-entrancefee    : 843 occurrences
+  train-price               : 775 occurrences
+  train-ref                 : 705 occurrences
+  restaurant-postcode       : 663 occurrences
+  train-duration            : 597 occurrences
+  hotel-address             : 469 occurrences
+  restaurant-ref            : 454 occurrences
+  hotel-ref                 : 410 occurrences
+  hotel-postcode            : 406 occurrences
+  train-trainid             : 404 occurrences
+
+============================================================
+6. SLOT NAMES DISTRIBUTION (Top 20)
+============================================================
+Total unique slot names: 35
+
+  restaurant-food           : 10295 occurrences
+  restaurant-area           : 9498 occurrences
+  restaurant-pricerange     : 9364 occurrences
+  train-destination         : 9316 occurrences
+  train-departure           : 9049 occurrences
+  train-day                 : 8897 occurrences
+  hotel-area                : 7560 occurrences
+  hotel-type                : 7243 occurrences
+  hotel-pricerange          : 6878 occurrences
+  hotel-stars               : 6186 occurrences
+  hotel-name                : 5738 occurrences
+  restaurant-name           : 5697 occurrences
+  hotel-parking             : 5589 occurrences
+  hotel-internet            : 5397 occurrences
+  attraction-type           : 5301 occurrences
+  attraction-area           : 5078 occurrences
+  train-leaveat             : 4421 occurrences
+  train-arriveby            : 4382 occurrences
+  restaurant-bookpeople     : 4282 occurrences
+  restaurant-bookday        : 4249 occurrences
+
+============================================================
+7. ACTION TYPES DISTRIBUTION (Top 20)
+============================================================
+Total unique action types: 36
+
+  Hotel-Inform         : 18242 occurrences
+  Restaurant-Inform    : 17762 occurrences
+  Train-Inform         : 14419 occurrences
+  general-reqmore      : 10866 occurrences
+  general-bye          : 9988 occurrences
+  Attraction-Inform    : 9848 occurrences
+  general-thank        : 7131 occurrences
+  Train-Request        : 6466 occurrences
+  Restaurant-Request   : 5246 occurrences
+  Hotel-Request        : 4776 occurrences
+  Booking-Inform       : 4629 occurrences
+  Attraction-Request   : 4578 occurrences
+  Taxi-Inform          : 4371 occurrences
+  Booking-Book         : 4210 occurrences
+  general-welcome      : 3882 occurrences
+  Train-OfferBook      : 2300 occurrences
+  Booking-Request      : 2093 occurrences
+  Taxi-Request         : 1708 occurrences
+  Train-OfferBooked    : 1696 occurrences
+  general-greet        : 1681 occurrences
+
+============================================================
+8. ACTION SLOT NAMES DISTRIBUTION (Top 15)
+============================================================
+Total unique action slot names: 29
+
+  none            : 47223 occurrences
+  area            : 18985 occurrences
+  name            : 18617 occurrences
+  type            : 13585 occurrences
+  pricerange      : 12293 occurrences
+  food            : 9747 occurrences
+  choice          : 9356 occurrences
+  address         : 8801 occurrences
+  phone           : 8317 occurrences
+  leaveat         : 8249 occurrences
+  bookpeople      : 8166 occurrences
+  ref             : 7260 occurrences
+  destination     : 6878 occurrences
+  departure       : 6854 occurrences
+  bookday         : 6428 occurrences
+
+============================================================
+STATISTICS COMPLETE
+============================================================

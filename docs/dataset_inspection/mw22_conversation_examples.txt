@@ -1,0 +1,218 @@
+
+============================================================
+MULTIWOZ 2.2 CONVERSATION EXAMPLES — TRAIN SPLIT
+============================================================
+
+Number of examples: 3
+
+============================================================
+Dialogue ID: PMUL4398.json
+Services: ['restaurant', 'hotel']
+
+  Turn 0 [USER]: i need a place to dine in the center thats expensive
+    Service: restaurant
+    Service: hotel
+    Intent: find_restaurant
+    Slots: {'restaurant-area': ['centre'], 'restaurant-pricerange': ['expensive']}
+    Intent: find_hotel
+    Act type: Restaurant-Inform
+
+  Turn 1 [SYSTEM]: I have several options for you; do you prefer African, Asian, or British food?
+    Act type: Restaurant-Inform
+    Act type: Restaurant-Select
+
+  Turn 2 [USER]: Any sort of food would be fine, as long as it is a bit expensive. Could I get the phone number for your recommendation?
+    Service: restaurant
+    Service: hotel
+    Intent: find_restaurant
+    Slots: {'restaurant-area': ['centre'], 'restaurant-pricerange': ['expensive']}
+    Requested slots: ['restaurant-food']
+    Intent: find_hotel
+    Act type: Restaurant-Request
+
+  Turn 3 [SYSTEM]: There is an Afrian place named Bedouin in the centre. How does that sound?
+    Act type: Restaurant-Inform
+
+  Turn 4 [USER]: Sounds good, could I get that phone number? Also, could you recommend me an expensive hotel?
+    Service: restaurant
+    Service: hotel
+    Intent: find_restaurant
+    Slots: {'restaurant-area': ['centre'], 'restaurant-name': ['bedouin'], 'restaurant-pricerange': ['expensive']}
+    Requested slots: ['restaurant-phone']
+    Intent: find_hotel
+    Slots: {'hotel-pricerange': ['expensive'], 'hotel-type': ['hotel']}
+    Act type: Hotel-Inform
+    Act type: Restaurant-Request
+
+  Turn 5 [SYSTEM]: Bedouin's phone is 01223367660. As far as hotels go, I recommend the University Arms Hotel in the center of town.
+    Act type: Hotel-Recommend
+    Act type: Restaurant-Inform
+
+  Turn 6 [USER]: Yes. Can you book it for me?
+    Service: hotel
+    Intent: find_hotel
+    Slots: {'hotel-name': ['university arms hotel'], 'hotel-pricerange': ['expensive'], 'hotel-type': ['hotel']}
+    Act type: Hotel-Inform
+
+  Turn 7 [SYSTEM]: Sure, when would you like that reservation?
+    Act type: Booking-Request
+
+  Turn 8 [USER]: i want to book it for 2 people and 2 nights starting from saturday.
+    Service: hotel
+    Intent: book_hotel
+    Slots: {'hotel-bookday': ['saturday'], 'hotel-bookpeople': ['2'], 'hotel-bookstay': ['2'], 'hotel-name': ['university arms hotel'], 'hotel-pricerange': ['expensive'], 'hotel-type': ['hotel']}
+    Act type: Hotel-Inform
+
+  Turn 9 [SYSTEM]: Your booking was successful. Your reference number is FRGZWQL2 . May I help you further?
+    Act type: Booking-Book
+    Act type: general-reqmore
+
+  Turn 10 [USER]: That is all I need to know. Thanks, good bye.
+    Act type: general-bye
+
+  Turn 11 [SYSTEM]: Thank you so much for Cambridge TownInfo centre. Have a great day!
+    Act type: general-bye
+    Act type: general-welcome
+
+============================================================
+END OF MULTIWOZ 2.2 CONVERSATION EXAMPLES
+============================================================
+
+============================================================
+Dialogue ID: SNG1013.json
+Services: ['hotel']
+
+  Turn 0 [USER]: Guten Tag, I am staying overnight in Cambridge and need a place to sleep. I need free parking and internet.
+    Service: hotel
+    Intent: find_hotel
+    Slots: {'hotel-area': ['centre'], 'hotel-internet': ['yes'], 'hotel-parking': ['yes']}
+    Act type: Hotel-Inform
+
+  Turn 1 [SYSTEM]: I have 4 different options for you. I have two cheaper guesthouses and two expensive hotels. Do you have a preference?
+    Act type: Hotel-Inform
+    Act type: Hotel-Select
+
+  Turn 2 [USER]: No, but I'd really like to be on the south end of the city. Do any of those fit the bill?
+    Service: hotel
+    Service: restaurant
+    Intent: find_hotel
+    Slots: {'hotel-area': ['south'], 'hotel-internet': ['yes'], 'hotel-parking': ['yes']}
+    Intent: find_restaurant
+    Act type: Hotel-Inform
+
+  Turn 3 [SYSTEM]: Sure. Does price matter? We can narrow it down and find exactly what you need.
+    Act type: Hotel-Request
+    Act type: Restaurant-Request
+
+  Turn 4 [USER]: No I don't care about the price. Which one do you recommend?
+    Service: hotel
+    Service: restaurant
+    Intent: find_hotel
+    Slots: {'hotel-area': ['south'], 'hotel-internet': ['yes'], 'hotel-parking': ['yes']}
+    Intent: find_restaurant
+    Act type: Hotel-Inform
+    Act type: Restaurant-Inform
+
+  Turn 5 [SYSTEM]: I would recommend aylesbray lodge guest house. Would you like me to book that for you?
+    Act type: Booking-Inform
+    Act type: Hotel-Inform
+    Act type: Restaurant-Recommend
+
+  Turn 6 [USER]: Yes, book it for 4 people and 4 nights starting from tuesday.
+    Service: hotel
+    Intent: book_hotel
+    Slots: {'hotel-area': ['south'], 'hotel-bookday': ['tuesday'], 'hotel-bookpeople': ['4'], 'hotel-bookstay': ['4'], 'hotel-internet': ['yes'], 'hotel-parking': ['yes']}
+    Act type: Hotel-Inform
+
+  Turn 7 [SYSTEM]: The booking was unsuccessful. would you like another day or a shorter stay?
+    Act type: Booking-NoBook
+    Act type: Booking-Request
+
+  Turn 8 [USER]: How about for 3 nights?
+    Service: hotel
+    Intent: book_hotel
+    Slots: {'hotel-area': ['south'], 'hotel-bookday': ['tuesday'], 'hotel-bookpeople': ['4'], 'hotel-bookstay': ['3'], 'hotel-internet': ['yes'], 'hotel-name': ['aylesbray lodge guest house'], 'hotel-parking': ['yes']}
+    Act type: Hotel-Inform
+
+  Turn 9 [SYSTEM]: Booked! Reference number is: 84ESP6F5
+    Act type: Booking-Book
+
+  Turn 10 [USER]: Great. I am all set then. Have a nice day. Bye.
+    Act type: general-bye
+
+  Turn 11 [SYSTEM]: Have a nice stay. Bye.
+    Act type: general-bye
+
+============================================================
+END OF MULTIWOZ 2.2 CONVERSATION EXAMPLES
+============================================================
+
+============================================================
+Dialogue ID: PMUL0121.json
+Services: ['restaurant', 'hotel']
+
+  Turn 0 [USER]: Hi there! Can you give me some info on Cityroomz?
+    Service: hotel
+    Intent: find_hotel
+    Slots: {'hotel-name': ['cityroomz']}
+    Act type: Hotel-Inform
+
+  Turn 1 [SYSTEM]: Cityroomz is located at Sleeperz Hotel, Station Road in the Centre area. It is a moderatley priced hotel with a 0 star rating. Would you like to book a room?
+    Act type: Booking-Inform
+    Act type: Hotel-Inform
+
+  Turn 2 [USER]: Yes please. I need it for 7 people for 3 nights starting on tuesday.
+    Service: hotel
+    Intent: book_hotel
+    Slots: {'hotel-bookday': ['tuesday'], 'hotel-bookpeople': ['7'], 'hotel-bookstay': ['3'], 'hotel-name': ['cityroomz']}
+    Act type: Hotel-Inform
+
+  Turn 3 [SYSTEM]: How many days would you like to book it for?
+    Act type: Booking-Request
+
+  Turn 4 [USER]: I would like to book it for 3 nights beginning on Tuesday.
+    Service: hotel
+    Intent: book_hotel
+    Slots: {'hotel-bookday': ['tuesday'], 'hotel-bookpeople': ['7'], 'hotel-bookstay': ['3'], 'hotel-name': ['cityroomz']}
+    Act type: Hotel-Inform
+
+  Turn 5 [SYSTEM]: Ok, Your rooms have been booked. Your reference number is CYJDAR7R . Is there anything else I can help you with today?
+    Act type: Booking-Book
+    Act type: general-reqmore
+
+  Turn 6 [USER]: Yeah, I need a restaurant in the west and with expensive pricing.
+    Service: restaurant
+    Intent: find_restaurant
+    Slots: {'restaurant-area': ['west'], 'restaurant-pricerange': ['expensive']}
+    Act type: Restaurant-Inform
+
+  Turn 7 [SYSTEM]: There are 9 expensive restaurants in the west area. Do you prefer a certain type of food?
+    Act type: Restaurant-Inform
+    Act type: Restaurant-Request
+
+  Turn 8 [USER]: No, I don't have a preference, but I need the phone number and postcode.
+    Service: restaurant
+    Intent: find_restaurant
+    Slots: {'restaurant-area': ['west'], 'restaurant-pricerange': ['expensive']}
+    Requested slots: ['restaurant-phone', 'restaurant-postcode']
+    Act type: Restaurant-Request
+
+  Turn 9 [SYSTEM]: I recommend Graffiti, the number is 01223277977 and the postcode is cb30lx. Would you like me to book a table for you?
+    Act type: Booking-Inform
+    Act type: Restaurant-Recommend
+
+  Turn 10 [USER]: No, right now, I just need the infor. Thanks!
+    Act type: general-thank
+
+  Turn 11 [SYSTEM]: Can I help you with anything else today?
+    Act type: general-reqmore
+
+  Turn 12 [USER]: That is all. thanks
+    Act type: general-thank
+
+  Turn 13 [SYSTEM]: Thank you for using our system.
+    Act type: general-welcome
+
+============================================================
+END OF MULTIWOZ 2.2 CONVERSATION EXAMPLES
+============================================================

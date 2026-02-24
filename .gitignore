@@ -1,0 +1,23 @@
+# Virtual environment
+venv/
+
+# PyCharm IDE
+.idea/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Hugging Face model cache (large files)
+hf_cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+
+# Large files
+dataset/mw22_transformed.json
+dataset/mw22_filtered.json

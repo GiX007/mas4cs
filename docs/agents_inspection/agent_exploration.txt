@@ -1,0 +1,213 @@
+
+============================================================
+DUMMY SCENARIO
+============================================================
+{
+  "user_query": "I need a cheap hotel in the center",
+  "expected_slots": {
+    "domain": "hotel",
+    "pricerange": "cheap",
+    "area": "centre"
+  },
+  "database": [
+    {
+      "name": "Hotel A",
+      "pricerange": "cheap",
+      "area": "centre",
+      "rating": 4.2
+    },
+    {
+      "name": "Hotel B",
+      "pricerange": "cheap",
+      "area": "centre",
+      "rating": 3.8
+    },
+    {
+      "name": "Hotel C",
+      "pricerange": "expensive",
+      "area": "centre",
+      "rating": 4.9
+    }
+  ]
+}
+
+============================================================
+TEST BASIC AGENT EXPLORATION
+============================================================
+
+Testing 3 agent types: Standard LLM, Simple Agent, ReAct Agent
+
+============================================================
+STANDARD LLM - NO TOOLS (gpt-4o-mini)
+============================================================
+User Query: I need a cheap hotel in the center
+
+LLM Response:
+Could you please provide me with the city or area where you're looking for a cheap hotel in the center? Additionally, if you have any specific dates in mind or any other preferences (like amenities or type of accommodation), please let me know!
+
+============================================================
+SIMPLE AGENT - WITH TOOL CALLING (gpt-4o-mini)
+============================================================
+User Query: I need a cheap hotel in the center
+
+============================================================
+STEP 1: LLM DECISION (First LLM Call)
+============================================================
+Decision: Use tool(s) to gather information
+
+Model requested 1 tool call(s):
+  - search_hotels({'pricerange': 'cheap', 'area': 'centre'})
+
+============================================================
+SEARCH TOOL EXECUTION
+============================================================
+Query: pricerange='cheap', area='centre'
+
+Found 2 matching hotels:
+  - Hotel A (rating: 4.2)
+  - Hotel B (rating: 3.8)
+
+============================================================
+STEP 2: TOOL EXECUTION RESULTS
+============================================================
+Retrieved 2 hotels:
+[
+  {
+    "name": "Hotel A",
+    "pricerange": "cheap",
+    "area": "centre",
+    "rating": 4.2
+  },
+  {
+    "name": "Hotel B",
+    "pricerange": "cheap",
+    "area": "centre",
+    "rating": 3.8
+  }
+]
+
+============================================================
+STEP 3: GENERATING FINAL RESPONSE WITH TOOL RESULTS (Second LLM Call)
+============================================================
+Final Answer:
+Here are two cheap hotels located in the center:
+
+1. **Hotel A**
+   - Price Range: Cheap
+   - Rating: 4.2
+
+2. **Hotel B**
+   - Price Range: Cheap
+   - Rating: 3.8
+
+Let me know if you need more information about these hotels or if you would like to book one!
+
+============================================================
+FINAL ANSWER
+============================================================
+Here are two cheap hotels located in the center:
+
+1. **Hotel A**
+   - Price Range: Cheap
+   - Rating: 4.2
+
+2. **Hotel B**
+   - Price Range: Cheap
+   - Rating: 3.8
+
+Let me know if you need more information about these hotels or if you would like to book one!
+
+============================================================
+SIMPLE AGENT - WITH TOOL CALLING (gpt-4o-mini)
+============================================================
+User Query: What is your cancellation policy?
+
+============================================================
+STEP 1: LLM DECISION (First LLM Call)
+============================================================
+Decision: Answer directly without tools
+
+============================================================
+FINAL ANSWER
+============================================================
+I don't have a specific cancellation policy as I am not a hotel or booking service. However, cancellation policies can vary widely between hotels and booking platforms. It's best to check the specific hotel's website or the terms provided during the booking process for their cancellation policy. If you need help finding hotels or specific information, feel free to ask!
+
+============================================================
+REACT AGENT - ITERATIVE REASONING (gpt-4o-mini)
+============================================================
+User Query: I need a cheap hotel in the center
+Max Iterations: 5
+
+============================================================
+ITERATION 1
+============================================================
+Action: Use tool
+  → search_hotels({'pricerange': 'cheap', 'area': 'centre'})
+Observation: Found 2 hotels
+
+============================================================
+ITERATION 2
+============================================================
+Action: Provide Final Answer
+
+Final Answer:
+Final Answer: Here are some cheap hotels in the center:
+
+1. **Hotel A** - Rating: 4.2
+2. **Hotel B** - Rating: 3.8
+
+Let me know if you need more information!
+
+============================================================
+REACT AGENT SUMMARY
+============================================================
+Total Iterations: 2
+  - Iteration = one complete LLM reasoning cycle
+LLM Calls Made: 2
+Tools Executed: 1 calls
+Tool Breakdown: search_hotels
+
+============================================================
+REACT AGENT - ITERATIVE REASONING (gpt-4o-mini)
+============================================================
+User Query: I want a cheap hotel in the centre, but also show me expensive hotels in the same area for comparison.
+Max Iterations: 5
+
+============================================================
+ITERATION 1
+============================================================
+Action: Use tool
+  → search_hotels({'pricerange': 'cheap', 'area': 'centre'})
+Observation: Found 2 hotels
+  → search_hotels({'pricerange': 'expensive', 'area': 'centre'})
+Observation: Found 1 hotels
+
+============================================================
+ITERATION 2
+============================================================
+Action: Provide Final Answer
+
+Final Answer:
+Here are some options for hotels in the centre area:
+
+**Cheap Hotels:**
+1. **Hotel A** - Rating: 4.2
+2. **Hotel B** - Rating: 3.8
+
+**Expensive Hotels:**
+1. **Hotel C** - Rating: 4.9
+
+You can compare these options based on your budget and preferences!
+
+============================================================
+REACT AGENT SUMMARY
+============================================================
+Total Iterations: 2
+  - Iteration = one complete LLM reasoning cycle
+LLM Calls Made: 2
+Tools Executed: 2 calls
+Tool Breakdown: search_hotels, search_hotels
+
+============================================================
+END OF TEST AGENT EXPLORATION
+============================================================

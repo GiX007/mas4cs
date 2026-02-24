@@ -1,0 +1,27 @@
+{
+  "experiment": "exp2",
+  "evaluation_level": "dataset",
+  "split": "validation",
+  "timestamp": "2026-02-24 04:54:02",
+  "model_name": "heterogeneous_5",
+  "configuration": "heterogeneous_5",
+  "models": {
+    "triage": "gpt-4o-mini",
+    "action": "claude-3-haiku-20240307",
+    "supervisor": "gpt-4o-mini"
+  },
+  "base_models": null,
+  "num_dialogues": 171,
+  "failed_dialogues": 0,
+  "task_success_rate": 0.3684210526315789,
+  "avg_intent_accuracy": 0.6886397390783356,
+  "avg_domain_accuracy": 0.9080335518932009,
+  "avg_action_type_accuracy": 0.544656886323553,
+  "avg_slot_accuracy": 0.6908135659012851,
+  "avg_jga": 0.22004780469692753,
+  "avg_hallucination_rate": 0.3487624067584385,
+  "avg_system_correctness": 0.2844404783001275,
+  "avg_memory_transfer_accuracy": 0.12608024691358025,
+  "policy_violation_rate": 0.18181818181818182,
+  "total_policy_violations": 156
+}

@@ -1,0 +1,493 @@
+
+============================================================
+TEST EVALUATOR
+============================================================
+
+============================================================
+TEST DIALOGUE EVALUATOR: SINGLE TURN
+============================================================
+
+Evaluating single turn: User searches for restaurant
+
+Turn 1 INPUTS
+
+  Predicted Slots: {'restaurant': {'area': 'centre', 'food': 'indian'}}
+  Ground Truth Slots: {'restaurant': {'area': 'centre', 'food': 'indian'}}
+  Predicted Intent: find_restaurant
+  Ground Truth Intent: find_restaurant
+  Predicted Action Type: ['Restaurant-Inform']
+  Ground Truth Action Type: ['Restaurant-Inform']
+  Predicted Domain: restaurant
+  Action Taken: search_restaurant
+
+Turn 1 RESULTS
+
+  Domain: restaurant
+  Predicted Slots: {'restaurant': {'area': 'centre', 'food': 'indian'}}
+
+  Intent & Routing Metrics:
+    Intent Accuracy: 1.00 (OK)
+    Action Type Accuracy: 1.00 (OK)
+    Domain Accuracy: 1.00 (OK)
+
+  Slot Tracking Metrics:
+    JGA: 1.00
+    JGA Breakdown: {'restaurant': True}
+    Slot Accuracy: 1.00 (2/2 correct)
+    Hallucination Rate: 0.00 (0/2 hallucinated)
+
+  Policy & Action:
+    Policy Compliant: True
+    Policy Reason: No policy constraints for this action
+    Action Taken: search_restaurant
+
+------------------------------------------------------------
+DIALOGUE SUMMARY
+------------------------------------------------------------
+
+  Task Completion:
+    Task Success: False
+    Task Reason: Information was required but not provided
+    Num Turns: 1
+
+  Average Intent & Routing Metrics:
+    Avg Intent Accuracy: 100.00%
+    Avg Action Type Accuracy: 100.00%
+    Avg Domain Accuracy: 100.00%
+
+  Average Slot Tracking Metrics:
+    Avg JGA: 100.00%
+    Avg Slot Accuracy: 100.00%
+    Avg Hallucination Rate: 0.00%
+
+  Memory Transfer:
+    Memory Transfer Accuracy: 0.00%
+    Memory Transfers: 0/0
+    Memory Events: 0
+
+  Policy Compliance:
+    Policy Violations: 0
+
+============================================================
+TEST DIALOGUE EVALUATOR: MULTI-TURN BOOKING
+============================================================
+
+Simulating and Evaluating 3-turn hotel booking dialogue
+
+------------------------------------------------------------
+Turn 1: User provides area and price
+------------------------------------------------------------
+
+  Turn 1 INPUTS
+
+  Predicted Slots: {'hotel': {'area': 'centre', 'pricerange': 'cheap'}}
+  Ground Truth Slots: {'hotel': {'area': 'centre', 'pricerange': 'cheap'}}
+  Predicted Intent: find_hotel
+  Ground Truth Intent: find_hotel
+  Predicted Action Type: ['Hotel-Inform']
+  Ground Truth Action Type: ['Hotel-Inform']
+  Predicted Domain: hotel
+  Action Taken: search_hotel
+
+  Turn 1 RESULTS
+
+  Intent Accuracy: 1.00 (OK)
+  Action Type Accuracy: 1.00 (OK)
+  Domain Accuracy: 1.00 (OK)
+  JGA: 1.00
+  Slot Accuracy: 1.00 (2/2)
+  Hallucination Rate: 0.00
+  Policy Compliant: True
+
+------------------------------------------------------------
+Turn 2: User adds hotel name
+------------------------------------------------------------
+
+  Turn 2 INPUTS
+
+  Predicted Slots: {'hotel': {'area': 'centre', 'pricerange': 'cheap', 'name': 'acorn guest house'}}
+  Ground Truth Slots: {'hotel': {'area': 'centre', 'pricerange': 'cheap', 'name': 'acorn guest house'}}
+  Predicted Intent: find_hotel
+  Ground Truth Intent: find_hotel
+  Predicted Action Type: ['Hotel-Inform']
+  Ground Truth Action Type: ['Hotel-Inform']
+  Predicted Domain: hotel
+  Action Taken: inform_hotel
+
+  Turn 2 RESULTS
+
+  Intent Accuracy: 1.00 (OK)
+  Action Type Accuracy: 1.00 (OK)
+  Domain Accuracy: 1.00 (OK)
+  JGA: 1.00
+  Slot Accuracy: 1.00 (3/3)
+  Hallucination Rate: 0.00
+  Policy Compliant: True
+
+------------------------------------------------------------
+Turn 3: User provides booking details (bookday, bookpeople, bookstay)
+------------------------------------------------------------
+
+  Turn 3 INPUTS
+
+  Predicted Slots: {'hotel': {'area': 'centre', 'pricerange': 'cheap', 'name': 'acorn guest house', 'bookday': 'monday', 'bookpeople': '2', 'bookstay': '3'}}
+  Ground Truth Slots: {'hotel': {'area': 'centre', 'pricerange': 'cheap', 'name': 'acorn guest house', 'bookday': 'monday', 'bookpeople': '2', 'bookstay': '3'}}
+  Predicted Intent: book_hotel
+  Ground Truth Intent: book_hotel
+  Predicted Action Type: ['Hotel-Request']
+  Ground Truth Action Type: ['Hotel-Request']
+  Predicted Domain: hotel
+  Action Taken: book_hotel
+
+  Turn 3 RESULTS
+
+  Intent Accuracy: 1.00 (OK)
+  Action Type Accuracy: 1.00 (OK)
+  Domain Accuracy: 1.00 (OK)
+  JGA: 1.00
+  Slot Accuracy: 1.00 (6/6)
+  Hallucination Rate: 0.00
+  Policy Compliant: True
+  Policy Reason: All required slots present for book_hotel
+
+------------------------------------------------------------
+DIALOGUE SUMMARY
+------------------------------------------------------------
+
+  Ground truth goal: {'domains': ['hotel'], 'requires_booking': True}
+
+  Task Completion:
+    Task Success: True
+    Task Reason: All goals achieved
+    Num Turns: 3
+
+  Average Intent & Routing Metrics:
+    Avg Intent Accuracy: 100.00%
+    Avg Action Type Accuracy: 100.00%
+    Avg Domain Accuracy: 100.00%
+
+  Average Slot Tracking Metrics:
+    Avg JGA: 100.00%
+    Avg Slot Accuracy: 100.00%
+    Avg Hallucination Rate: 0.00%
+
+  Memory Transfer:
+    Memory Transfer Accuracy: 0.00%
+    Memory Transfers: 0/0
+
+  Policy Compliance:
+    Policy Violations: 0
+
+============================================================
+TEST DIALOGUE EVALUATOR: MEMORY TRANSFER
+============================================================
+
+Simulating restaurant → hotel domain switch with memory transfer
+
+------------------------------------------------------------
+Turn 1: Find restaurant (area=centre)
+------------------------------------------------------------
+
+  Turn 1 INPUTS
+
+  Predicted Slots: {'restaurant': {'area': 'centre', 'food': 'indian'}}
+  Ground Truth Slots: {'restaurant': {'area': 'centre', 'food': 'indian'}}
+  Predicted Intent: find_restaurant
+  Ground Truth Intent: find_restaurant
+  Predicted Action Type: ['Restaurant-Inform']
+  Ground Truth Action Type: ['Restaurant-Inform']
+  Predicted Domain: restaurant
+  Action Taken: search_restaurant
+
+  Turn 1 RESULTS
+
+  Intent Accuracy: 1.00 (OK)
+  Action Type Accuracy: 1.00 (OK)
+  Domain Accuracy: 1.00 (OK)
+  JGA: 1.00
+  Slot Accuracy: 1.00 (2/2)
+  Hallucination Rate: 0.00
+  Policy Compliant: True
+
+------------------------------------------------------------
+Turn 2: Switch to hotel (area should transfer from restaurant)
+------------------------------------------------------------
+
+  Turn 2 INPUTS
+
+  Predicted Slots: {'restaurant': {'area': 'centre', 'food': 'indian'}, 'hotel': {'area': 'centre', 'pricerange': 'cheap'}}
+  Ground Truth Slots: {'restaurant': {'area': 'centre', 'food': 'indian'}, 'hotel': {'area': 'centre', 'pricerange': 'cheap'}}
+  Predicted Intent: find_hotel
+  Ground Truth Intent: find_hotel
+  Predicted Action Type: ['Hotel-Inform']
+  Ground Truth Action Type: ['Hotel-Inform']
+  Predicted Domain: hotel
+  Action Taken: search_hotel
+
+  Turn 2 RESULTS
+
+  Intent Accuracy: 1.00 (OK)
+  Action Type Accuracy: 1.00 (OK)
+  Domain Accuracy: 1.00 (OK)
+  JGA: 1.00
+  Slot Accuracy: 1.00 (4/4)
+  Hallucination Rate: 0.00
+  Policy Compliant: True
+
+------------------------------------------------------------
+DIALOGUE SUMMARY
+------------------------------------------------------------
+
+  Ground truth goal: {'domains': ['restaurant', 'hotel'], 'requires_booking': False}
+
+  Task Completion:
+    Task Success: False
+    Task Reason: Information was required but not provided
+    Num Turns: 2
+
+  Average Intent & Routing Metrics:
+    Avg Intent Accuracy: 100.00%
+    Avg Action Type Accuracy: 100.00%
+    Avg Domain Accuracy: 100.00%
+
+  Average Slot Tracking Metrics:
+    Avg JGA: 100.00%
+    Avg Slot Accuracy: 100.00%
+    Avg Hallucination Rate: 0.00%
+
+  Memory Transfer:
+    Memory Transfer Accuracy: 100.00%
+    Memory Transfers: 1/1
+
+  Policy Compliance:
+    Policy Violations: 0
+
+  Memory Transfer Events:
+    [OK] Turn 2: restaurant → hotel, slot='area', value='centre'
+
+============================================================
+TEST DIALOGUE EVALUATOR: POLICY VIOLATION
+============================================================
+
+Simulating booking attempt with missing required slots
+
+------------------------------------------------------------
+Turn 1: Partial hotel info (missing bookday, bookpeople, bookstay)
+------------------------------------------------------------
+
+  Turn 1 INPUTS
+
+  Predicted Slots: {'hotel': {'name': 'acorn guest house', 'area': 'centre'}}
+  Ground Truth Slots: {'hotel': {'name': 'acorn guest house', 'area': 'centre'}}
+  Predicted Intent: find_hotel
+  Ground Truth Intent: find_hotel
+  Predicted Action Type: ['Hotel-Inform']
+  Ground Truth Action Type: ['Hotel-Inform']
+  Predicted Domain: hotel
+  Action Taken: search_hotel
+
+  Turn 1 RESULTS
+
+  Intent Accuracy: 1.00 (OK)
+  Action Type Accuracy: 1.00 (OK)
+  Domain Accuracy: 1.00 (OK)
+  JGA: 1.00
+  Slot Accuracy: 1.00 (2/2)
+  Hallucination Rate: 0.00
+  Policy Compliant: True
+  Policy Reason: No policy constraints for this action
+
+------------------------------------------------------------
+Turn 2: System attempts book_hotel WITHOUT required slots (VIOLATION)
+------------------------------------------------------------
+
+  Turn 2 INPUTS
+
+  Predicted Slots: {'hotel': {'name': 'acorn guest house', 'area': 'centre'}}
+  Ground Truth Slots: {'hotel': {'name': 'acorn guest house', 'area': 'centre'}}
+  Predicted Intent: book_hotel
+  Ground Truth Intent: book_hotel
+  Predicted Action Type: ['Hotel-Book']
+  Ground Truth Action Type: ['Hotel-Request']
+  Predicted Domain: hotel
+  Action Taken: book_hotel
+
+  Turn 2 RESULTS
+
+  Intent Accuracy: 1.00 (OK)
+  Action Type Accuracy: 0.00 (FAIL)
+  Domain Accuracy: 1.00 (OK)
+  JGA: 1.00
+  Slot Accuracy: 1.00 (2/2)
+  Hallucination Rate: 0.00
+  Policy Compliant: False (FAIL - VIOLATION)
+  Policy Reason: Policy violation: Attempted book_hotel with missing slots: ['bookday', 'bookpeople', 'bookstay']
+
+------------------------------------------------------------
+DIALOGUE SUMMARY
+------------------------------------------------------------
+
+  Ground truth goal: {'domains': ['hotel'], 'requires_booking': True}
+
+  Task Completion:
+    Task Success: False
+    Task Reason: Policy violations detected (1 violations)
+    Num Turns: 2
+
+  Average Intent & Routing Metrics:
+    Avg Intent Accuracy: 100.00%
+    Avg Action Type Accuracy: 50.00%
+    Avg Domain Accuracy: 100.00%
+
+  Average Slot Tracking Metrics:
+    Avg JGA: 100.00%
+    Avg Slot Accuracy: 100.00%
+    Avg Hallucination Rate: 0.00%
+
+  Memory Transfer:
+    Memory Transfer Accuracy: 0.00%
+    Memory Transfers: 0/0
+
+  Policy Compliance:
+    Policy Violations: 1 (FAIL - VIOLATIONS DETECTED)
+
+============================================================
+TEST DATASET EVALUATOR: MULTIPLE DIALOGUES
+============================================================
+
+Simulating 3 dialogues with different outcomes
+
+------------------------------------------------------------
+Dialogue 1: Perfect success (all metrics 1.0)
+------------------------------------------------------------
+
+  Dialogue 1 Metrics:
+    Task Success: True
+    Task Reason: All goals achieved
+    Num Turns: 2
+    Avg Intent Accuracy: 100.00%
+    Avg Action Type Accuracy: 100.00%
+    Avg Domain Accuracy: 100.00%
+    Avg JGA: 100.00%
+    Avg Slot Accuracy: 100.00%
+    Avg Hallucination Rate: 0.00%
+    Avg System Correctness: 80.00%
+    Memory Transfer Accuracy: 100.00% (1/1)
+    Policy Violations: 0
+
+------------------------------------------------------------
+Dialogue 2: Partial success (some errors)
+------------------------------------------------------------
+
+  Dialogue 2 Metrics:
+    Task Success: False
+    Task Reason: Policy violations detected (1 violations)
+    Num Turns: 3
+    Avg Intent Accuracy: 67.00%
+    Avg Action Type Accuracy: 100.00%
+    Avg Domain Accuracy: 100.00%
+    Avg JGA: 67.00%
+    Avg Slot Accuracy: 80.00%
+    Avg Hallucination Rate: 10.00%
+    Avg System Correctness: 50.00%
+    Memory Transfer Accuracy: 50.00% (1/2)
+    Policy Violations: 1
+
+------------------------------------------------------------
+Dialogue 3: Failure (task not completed)
+------------------------------------------------------------
+
+  Dialogue 3 Metrics:
+    Task Success: False
+    Task Reason: Policy violations detected (2 violations)
+    Num Turns: 2
+    Avg Intent Accuracy: 50.00%
+    Avg Action Type Accuracy: 50.00%
+    Avg Domain Accuracy: 100.00%
+    Avg JGA: 50.00%
+    Avg Slot Accuracy: 60.00%
+    Avg Hallucination Rate: 20.00%
+    Avg System Correctness: 30.00%
+    Memory Transfer Accuracy: 0.00% (0/0)
+    Policy Violations: 2
+
+------------------------------------------------------------
+DATASET-LEVEL METRICS (MACRO)
+------------------------------------------------------------
+
+  Dataset Summary:
+    Number of Dialogues: 3
+    Task Success Rate: 33.33% (1/3 dialogues)
+
+  Average Intent & Routing Metrics:
+    Avg Intent Accuracy: 72.33%
+    Avg Action Type Accuracy: 83.33%
+    Avg Domain Accuracy: 100.00%
+
+  Average Slot Tracking Metrics:
+    Avg JGA: 72.33%
+    Avg Slot Accuracy: 80.00%
+    Avg Hallucination Rate: 10.00%
+
+  Memory Transfer:
+    Avg Memory Transfer Accuracy: 75.00%
+
+  Policy Compliance:
+    Policy Violation Rate: 42.86%
+    Total Policy Violations: 3
+
+============================================================
+TEST EVALUATOR RESET FUNCTIONALITY
+============================================================
+
+------------------------------------------------------------
+Dialogue 1: Evaluate 2 turns
+------------------------------------------------------------
+
+  Turn 1:
+    Turns accumulated: 1
+    Dialogue history length: 1
+
+  Turn 2:
+    Turns accumulated: 2
+    Dialogue history length: 2
+
+  Dialogue 1 Complete:
+    Total turns: 2
+    Total history entries: 2
+
+------------------------------------------------------------
+Resetting evaluator...
+------------------------------------------------------------
+
+  After Reset:
+    Turns: 0 (should be 0)
+    Dialogue history: 0 (should be 0)
+    Reset successful: OK
+
+------------------------------------------------------------
+Dialogue 2: Evaluate 1 turn after reset
+------------------------------------------------------------
+
+  Turn 1:
+    Turns accumulated: 1
+    Dialogue history length: 1
+
+  Dialogue 2 State:
+    Total turns: 1 (should be 1)
+    Total history entries: 1 (should be 1)
+
+------------------------------------------------------------
+RESET VERIFICATION
+------------------------------------------------------------
+
+  Status: OK
+    Dialogue 1 had 2 turns
+    Reset cleared all state
+    Dialogue 2 started fresh with 1 turn
+
+  Reset functionality working correctly!
+
+============================================================
+ALL EVALUATOR TESTS COMPLETED
+============================================================

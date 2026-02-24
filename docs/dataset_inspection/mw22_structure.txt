@@ -1,0 +1,156 @@
+
+============================================================
+BASIC DATASET STRUCTURE EXPLORATION
+============================================================
+Dataset type: <class 'datasets.dataset_dict.DatasetDict'>
+
+Dataset: DatasetDict({
+    train: Dataset({
+        features: ['dialogue_id', 'services', 'turns'],
+        num_rows: 8437
+    })
+    validation: Dataset({
+        features: ['dialogue_id', 'services', 'turns'],
+        num_rows: 1000
+    })
+    test: Dataset({
+        features: ['dialogue_id', 'services', 'turns'],
+        num_rows: 1000
+    })
+})
+
+Splits: ['train', 'validation', 'test']
+Train size: 8437
+Validation size: 1000
+Test size: 1000
+
+Example of features:
+{'dialogue_id': Value(dtype='string', id=None), 'services': Sequence(feature=Value(dtype='string', id=None), length=-1, id=None), 'turns': Sequence(feature={'turn_id': Value(dtype='string', id=None), 'speaker': ClassLabel(names=['USER', 'SYSTEM'], id=None), 'utterance': Value(dtype='string', id=None), 'frames': Sequence(feature={'service': Value(dtype='string', id=None), 'state': {'active_intent': Value(dtype='string', id=None), 'requested_slots': Sequence(feature=Value(dtype='string', id=None), length=-1, id=None), 'slots_values': Sequence(feature={'slots_values_name': Value(dtype='string', id=None), 'slots_values_list': Sequence(feature=Value(dtype='string', id=None), length=-1, id=None)}, length=-1, id=None)}, 'slots': Sequence(feature={'slot': Value(dtype='string', id=None), 'value': Value(dtype='string', id=None), 'start': Value(dtype='int32', id=None), 'exclusive_end': Value(dtype='int32', id=None), 'copy_from': Value(dtype='string', id=None), 'copy_from_value': Sequence(feature=Value(dtype='string', id=None), length=-1, id=None)}, length=-1, id=None)}, length=-1, id=None), 'dialogue_acts': {'dialog_act': Sequence(feature={'act_type': Value(dtype='string', id=None), 'act_slots': Sequence(feature={'slot_name': Value(dtype='string', id=None), 'slot_value': Value(dtype='string', id=None)}, length=-1, id=None)}, length=-1, id=None), 'span_info': Sequence(feature={'act_type': Value(dtype='string', id=None), 'act_slot_name': Value(dtype='string', id=None), 'act_slot_value': Value(dtype='string', id=None), 'span_start': Value(dtype='int32', id=None), 'span_end': Value(dtype='int32', id=None)}, length=-1, id=None)}}, length=-1, id=None)}
+
+============================================================
+SINGLE DIALOGUE STRUCTURE (Index 0)
+============================================================
+Top-level keys: dict_keys(['dialogue_id', 'services', 'turns'])
+Dialogue ID: PMUL4398.json
+Services: ['restaurant', 'hotel']
+
+Turns type: <class 'dict'>
+Turns keys: dict_keys(['turn_id', 'speaker', 'utterance', 'frames', 'dialogue_acts'])
+
+Number of turns: 12
+turn_id: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11']
+
+Number of speakers: 12
+speaker: [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1]
+
+Number of utterances: 12
+utterance: ['i need a place to dine in the center thats expensive', 'I have several options for you; do you prefer African, Asian, or British food?', 'Any sort of food would be fine, as long as it is a bit expensive. Could I get the phone number for your recommendation?', 'There is an Afrian place named Bedouin in the centre. How does that sound?', 'Sounds good, could I get that phone number? Also, could you recommend me an expensive hotel?', "Bedouin's phone is 01223367660. As far as hotels go, I recommend the University Arms Hotel in the center of town.", 'Yes. Can you book it for me?', 'Sure, when would you like that reservation?', 'i want to book it for 2 people and 2 nights starting from saturday.', 'Your booking was successful. Your reference number is FRGZWQL2 . May I help you further?', 'That is all I need to know. Thanks, good bye.', 'Thank you so much for Cambridge TownInfo centre. Have a great day!']
+
+Number of frames: 12
+Number of dialogue_acts: 12
+
+Note: all 5 turn keys are parallel lists — same length, indexed by dialogue_id.
+
+============================================================
+TURN DETAILS (Dialogue 0, Turn 0)
+============================================================
+Turn id: 0
+Speaker: USER
+Utterance: i need a place to dine in the center thats expensive
+
+Frames keys: dict_keys(['service', 'state', 'slots'])
+Services: ['restaurant', 'hotel']
+
+Dialogue acts keys: dict_keys(['dialog_act', 'span_info'])
+Dialog act: {'act_type': ['Restaurant-Inform'], 'act_slots': [{'slot_name': ['area', 'pricerange'], 'slot_value': ['centre', 'expensive']}]}
+
+============================================================
+FRAMES DEEP DIVE (Dialogue 0, Turn 0, Frame 0)
+============================================================
+Frame type: <class 'dict'>
+Frames keys: dict_keys(['service', 'state', 'slots'])
+
+--- SERVICE ---
+Type: <class 'list'>
+Length: 2
+Value: ['restaurant', 'hotel']
+
+--- STATE ---
+Type: <class 'list'>
+Length: 2
+First state type: <class 'dict'>
+First state keys: dict_keys(['active_intent', 'requested_slots', 'slots_values'])
+
+  active_intent type: <class 'str'>
+  active_intent value: find_restaurant
+
+  requested_slots type: <class 'list'>
+  requested_slots value: []
+
+  slots_values type: <class 'dict'>
+  slots_values keys: dict_keys(['slots_values_name', 'slots_values_list'])
+  slots_values_name: ['restaurant-area', 'restaurant-pricerange']
+  slots_values_list: [['centre'], ['expensive']]
+
+--- SLOTS ---
+Type: <class 'list'>
+Length: 2
+First slot type: <class 'dict'>
+First slot keys: dict_keys(['slot', 'value', 'start', 'exclusive_end', 'copy_from', 'copy_from_value'])
+  slot: []
+  value: []
+  start: []
+  exclusive_end: []
+
+============================================================
+DIALOGUE_ACTS DEEP DIVE (Dialogue 0, Turn 0, Dialogue Act0)
+============================================================
+Dialogue_acts type: <class 'dict'>
+Dialogue_acts keys: dict_keys(['dialog_act', 'span_info'])
+
+--- DIALOG_ACT ---
+Type: <class 'dict'>
+Keys: dict_keys(['act_type', 'act_slots'])
+
+  act_type type: <class 'list'>
+  act_type value: ['Restaurant-Inform']
+
+  act_slots type: <class 'list'>
+  act_slots length: 1
+  First act_slot type: <class 'dict'>
+  First act_slot keys: dict_keys(['slot_name', 'slot_value'])
+    slot_name: ['area', 'pricerange']
+    slot_value: ['centre', 'expensive']
+
+--- SPAN_INFO ---
+Type: <class 'dict'>
+Keys: dict_keys(['act_type', 'act_slot_name', 'act_slot_value', 'span_start', 'span_end'])
+
+  act_type type: <class 'list'>
+  act_type value: ['Restaurant-Inform', 'Restaurant-Inform']
+
+  act_slot_name type: <class 'list'>
+  act_slot_name value: ['area', 'pricerange']
+
+  act_slot_value type: <class 'list'>
+  act_slot_value value: ['centre', 'expensive']
+
+  span_start type: <class 'list'>
+  span_start value: [30, 43]
+
+  span_end type: <class 'list'>
+  span_end value: [36, 52]
+
+============================================================
+ANNOTATION ANALYSIS (5 dialogues)
+============================================================
+
+Top 5 Domains: [('hotel', 17), ('restaurant', 10), ('train', 8), ('taxi', 2)]
+
+Top 10 Intents: [('find_hotel', 10), ('find_restaurant', 9), ('book_hotel', 7), ('find_train', 6), ('find_taxi', 2), ('book_train', 2), ('book_restaurant', 1)]
+
+Top 10 Actions: [('Hotel-Inform', 18), ('Restaurant-Inform', 11), ('general-bye', 9), ('Restaurant-Request', 6), ('general-reqmore', 6), ('Train-Inform', 6), ('Booking-Request', 5), ('Booking-Book', 5), ('Booking-Inform', 5), ('general-thank', 5)]
+
+============================================================
+END OF BASIC DATASET STRUCTURE EXPLORATION
+============================================================
