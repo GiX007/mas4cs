@@ -6,7 +6,7 @@ Validates agent responses against database entities to prevent fabricated inform
 
 from src.core import AgentState
 from src.models import call_model
-from src.utils import DEFAULT_SUPERVISOR_PROMPT
+from src.utils import DEFAULT_SUPERVISOR_PROMPT, format_agent_history
 
 
 def supervisor_agent(state: AgentState) -> AgentState:
@@ -20,6 +20,15 @@ def supervisor_agent(state: AgentState) -> AgentState:
     Returns:
         Updated state with validation_passed and hallucination_flags set
     """
+    # Check what history agents actually see
+    # history = state.get("conversation_history", [])
+    # print(f"\n[DEBUG supervisor_agent] Turn {state['turn_id']}")
+    # print(f"  conversation_history length: {len(history)}")
+    # for i, msg in enumerate(history):
+    #     print(f"  [{i}] {msg['role']}: {msg['content'][:60]}...")
+
+    # print(f"\n[DEBUG supervisor IN]  response={state['agent_response'][:60] if state['agent_response'] else None}")
+
     valid_entities = state.get("valid_entities", [])
     user_message = state["user_utterance"]
     agent_response = state["agent_response"]
@@ -34,7 +43,8 @@ def supervisor_agent(state: AgentState) -> AgentState:
     prompt = DEFAULT_SUPERVISOR_PROMPT.format(
         user_message=user_message,
         agent_response=agent_response,
-        valid_entities=entities_str
+        valid_entities=entities_str,
+        history=format_agent_history(state["conversation_history"])
     )
 
     # Generate response
@@ -43,6 +53,9 @@ def supervisor_agent(state: AgentState) -> AgentState:
     # Update state (Parse response)
     state["hallucination_flags"] = []
     state["validation_passed"] = True  # Assume valid unless proven otherwise
+
+    state["turn_cost"] += response.cost
+    state["turn_response_time"] += response.response_time
 
     lines = response.text.strip().split('\n')
     for line in lines:
@@ -57,5 +70,6 @@ def supervisor_agent(state: AgentState) -> AgentState:
                 hallucinated = [e.strip().lower() for e in entities_str.split(',')]
                 state["hallucination_flags"].extend(hallucinated)
 
-    return state
+    # print(f"\n[DEBUG supervisor OUT/PARSED]: validation_passed={state['validation_passed']} | flags={state['hallucination_flags']}")
 
+    return state

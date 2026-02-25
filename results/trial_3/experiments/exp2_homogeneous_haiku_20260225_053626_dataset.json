@@ -1,0 +1,29 @@
+{
+  "experiment": "exp2",
+  "evaluation_level": "dataset",
+  "split": "validation",
+  "timestamp": "2026-02-25 05:36:26",
+  "model_name": "homogeneous_haiku",
+  "configuration": "homogeneous_haiku",
+  "models": {
+    "triage": "claude-3-haiku-20240307",
+    "action": "claude-3-haiku-20240307",
+    "supervisor": "claude-3-haiku-20240307"
+  },
+  "base_models": null,
+  "num_dialogues": 171,
+  "failed_dialogues": 0,
+  "task_success_rate": 0.3157894736842105,
+  "avg_intent_accuracy": 0.7036300768756907,
+  "avg_domain_accuracy": 0.9294492544492542,
+  "avg_action_type_accuracy": 0.7024836923959732,
+  "avg_slot_accuracy": 0.6250741928920011,
+  "avg_jga": 0.226591942820013,
+  "avg_hallucination_rate": 0.09995253736795089,
+  "avg_system_correctness": 0.7564257866889444,
+  "avg_memory_transfer_accuracy": 0.0,
+  "policy_violation_rate": 0.04460093896713615,
+  "total_policy_violations": 38,
+  "total_cost": 0.7729232499999997,
+  "avg_latency_per_turn": 7.638221329646491
+}

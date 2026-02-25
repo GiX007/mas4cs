@@ -1,0 +1,925 @@
+
+============================================================
+ERROR ANALYSIS FOR MAS4CS EXPERIMENTS
+============================================================
+
+  Loaded 858 turns from exp1_gpt-4o-mini_20260225_004450_turns.json
+  Loaded 852 turns from exp1_claude-3-haiku-20240307_20260225_012913_turns.json
+  Loaded 858 turns from exp2_homogeneous_gpt_20260225_032349_turns.json
+  Loaded 852 turns from exp2_homogeneous_haiku_20260225_053626_turns.json
+  Loaded 858 turns from exp2_heterogeneous_6_20260225_074945_turns.json
+
+============================================================
+PER-CONFIG TURN-LEVEL SUMMARY
+============================================================
+Config                         Turns  Intent%   Slot%   Hall%   SysOK%
+------------------------------------------------------------
+claude-3-haiku-20240307          852    81.3%   62.4%    8.8%    61.5%
+gpt-4o-mini                      858    82.3%   59.6%    7.8%    62.7%
+heterogeneous_6                  858    67.6%   62.9%   25.2%    44.1%
+homogeneous_gpt                  858    66.8%   63.2%   22.2%    47.7%
+homogeneous_haiku                852    67.4%   59.7%   11.2%    74.4%
+
+============================================================
+FAILURE TYPE: INTENT_ERROR (1152 total)
+============================================================
+
+  >>> Config: claude-3-haiku-20240307 (159 failures)
+
+  --- Example 1 ---
+  Dialogue : PMUL4075.json | Turn 4
+  User     : Thanks a lot. Can you tell me a little about a hotel called Home From Home?
+  Response : Home From Home is a hotel located in Cambridge. It offers moderate pricing. I'd be happy to provide more details about t
+  Predicted: find_hotel
+  GT       : book_restaurant
+
+  --- Example 2 ---
+  Dialogue : PMUL4833.json | Turn 10
+  User     : I would also like it to have a 4 star rating and free parking
+  Response : To book a 4-star guesthouse with free parking in the city's centre, I will need the following additional information: ho
+  Predicted: book_hotel
+  GT       : find_hotel
+
+  --- Example 3 ---
+  Dialogue : PMUL4833.json | Turn 12
+  User     : No, I don't need a booking, just the address.
+  Response : I can help you find an Indonesian restaurant located in the city's centre. What is your preferred price range?
+  Predicted: find_restaurant
+  GT       : find_hotel
+
+  --- Example 4 ---
+  Dialogue : PMUL0287.json | Turn 6
+  User     : No particular price range, but I would like it to be a 4 star hotel.
+  Response : To book a 4 star hotel in the south, I'll need the hotel name, your preferred check-in and check-out dates, and the numb
+  Predicted: book_hotel
+  GT       : find_hotel
+
+  --- Example 5 ---
+  Dialogue : PMUL0287.json | Turn 8
+  User     : Sure, that will work. Can you tell me more about them?
+  Response : The Riverside Brasserie is a restaurant located in the area. I'd be happy to help you make a reservation there.
+  Predicted: find_restaurant
+  GT       : find_hotel
+
+  >>> Config: gpt-4o-mini (152 failures)
+
+  --- Example 1 ---
+  Dialogue : PMUL4075.json | Turn 4
+  User     : Thanks a lot. Can you tell me a little about a hotel called Home From Home?
+  Response : Home From Home is a well-regarded hotel known for its comfortable accommodations and convenient location. If you need mo
+  Predicted: find_hotel
+  GT       : book_restaurant
+
+  --- Example 2 ---
+  Dialogue : PMUL4833.json | Turn 10
+  User     : I would also like it to have a 4 star rating and free parking
+  Response : It looks like I have most of the information needed to book your hotel, but I still need to know the duration of your st
+  Predicted: book_hotel
+  GT       : find_hotel
+
+  --- Example 3 ---
+  Dialogue : PMUL4833.json | Turn 12
+  User     : No, I don't need a booking, just the address.
+  Response : I can help you with that! I will find a Spanish restaurant located in the city's centre for you. Please hold on a moment
+  Predicted: find_restaurant
+  GT       : find_hotel
+
+  --- Example 4 ---
+  Dialogue : PMUL0287.json | Turn 8
+  User     : Sure, that will work. Can you tell me more about them?
+  Response : The Riverside Brasserie is known for its beautiful riverside views and a diverse menu featuring seasonal ingredients. Wo
+  Predicted: find_restaurant
+  GT       : find_hotel
+
+  --- Example 5 ---
+  Dialogue : PMUL0287.json | Turn 10
+  User     : Can I get the postcode for both of them?
+  Response : The postcode for Riverside Brasserie is available. Please let me know if you need any further information.
+  Predicted: find_restaurant
+  GT       : find_hotel
+
+  >>> Config: heterogeneous_6 (278 failures)
+
+  --- Example 1 ---
+  Dialogue : PMUL4075.json | Turn 4
+  User     : Thanks a lot. Can you tell me a little about a hotel called Home From Home?
+  Response : Sure, let me tell you what I know about the Home From Home hotel.
+
+Home From Home is a hotel located in the Cambridge ci
+  Predicted: find_hotel
+  GT       : book_restaurant
+
+  --- Example 2 ---
+  Dialogue : PMUL4833.json | Turn 6
+  User     : Actually, it would be quite helpful if you'd book a table for 3 at 13:00 on Monday.
+  Response : Okay, got it. Let me go ahead and book a table for 3 at 13:00 on Monday at [Restaurant Name], the affordable Spanish res
+  Predicted: find_restaurant
+  GT       : book_restaurant
+
+  --- Example 3 ---
+  Dialogue : PMUL4833.json | Turn 12
+  User     : No, I don't need a booking, just the address.
+  Response : Okay, no problem. Since you mentioned you don't need a booking, just the address, let me provide you with the address fo
+  Predicted: book_restaurant
+  GT       : find_hotel
+
+  --- Example 4 ---
+  Dialogue : PMUL0287.json | Turn 2
+  User     : Perfect. Can you help me with a reservation for 6 people at 14:30 this coming sunday? And please make sure I have a confirmation number to use.
+  Response : Absolutely, I'd be happy to help you make a reservation at the Riverside Brasserie. Let me get the details:
+
+- Reservati
+  Predicted: find_restaurant
+  GT       : book_restaurant
+
+  --- Example 5 ---
+  Dialogue : PMUL1591.json | Turn 6
+  User     : Yes I need reservations for 8 people for 2 nights starting from thursday.
+  Response : Okay, let me look into finding a hotel that can accommodate 8 people for 2 nights starting on Thursday in the east area 
+  Predicted: find_hotel
+  GT       : book_hotel
+
+  >>> Config: homogeneous_gpt (285 failures)
+
+  --- Example 1 ---
+  Dialogue : PMUL4075.json | Turn 4
+  User     : Thanks a lot. Can you tell me a little about a hotel called Home From Home?
+  Response : Home From Home is a hotel in Cambridge that offers a cozy and comfortable stay. It's known for its welcoming atmosphere 
+  Predicted: find_hotel
+  GT       : book_restaurant
+
+  --- Example 2 ---
+  Dialogue : PMUL4833.json | Turn 12
+  User     : No, I don't need a booking, just the address.
+  Response : I can provide the address, but I'll need the name of the specific Spanish restaurant you're interested in. Could you ple
+  Predicted: inform_restaurant
+  GT       : find_hotel
+
+  --- Example 3 ---
+  Dialogue : PMUL0287.json | Turn 2
+  User     : Perfect. Can you help me with a reservation for 6 people at 14:30 this coming sunday? And please make sure I have a confirmation number to use.
+  Response : I can help you with that! I will make a reservation for 6 people at the Riverside Brasserie for 14:30 this coming Sunday
+  Predicted: find_restaurant
+  GT       : book_restaurant
+
+  --- Example 4 ---
+  Dialogue : PMUL1591.json | Turn 6
+  User     : Yes I need reservations for 8 people for 2 nights starting from thursday.
+  Response : I can assist with your reservation for 8 people for 2 nights starting from Thursday, but I'll need a specific hotel name
+  Predicted: find_hotel
+  GT       : book_hotel
+
+  --- Example 5 ---
+  Dialogue : SNG0899.json | Turn 2
+  User     : Thank you, I need to book for 7 people and 3 nights starting on thursday. Can they set that up for me.
+  Response : I can help you with the booking for 7 people and 3 nights starting on Thursday at the A and B Guest House. However, I do
+  Predicted: find_hotel
+  GT       : book_hotel
+
+  >>> Config: homogeneous_haiku (278 failures)
+
+  --- Example 1 ---
+  Dialogue : MUL1271.json | Turn 4
+  User     : That sounds great. Can you book me a table for 3 on Friday at 18:30?
+  Response : Okay, let me go ahead and book a table for 3 at the Riverside Bistro this Friday at 6:30pm. I'll make the reservation no
+  Predicted: find_restaurant
+  GT       : book_restaurant
+
+  --- Example 2 ---
+  Dialogue : PMUL4075.json | Turn 2
+  User     : Moderately priced in the centre. I need a reservation for 4 at 13:45 on Wednesday and the reference number as well.
+  Response : Okay, let me check on a reservation for 4 people at 1:45pm on Wednesday at a moderately priced Chinese restaurant in the
+  Predicted: find_restaurant
+  GT       : book_restaurant
+
+  --- Example 3 ---
+  Dialogue : PMUL4075.json | Turn 4
+  User     : Thanks a lot. Can you tell me a little about a hotel called Home From Home?
+  Response : Unfortunately, I don't have any specific information about a hotel called "Home From Home" since that name was not menti
+  Predicted: find_hotel
+  GT       : book_restaurant
+
+  --- Example 4 ---
+  Dialogue : PMUL4833.json | Turn 4
+  User     : I can't change the location but I can eat spanish food instead. Is that an option?
+  Response : Okay, no problem. Since you mentioned you'd like to eat Spanish food instead, here are a few budget-friendly Spanish res
+  Predicted: inform_restaurant
+  GT       : find_restaurant
+
+  --- Example 5 ---
+  Dialogue : PMUL4833.json | Turn 10
+  User     : I would also like it to have a 4 star rating and free parking
+  Response : Okay, let me see what I can do to help. 
+
+Could you please provide the name of the specific Spanish restaurant in the ci
+  Predicted: book_restaurant
+  GT       : find_hotel
+
+============================================================
+FAILURE TYPE: SLOT_ERROR (3155 total)
+============================================================
+
+  >>> Config: claude-3-haiku-20240307 (620 failures)
+
+  --- Example 1 ---
+  Dialogue : MUL1271.json | Turn 2
+  User     : No particular type of food but I need it in the moderate price range.
+  Response : Okay, let me look for a moderate-priced restaurant in the north area for you.
+  Predicted slots: {'restaurant': {'area': 'north', 'pricerange': 'moderate', 'bookpeople': '3', 'bookday': 'friday', 'booktime': '18:30'}, 'hotel': {'name': 'lovell lodge', 'bookday': 'friday', 'bookpeople': '3', 'bookstay': '5'}}
+  Slot accuracy  : 0.67
+
+  --- Example 2 ---
+  Dialogue : MUL1271.json | Turn 4
+  User     : That sounds great. Can you book me a table for 3 on Friday at 18:30?
+  Response : Okay, let me check on a table for 3 people on Friday at 6:30pm. I'll need the name of the restaurant you'd like to book 
+  Predicted slots: {'restaurant': {'area': 'north', 'pricerange': 'moderate', 'bookpeople': '3', 'bookday': 'friday', 'booktime': '18:30'}, 'hotel': {'name': 'lovell lodge', 'bookday': 'friday', 'bookpeople': '3', 'bookstay': '5'}}
+  Slot accuracy  : 0.71
+
+  --- Example 3 ---
+  Dialogue : PMUL4075.json | Turn 2
+  User     : Moderately priced in the centre. I need a reservation for 4 at 13:45 on Wednesday and the reference number as well.
+  Response : To book a moderately priced restaurant in the centre of Cambridge for 4 people at 13:45 on Wednesday, I will need the na
+  Predicted slots: {'restaurant': {'food': 'chinese', 'area': 'centre', 'pricerange': 'moderately priced', 'bookpeople': '4', 'bookday': 'wednesday', 'booktime': '13:45'}, 'hotel': {'name': 'home from home'}}
+  Slot accuracy  : 0.83
+
+  --- Example 4 ---
+  Dialogue : PMUL4075.json | Turn 4
+  User     : Thanks a lot. Can you tell me a little about a hotel called Home From Home?
+  Response : Home From Home is a hotel located in Cambridge. It offers moderate pricing. I'd be happy to provide more details about t
+  Predicted slots: {'restaurant': {'food': 'chinese', 'area': 'centre', 'pricerange': 'moderately priced', 'bookpeople': '4', 'bookday': 'wednesday', 'booktime': '13:45'}, 'hotel': {'name': 'home from home'}}
+  Slot accuracy  : 0.75
+
+  --- Example 5 ---
+  Dialogue : PMUL4833.json | Turn 2
+  User     : I'd like Indonesian food located in the city's centre. Do you have anything like that?
+  Response : Okay, let me check for Indonesian restaurants located in the city centre. Give me a moment to look into that for you.
+  Predicted slots: {'restaurant': {'pricerange': 'cheap', 'area': "city's centre", 'food': 'indonesian', 'bookday': 'monday', 'bookpeople': '3', 'booktime': '13:00'}, 'hotel': {'area': "city's centre", 'type': 'guesthouse', 'pricerange': 'budget', 'stars': '4', 'parking': 'free'}}
+  Slot accuracy  : 0.67
+
+  >>> Config: gpt-4o-mini (638 failures)
+
+  --- Example 1 ---
+  Dialogue : MUL1271.json | Turn 2
+  User     : No particular type of food but I need it in the moderate price range.
+  Response : I found some dining options in the north that are in the moderate price range. Would you like me to provide a list of re
+  Predicted slots: {'restaurant': {'area': 'north', 'pricerange': 'moderate', 'bookday': 'friday', 'bookpeople': '3', 'booktime': '18:30'}, 'hotel': {'name': 'lovell lodge', 'bookday': 'friday', 'bookpeople': '3', 'bookstay': '5'}}
+  Slot accuracy  : 0.67
+
+  --- Example 2 ---
+  Dialogue : MUL1271.json | Turn 4
+  User     : That sounds great. Can you book me a table for 3 on Friday at 18:30?
+  Response : It seems that I need the name of the restaurant you'd like to book a table at. Could you please provide that information
+  Predicted slots: {'restaurant': {'area': 'north', 'pricerange': 'moderate', 'bookday': 'friday', 'bookpeople': '3', 'booktime': '18:30'}, 'hotel': {'name': 'lovell lodge', 'bookday': 'friday', 'bookpeople': '3', 'bookstay': '5'}}
+  Slot accuracy  : 0.71
+
+  --- Example 3 ---
+  Dialogue : PMUL4075.json | Turn 2
+  User     : Moderately priced in the centre. I need a reservation for 4 at 13:45 on Wednesday and the reference number as well.
+  Response : Your reservation for 4 at a moderately priced Chinese restaurant in the center of Cambridge has been successfully booked
+  Predicted slots: {'restaurant': {'area': 'cambridge', 'food': 'chinese', 'pricerange': 'moderately priced', 'bookday': 'wednesday', 'bookpeople': '4', 'booktime': '13:45'}, 'hotel': {'name': 'home from home'}}
+  Slot accuracy  : 0.67
+
+  --- Example 4 ---
+  Dialogue : PMUL4075.json | Turn 4
+  User     : Thanks a lot. Can you tell me a little about a hotel called Home From Home?
+  Response : Home From Home is a well-regarded hotel known for its comfortable accommodations and convenient location. If you need mo
+  Predicted slots: {'restaurant': {'area': 'cambridge', 'food': 'chinese', 'pricerange': 'moderately priced', 'bookday': 'wednesday', 'bookpeople': '4', 'booktime': '13:45'}, 'hotel': {'name': 'home from home'}}
+  Slot accuracy  : 0.62
+
+  --- Example 5 ---
+  Dialogue : PMUL4833.json | Turn 2
+  User     : I'd like Indonesian food located in the city's centre. Do you have anything like that?
+  Response : I can help you find Indonesian restaurants located in the city's centre. Would you like me to provide some options?
+  Predicted slots: {'restaurant': {'pricerange': 'cheap', 'area': "city's centre", 'food': 'spanish', 'bookday': 'monday', 'bookpeople': '3', 'booktime': '13:00'}, 'hotel': {'type': 'guesthouse', 'area': "city's centre", 'stars': '4', 'parking': 'free', 'bookday': 'monday', 'bookpeople': '3'}}
+  Slot accuracy  : 0.67
+
+  >>> Config: heterogeneous_6 (632 failures)
+
+  --- Example 1 ---
+  Dialogue : MUL1271.json | Turn 2
+  User     : No particular type of food but I need it in the moderate price range.
+  Response : Okay, got it. Since you're looking for a moderately priced restaurant in the north area, without a specific cuisine pref
+  Predicted slots: {'restaurant': {'area': 'north', 'pricerange': 'moderate', 'food': 'none', 'bookday': 'friday', 'bookpeople': '3', 'booktime': '18:30'}}
+  Slot accuracy  : 0.67
+
+  --- Example 2 ---
+  Dialogue : MUL1271.json | Turn 4
+  User     : That sounds great. Can you book me a table for 3 on Friday at 18:30?
+  Response : Okay, got it. Could you please let me know which restaurant you would like me to book a table for 3 at on Friday at 6:30
+  Predicted slots: {'restaurant': {'area': 'north', 'pricerange': 'moderate', 'food': 'none', 'bookday': 'friday', 'bookpeople': '3', 'booktime': '18:30'}}
+  Slot accuracy  : 0.71
+
+  --- Example 3 ---
+  Dialogue : MUL1271.json | Turn 8
+  User     : Yes! I'd like to book it for the same group of people and 5 nights starting from the same day.
+  Response : Okay, let me go ahead and book a 5-night stay at the Lovell Lodge for your group of 3 starting today. What time would yo
+  Predicted slots: {'restaurant': {'area': 'north', 'pricerange': 'moderate', 'food': 'none', 'bookday': 'friday', 'bookpeople': '3', 'booktime': '18:30'}, 'hotel': {'name': 'lovell lodge', 'type': 'hotel', 'bookstay': '5', 'bookpeople': '3', 'bookday': 'today'}}
+  Slot accuracy  : 0.75
+
+  --- Example 4 ---
+  Dialogue : PMUL4075.json | Turn 2
+  User     : Moderately priced in the centre. I need a reservation for 4 at 13:45 on Wednesday and the reference number as well.
+  Response : Okay, let me see what I can do to help you find a good Chinese restaurant in the Cambridge area for your reservation.
+
+Y
+  Predicted slots: {'restaurant': {'area': 'cambridge', 'food': 'chinese', 'bookday': 'wednesday', 'bookpeople': '4', 'booktime': '13:45', 'pricerange': 'moderately priced'}}
+  Slot accuracy  : 0.67
+
+  --- Example 5 ---
+  Dialogue : PMUL4075.json | Turn 4
+  User     : Thanks a lot. Can you tell me a little about a hotel called Home From Home?
+  Response : Sure, let me tell you what I know about the Home From Home hotel.
+
+Home From Home is a hotel located in the Cambridge ci
+  Predicted slots: {'restaurant': {'area': 'cambridge', 'food': 'chinese', 'bookday': 'wednesday', 'bookpeople': '4', 'booktime': '13:45', 'pricerange': 'moderately priced'}, 'hotel': {'name': 'home from home', 'type': 'hotel'}}
+  Slot accuracy  : 0.62
+
+  >>> Config: homogeneous_gpt (635 failures)
+
+  --- Example 1 ---
+  Dialogue : MUL1271.json | Turn 2
+  User     : No particular type of food but I need it in the moderate price range.
+  Response : I can help you find a restaurant in the north with a moderate price range. Could you please provide me with a specific r
+  Predicted slots: {'restaurant': {'area': 'north', 'pricerange': 'moderate', 'food': 'none', 'bookday': 'friday', 'bookpeople': '3', 'booktime': '18:30'}}
+  Slot accuracy  : 0.67
+
+  --- Example 2 ---
+  Dialogue : MUL1271.json | Turn 4
+  User     : That sounds great. Can you book me a table for 3 on Friday at 18:30?
+  Response : I can help you with the booking, but I need the name of the restaurant you'd like to dine at. Could you please provide t
+  Predicted slots: {'restaurant': {'area': 'north', 'pricerange': 'moderate', 'food': 'none', 'bookday': 'friday', 'bookpeople': '3', 'booktime': '18:30'}}
+  Slot accuracy  : 0.71
+
+  --- Example 3 ---
+  Dialogue : MUL1271.json | Turn 8
+  User     : Yes! I'd like to book it for the same group of people and 5 nights starting from the same day.
+  Response : I can assist you with booking Lovell Lodge for 3 people for 5 nights. Could you please provide me with the check-in date
+  Predicted slots: {'restaurant': {'area': 'north', 'pricerange': 'moderate', 'food': 'none', 'bookday': 'friday', 'bookpeople': '3', 'booktime': '18:30'}, 'hotel': {'name': 'lovell lodge', 'bookstay': '5', 'bookpeople': '3', 'type': 'hotel'}}
+  Slot accuracy  : 0.75
+
+  --- Example 4 ---
+  Dialogue : PMUL4075.json | Turn 2
+  User     : Moderately priced in the centre. I need a reservation for 4 at 13:45 on Wednesday and the reference number as well.
+  Response : I can help you with the reservation, but I need a specific name of a Chinese restaurant in Cambridge. Could you please p
+  Predicted slots: {'restaurant': {'area': 'cambridge', 'food': 'chinese', 'bookday': 'wednesday', 'bookpeople': '4', 'booktime': '13:45'}}
+  Slot accuracy  : 0.67
+
+  --- Example 5 ---
+  Dialogue : PMUL4075.json | Turn 4
+  User     : Thanks a lot. Can you tell me a little about a hotel called Home From Home?
+  Response : Home From Home is a hotel in Cambridge that offers a cozy and comfortable stay. It's known for its welcoming atmosphere 
+  Predicted slots: {'restaurant': {'area': 'cambridge', 'food': 'chinese', 'bookday': 'wednesday', 'bookpeople': '4', 'booktime': '13:45'}, 'hotel': {'name': 'home from home', 'type': 'hotel'}}
+  Slot accuracy  : 0.62
+
+  >>> Config: homogeneous_haiku (630 failures)
+
+  --- Example 1 ---
+  Dialogue : MUL1271.json | Turn 2
+  User     : No particular type of food but I need it in the moderate price range.
+  Response : Based on the details you provided, I would recommend checking out The Northern Grill or Riverside Bistro. Both offer a v
+  Predicted slots: {'restaurant': {'area': 'north', 'pricerange': 'moderate'}}
+  Slot accuracy  : 0.67
+
+  --- Example 2 ---
+  Dialogue : MUL1271.json | Turn 4
+  User     : That sounds great. Can you book me a table for 3 on Friday at 18:30?
+  Response : Okay, let me go ahead and book a table for 3 at the Riverside Bistro this Friday at 6:30pm. I'll make the reservation no
+  Predicted slots: {'restaurant': {'area': 'north', 'pricerange': 'moderate'}}
+  Slot accuracy  : 0.29
+
+  --- Example 3 ---
+  Dialogue : MUL1271.json | Turn 6
+  User     : Yes, I'm looking for a hotel called the Lovell Lodge.
+  Response : Okay, let me look into booking a reservation for you at the Lovell Lodge for this Friday at 6:30pm for 3 people.
+
+Just t
+  Predicted slots: {'restaurant': {'area': 'north', 'pricerange': 'moderate'}, 'hotel': {'area': 'north', 'pricerange': 'moderate', 'name': 'lovell lodge', 'bookday': 'friday', 'bookpeople': '3', 'bookstay': '5'}}
+  Slot accuracy  : 0.00
+
+  --- Example 4 ---
+  Dialogue : PMUL4075.json | Turn 2
+  User     : Moderately priced in the centre. I need a reservation for 4 at 13:45 on Wednesday and the reference number as well.
+  Response : Okay, let me check on a reservation for 4 people at 1:45pm on Wednesday at a moderately priced Chinese restaurant in the
+  Predicted slots: {'restaurant': {'food': 'chinese', 'area': 'cambridge', 'pricerange': 'moderately priced', 'bookday': 'wednesday', 'booktime': '13:45', 'bookpeople': '4'}}
+  Slot accuracy  : 0.67
+
+  --- Example 5 ---
+  Dialogue : PMUL4075.json | Turn 4
+  User     : Thanks a lot. Can you tell me a little about a hotel called Home From Home?
+  Response : Unfortunately, I don't have any specific information about a hotel called "Home From Home" since that name was not menti
+  Predicted slots: {'restaurant': {'food': 'chinese', 'area': 'cambridge', 'pricerange': 'moderately priced', 'bookday': 'wednesday', 'booktime': '13:45', 'bookpeople': '4'}, 'hotel': {'name': 'home from home'}}
+  Slot accuracy  : 0.62
+
+============================================================
+FAILURE TYPE: HALLUCINATION (1374 total)
+============================================================
+
+  >>> Config: claude-3-haiku-20240307 (145 failures)
+
+  --- Example 1 ---
+  Dialogue : PMUL4075.json | Turn 0
+  User     : I would like to try some chinese food while I am visiting cambridge.
+  Response : Okay, I can help you find some Chinese restaurants in the Cambridge area. What price range are you looking for?
+  Hall rate: 0.50
+
+  --- Example 2 ---
+  Dialogue : PMUL4833.json | Turn 10
+  User     : I would also like it to have a 4 star rating and free parking
+  Response : To book a 4-star guesthouse with free parking in the city's centre, I will need the following additional information: ho
+  Hall rate: 0.20
+
+  --- Example 3 ---
+  Dialogue : PMUL4833.json | Turn 12
+  User     : No, I don't need a booking, just the address.
+  Response : I can help you find an Indonesian restaurant located in the city's centre. What is your preferred price range?
+  Hall rate: 1.00
+
+  --- Example 4 ---
+  Dialogue : PMUL0287.json | Turn 6
+  User     : No particular price range, but I would like it to be a 4 star hotel.
+  Response : To book a 4 star hotel in the south, I'll need the hotel name, your preferred check-in and check-out dates, and the numb
+  Hall rate: 0.50
+
+  --- Example 5 ---
+  Dialogue : PMUL0287.json | Turn 8
+  User     : Sure, that will work. Can you tell me more about them?
+  Response : The Riverside Brasserie is a restaurant located in the area. I'd be happy to help you make a reservation there.
+  Hall rate: 1.00
+
+  >>> Config: gpt-4o-mini (137 failures)
+
+  --- Example 1 ---
+  Dialogue : PMUL4075.json | Turn 0
+  User     : I would like to try some chinese food while I am visiting cambridge.
+  Response : I can help you find some Chinese restaurants in Cambridge. Would you like me to provide a list of options?
+  Hall rate: 0.50
+
+  --- Example 2 ---
+  Dialogue : PMUL4833.json | Turn 10
+  User     : I would also like it to have a 4 star rating and free parking
+  Response : It looks like I have most of the information needed to book your hotel, but I still need to know the duration of your st
+  Hall rate: 0.33
+
+  --- Example 3 ---
+  Dialogue : PMUL4833.json | Turn 12
+  User     : No, I don't need a booking, just the address.
+  Response : I can help you with that! I will find a Spanish restaurant located in the city's centre for you. Please hold on a moment
+  Hall rate: 1.00
+
+  --- Example 4 ---
+  Dialogue : PMUL0287.json | Turn 8
+  User     : Sure, that will work. Can you tell me more about them?
+  Response : The Riverside Brasserie is known for its beautiful riverside views and a diverse menu featuring seasonal ingredients. Wo
+  Hall rate: 1.00
+
+  --- Example 5 ---
+  Dialogue : PMUL0287.json | Turn 10
+  User     : Can I get the postcode for both of them?
+  Response : The postcode for Riverside Brasserie is available. Please let me know if you need any further information.
+  Hall rate: 1.00
+
+  >>> Config: heterogeneous_6 (466 failures)
+
+  --- Example 1 ---
+  Dialogue : MUL1271.json | Turn 6
+  User     : Yes, I'm looking for a hotel called the Lovell Lodge.
+  Response : Okay, let me look into booking a reservation for you at the Lovell Lodge. Could you please provide me with your check-in
+  Hall rate: 0.50
+
+  --- Example 2 ---
+  Dialogue : MUL1271.json | Turn 8
+  User     : Yes! I'd like to book it for the same group of people and 5 nights starting from the same day.
+  Response : Okay, let me go ahead and book a 5-night stay at the Lovell Lodge for your group of 3 starting today. What time would yo
+  Hall rate: 0.20
+
+  --- Example 3 ---
+  Dialogue : PMUL4075.json | Turn 0
+  User     : I would like to try some chinese food while I am visiting cambridge.
+  Response : Okay, let me see what I can do to help you find a good Chinese restaurant in the Cambridge area.
+
+Since you haven't ment
+  Hall rate: 0.50
+
+  --- Example 4 ---
+  Dialogue : PMUL4075.json | Turn 4
+  User     : Thanks a lot. Can you tell me a little about a hotel called Home From Home?
+  Response : Sure, let me tell you what I know about the Home From Home hotel.
+
+Home From Home is a hotel located in the Cambridge ci
+  Hall rate: 0.50
+
+  --- Example 5 ---
+  Dialogue : SNG02071.json | Turn 2
+  User     : Great! Do you know what price range they are in?
+  Response : Unfortunately, I don't have any specific details about the price range for the Cotto restaurant. Since you mentioned the
+  Hall rate: 0.50
+
+  >>> Config: homogeneous_gpt (435 failures)
+
+  --- Example 1 ---
+  Dialogue : PMUL4075.json | Turn 0
+  User     : I would like to try some chinese food while I am visiting cambridge.
+  Response : I can help you find a Chinese restaurant in Cambridge, but I'll need a specific name or preference if you have one in mi
+  Hall rate: 0.50
+
+  --- Example 2 ---
+  Dialogue : PMUL4075.json | Turn 4
+  User     : Thanks a lot. Can you tell me a little about a hotel called Home From Home?
+  Response : Home From Home is a hotel in Cambridge that offers a cozy and comfortable stay. It's known for its welcoming atmosphere 
+  Hall rate: 0.50
+
+  --- Example 3 ---
+  Dialogue : SNG02071.json | Turn 2
+  User     : Great! Do you know what price range they are in?
+  Response : I don't have specific information about the price range for Cotto. If you need more details, I recommend checking their 
+  Hall rate: 0.50
+
+  --- Example 4 ---
+  Dialogue : PMUL4833.json | Turn 12
+  User     : No, I don't need a booking, just the address.
+  Response : I can provide the address, but I'll need the name of the specific Spanish restaurant you're interested in. Could you ple
+  Hall rate: 1.00
+
+  --- Example 5 ---
+  Dialogue : PMUL0287.json | Turn 0
+  User     : What can you tell me about the Riverside Brasserie?
+  Response : The Riverside Brasserie is a restaurant known for its scenic views and inviting atmosphere. It typically offers a variet
+  Hall rate: 0.50
+
+  >>> Config: homogeneous_haiku (191 failures)
+
+  --- Example 1 ---
+  Dialogue : MUL1271.json | Turn 6
+  User     : Yes, I'm looking for a hotel called the Lovell Lodge.
+  Response : Okay, let me look into booking a reservation for you at the Lovell Lodge for this Friday at 6:30pm for 3 people.
+
+Just t
+  Hall rate: 1.00
+
+  --- Example 2 ---
+  Dialogue : MUL1271.json | Turn 8
+  User     : Yes! I'd like to book it for the same group of people and 5 nights starting from the same day.
+  Response : Okay, let me go ahead and book a 5 night stay for you at the Lovell Lodge starting this Friday for the group of 3 people
+  Hall rate: 0.33
+
+  --- Example 3 ---
+  Dialogue : PMUL4075.json | Turn 0
+  User     : I would like to try some chinese food while I am visiting cambridge.
+  Response : Okay, I'd be happy to help you find a good Chinese restaurant in the Cambridge area. To provide some recommendations, do
+  Hall rate: 0.50
+
+  --- Example 4 ---
+  Dialogue : SNG02071.json | Turn 2
+  User     : Great! Do you know what price range they are in?
+  Response : Unfortunately, I don't have any specific pricing information for the Cotto restaurant in my system. Since you mentioned 
+  Hall rate: 0.50
+
+  --- Example 5 ---
+  Dialogue : PMUL4833.json | Turn 10
+  User     : I would also like it to have a 4 star rating and free parking
+  Response : Okay, let me see what I can do to help. 
+
+Could you please provide the name of the specific Spanish restaurant in the ci
+  Hall rate: 1.00
+
+============================================================
+FAILURE TYPE: POLICY_VIOLATION (539 total)
+============================================================
+
+  >>> Config: claude-3-haiku-20240307 (228 failures)
+
+  --- Example 1 ---
+  Dialogue : MUL1271.json | Turn 4
+  User     : That sounds great. Can you book me a table for 3 on Friday at 18:30?
+  Response : Okay, let me check on a table for 3 people on Friday at 6:30pm. I'll need the name of the restaurant you'd like to book 
+  Reason   : Policy violation: Attempted book_restaurant with missing slots: ['name']
+
+  --- Example 2 ---
+  Dialogue : PMUL4075.json | Turn 2
+  User     : Moderately priced in the centre. I need a reservation for 4 at 13:45 on Wednesday and the reference number as well.
+  Response : To book a moderately priced restaurant in the centre of Cambridge for 4 people at 13:45 on Wednesday, I will need the na
+  Reason   : Policy violation: Attempted book_restaurant with missing slots: ['name']
+
+  --- Example 3 ---
+  Dialogue : PMUL4833.json | Turn 6
+  User     : Actually, it would be quite helpful if you'd book a table for 3 at 13:00 on Monday.
+  Response : Okay, let me book a table for 3 people at 1:00 PM on Monday. What type of cuisine would you like?
+  Reason   : Policy violation: Attempted book_restaurant with missing slots: ['name']
+
+  --- Example 4 ---
+  Dialogue : PMUL4833.json | Turn 10
+  User     : I would also like it to have a 4 star rating and free parking
+  Response : To book a 4-star guesthouse with free parking in the city's centre, I will need the following additional information: ho
+  Reason   : Policy violation: Attempted book_hotel with missing slots: ['name', 'bookday', 'bookpeople', 'bookstay']
+
+  --- Example 5 ---
+  Dialogue : PMUL0287.json | Turn 6
+  User     : No particular price range, but I would like it to be a 4 star hotel.
+  Response : To book a 4 star hotel in the south, I'll need the hotel name, your preferred check-in and check-out dates, and the numb
+  Reason   : Policy violation: Attempted book_hotel with missing slots: ['name', 'bookday', 'bookpeople', 'bookstay']
+
+  >>> Config: gpt-4o-mini (221 failures)
+
+  --- Example 1 ---
+  Dialogue : MUL1271.json | Turn 4
+  User     : That sounds great. Can you book me a table for 3 on Friday at 18:30?
+  Response : It seems that I need the name of the restaurant you'd like to book a table at. Could you please provide that information
+  Reason   : Policy violation: Attempted book_restaurant with missing slots: ['name']
+
+  --- Example 2 ---
+  Dialogue : PMUL4075.json | Turn 2
+  User     : Moderately priced in the centre. I need a reservation for 4 at 13:45 on Wednesday and the reference number as well.
+  Response : Your reservation for 4 at a moderately priced Chinese restaurant in the center of Cambridge has been successfully booked
+  Reason   : Policy violation: Attempted book_restaurant with missing slots: ['name']
+
+  --- Example 3 ---
+  Dialogue : PMUL4833.json | Turn 6
+  User     : Actually, it would be quite helpful if you'd book a table for 3 at 13:00 on Monday.
+  Response : I can help you with that, but I need the name of the restaurant you'd like to book a table at. Could you please provide 
+  Reason   : Policy violation: Attempted book_restaurant with missing slots: ['name']
+
+  --- Example 4 ---
+  Dialogue : PMUL4833.json | Turn 10
+  User     : I would also like it to have a 4 star rating and free parking
+  Response : It looks like I have most of the information needed to book your hotel, but I still need to know the duration of your st
+  Reason   : Policy violation: Attempted book_hotel with missing slots: ['name', 'bookstay']
+
+  --- Example 5 ---
+  Dialogue : PMUL1591.json | Turn 4
+  User     : Yes, please recommend one that can accommodate 8 people for 2 nights starting on Thursday
+  Response : I can help you with that, but I need the name of the hotel you'd like to book. Please provide the hotel name.
+  Reason   : Policy violation: Attempted book_hotel with missing slots: ['name']
+
+  >>> Config: heterogeneous_6 (24 failures)
+
+  --- Example 1 ---
+  Dialogue : MUL1271.json | Turn 4
+  User     : That sounds great. Can you book me a table for 3 on Friday at 18:30?
+  Response : Okay, got it. Could you please let me know which restaurant you would like me to book a table for 3 at on Friday at 6:30
+  Reason   : Policy violation: Attempted book_restaurant with missing slots: ['name']
+
+  --- Example 2 ---
+  Dialogue : PMUL4075.json | Turn 2
+  User     : Moderately priced in the centre. I need a reservation for 4 at 13:45 on Wednesday and the reference number as well.
+  Response : Okay, let me see what I can do to help you find a good Chinese restaurant in the Cambridge area for your reservation.
+
+Y
+  Reason   : Policy violation: Attempted book_restaurant with missing slots: ['name']
+
+  --- Example 3 ---
+  Dialogue : PMUL4833.json | Turn 12
+  User     : No, I don't need a booking, just the address.
+  Response : Okay, no problem. Since you mentioned you don't need a booking, just the address, let me provide you with the address fo
+  Reason   : Policy violation: Attempted book_restaurant with missing slots: ['name']
+
+  --- Example 4 ---
+  Dialogue : PMUL0032.json | Turn 4
+  User     : Can I get a reservation for 7 at 14:00 this coming Friday? Please get me a reference number too, I've had trouble in the past with lost reservations.
+  Response : Okay, no problem. To make a reservation for 7 people at 2:00 pm this Friday at a high-end Chinese restaurant in the cent
+  Reason   : Policy violation: Attempted book_restaurant with missing slots: ['name']
+
+  --- Example 5 ---
+  Dialogue : MUL1379.json | Turn 6
+  User     : Fitzbillies Restaurant sounds good,will you book it for me ?
+  Response : Okay, great! Fitzbillies Restaurant sounds like a wonderful choice for an expensive British restaurant in the city centr
+  Reason   : Policy violation: Attempted book_restaurant with missing slots: ['bookday', 'bookpeople', 'booktime']
+
+  >>> Config: homogeneous_gpt (28 failures)
+
+  --- Example 1 ---
+  Dialogue : MUL1271.json | Turn 4
+  User     : That sounds great. Can you book me a table for 3 on Friday at 18:30?
+  Response : I can help you with the booking, but I need the name of the restaurant you'd like to dine at. Could you please provide t
+  Reason   : Policy violation: Attempted book_restaurant with missing slots: ['name']
+
+  --- Example 2 ---
+  Dialogue : MUL1271.json | Turn 8
+  User     : Yes! I'd like to book it for the same group of people and 5 nights starting from the same day.
+  Response : I can assist you with booking Lovell Lodge for 3 people for 5 nights. Could you please provide me with the check-in date
+  Reason   : Policy violation: Attempted book_hotel with missing slots: ['bookday']
+
+  --- Example 3 ---
+  Dialogue : PMUL4075.json | Turn 2
+  User     : Moderately priced in the centre. I need a reservation for 4 at 13:45 on Wednesday and the reference number as well.
+  Response : I can help you with the reservation, but I need a specific name of a Chinese restaurant in Cambridge. Could you please p
+  Reason   : Policy violation: Attempted book_restaurant with missing slots: ['name']
+
+  --- Example 4 ---
+  Dialogue : PMUL4833.json | Turn 6
+  User     : Actually, it would be quite helpful if you'd book a table for 3 at 13:00 on Monday.
+  Response : I'll need the name of a specific Spanish restaurant to book a table for 3 at 13:00 on Monday. Could you please provide t
+  Reason   : Policy violation: Attempted book_restaurant with missing slots: ['name']
+
+  --- Example 5 ---
+  Dialogue : PMUL0032.json | Turn 4
+  User     : Can I get a reservation for 7 at 14:00 this coming Friday? Please get me a reference number too, I've had trouble in the past with lost reservations.
+  Response : I can help with that! However, I need the name of a specific high-end Chinese restaurant in the center of Cambridge to p
+  Reason   : Policy violation: Attempted book_restaurant with missing slots: ['name']
+
+  >>> Config: homogeneous_haiku (38 failures)
+
+  --- Example 1 ---
+  Dialogue : PMUL4833.json | Turn 6
+  User     : Actually, it would be quite helpful if you'd book a table for 3 at 13:00 on Monday.
+  Response : Okay, let me see if I can book a table for you. What is the name of the Spanish restaurant you would like to make a rese
+  Reason   : Policy violation: Attempted book_restaurant with missing slots: ['name']
+
+  --- Example 2 ---
+  Dialogue : PMUL4833.json | Turn 10
+  User     : I would also like it to have a 4 star rating and free parking
+  Response : Okay, let me see what I can do to help. 
+
+Could you please provide the name of the specific Spanish restaurant in the ci
+  Reason   : Policy violation: Attempted book_restaurant with missing slots: ['name']
+
+  --- Example 3 ---
+  Dialogue : PMUL4833.json | Turn 12
+  User     : No, I don't need a booking, just the address.
+  Response : Okay, no problem. Since you mentioned you don't need a booking, just the address - could you please provide the name of 
+  Reason   : Policy violation: Attempted book_restaurant with missing slots: ['name']
+
+  --- Example 4 ---
+  Dialogue : PMUL0508.json | Turn 4
+  User     : Yes, 3 people 11:00 on Sunday please.
+  Response : Okay, got it. To book an expensive Indian restaurant in the west for 3 people at 11:00 on Sunday, I'll need the specific
+  Reason   : Policy violation: Attempted book_restaurant with missing slots: ['name']
+
+  --- Example 5 ---
+  Dialogue : PMUL0032.json | Turn 4
+  User     : Can I get a reservation for 7 at 14:00 this coming Friday? Please get me a reference number too, I've had trouble in the past with lost reservations.
+  Response : Certainly, let me see what I can do to get you a reservation for 7 people at 2pm this Friday at a high-end Chinese resta
+  Reason   : Policy violation: Attempted book_restaurant with missing slots: ['name']
+
+============================================================
+FAILURE TYPE: SYSTEM_INCORRECT (1795 total)
+============================================================
+
+  >>> Config: claude-3-haiku-20240307 (328 failures)
+
+  --- Example 1 ---
+  Dialogue : MUL1271.json | Turn 4
+  User     : That sounds great. Can you book me a table for 3 on Friday at 18:30?
+  Response : Okay, let me check on a table for 3 people on Friday at 6:30pm. I'll need the name of the restaurant you'd like to book 
+  Reason   : System violated policy
+
+  --- Example 2 ---
+  Dialogue : PMUL4075.json | Turn 0
+  User     : I would like to try some chinese food while I am visiting cambridge.
+  Response : Okay, I can help you find some Chinese restaurants in the Cambridge area. What price range are you looking for?
+  Reason   : System hallucinated slot values
+
+  --- Example 3 ---
+  Dialogue : PMUL4075.json | Turn 2
+  User     : Moderately priced in the centre. I need a reservation for 4 at 13:45 on Wednesday and the reference number as well.
+  Response : To book a moderately priced restaurant in the centre of Cambridge for 4 people at 13:45 on Wednesday, I will need the na
+  Reason   : System violated policy
+
+  --- Example 4 ---
+  Dialogue : PMUL4833.json | Turn 6
+  User     : Actually, it would be quite helpful if you'd book a table for 3 at 13:00 on Monday.
+  Response : Okay, let me book a table for 3 people at 1:00 PM on Monday. What type of cuisine would you like?
+  Reason   : System violated policy
+
+  --- Example 5 ---
+  Dialogue : PMUL4833.json | Turn 10
+  User     : I would also like it to have a 4 star rating and free parking
+  Response : To book a 4-star guesthouse with free parking in the city's centre, I will need the following additional information: ho
+  Reason   : System hallucinated slot values
+
+  >>> Config: gpt-4o-mini (320 failures)
+
+  --- Example 1 ---
+  Dialogue : MUL1271.json | Turn 4
+  User     : That sounds great. Can you book me a table for 3 on Friday at 18:30?
+  Response : It seems that I need the name of the restaurant you'd like to book a table at. Could you please provide that information
+  Reason   : System violated policy
+
+  --- Example 2 ---
+  Dialogue : PMUL4075.json | Turn 0
+  User     : I would like to try some chinese food while I am visiting cambridge.
+  Response : I can help you find some Chinese restaurants in Cambridge. Would you like me to provide a list of options?
+  Reason   : System hallucinated slot values
+
+  --- Example 3 ---
+  Dialogue : PMUL4075.json | Turn 2
+  User     : Moderately priced in the centre. I need a reservation for 4 at 13:45 on Wednesday and the reference number as well.
+  Response : Your reservation for 4 at a moderately priced Chinese restaurant in the center of Cambridge has been successfully booked
+  Reason   : System violated policy
+
+  --- Example 4 ---
+  Dialogue : PMUL4833.json | Turn 6
+  User     : Actually, it would be quite helpful if you'd book a table for 3 at 13:00 on Monday.
+  Response : I can help you with that, but I need the name of the restaurant you'd like to book a table at. Could you please provide 
+  Reason   : System violated policy
+
+  --- Example 5 ---
+  Dialogue : PMUL4833.json | Turn 10
+  User     : I would also like it to have a 4 star rating and free parking
+  Response : It looks like I have most of the information needed to book your hotel, but I still need to know the duration of your st
+  Reason   : System hallucinated slot values
+
+  >>> Config: heterogeneous_6 (480 failures)
+
+  --- Example 1 ---
+  Dialogue : MUL1271.json | Turn 4
+  User     : That sounds great. Can you book me a table for 3 on Friday at 18:30?
+  Response : Okay, got it. Could you please let me know which restaurant you would like me to book a table for 3 at on Friday at 6:30
+  Reason   : System violated policy
+
+  --- Example 2 ---
+  Dialogue : MUL1271.json | Turn 6
+  User     : Yes, I'm looking for a hotel called the Lovell Lodge.
+  Response : Okay, let me look into booking a reservation for you at the Lovell Lodge. Could you please provide me with your check-in
+  Reason   : System hallucinated slot values
+
+  --- Example 3 ---
+  Dialogue : MUL1271.json | Turn 8
+  User     : Yes! I'd like to book it for the same group of people and 5 nights starting from the same day.
+  Response : Okay, let me go ahead and book a 5-night stay at the Lovell Lodge for your group of 3 starting today. What time would yo
+  Reason   : System hallucinated slot values
+
+  --- Example 4 ---
+  Dialogue : PMUL4075.json | Turn 0
+  User     : I would like to try some chinese food while I am visiting cambridge.
+  Response : Okay, let me see what I can do to help you find a good Chinese restaurant in the Cambridge area.
+
+Since you haven't ment
+  Reason   : System hallucinated slot values
+
+  --- Example 5 ---
+  Dialogue : PMUL4075.json | Turn 2
+  User     : Moderately priced in the centre. I need a reservation for 4 at 13:45 on Wednesday and the reference number as well.
+  Response : Okay, let me see what I can do to help you find a good Chinese restaurant in the Cambridge area for your reservation.
+
+Y
+  Reason   : System violated policy
+
+  >>> Config: homogeneous_gpt (449 failures)
+
+  --- Example 1 ---
+  Dialogue : MUL1271.json | Turn 4
+  User     : That sounds great. Can you book me a table for 3 on Friday at 18:30?
+  Response : I can help you with the booking, but I need the name of the restaurant you'd like to dine at. Could you please provide t
+  Reason   : System violated policy
+
+  --- Example 2 ---
+  Dialogue : MUL1271.json | Turn 8
+  User     : Yes! I'd like to book it for the same group of people and 5 nights starting from the same day.
+  Response : I can assist you with booking Lovell Lodge for 3 people for 5 nights. Could you please provide me with the check-in date
+  Reason   : System violated policy
+
+  --- Example 3 ---
+  Dialogue : PMUL4075.json | Turn 0
+  User     : I would like to try some chinese food while I am visiting cambridge.
+  Response : I can help you find a Chinese restaurant in Cambridge, but I'll need a specific name or preference if you have one in mi
+  Reason   : System hallucinated slot values
+
+  --- Example 4 ---
+  Dialogue : PMUL4075.json | Turn 2
+  User     : Moderately priced in the centre. I need a reservation for 4 at 13:45 on Wednesday and the reference number as well.
+  Response : I can help you with the reservation, but I need a specific name of a Chinese restaurant in Cambridge. Could you please p
+  Reason   : System violated policy
+
+  --- Example 5 ---
+  Dialogue : PMUL4075.json | Turn 4
+  User     : Thanks a lot. Can you tell me a little about a hotel called Home From Home?
+  Response : Home From Home is a hotel in Cambridge that offers a cozy and comfortable stay. It's known for its welcoming atmosphere 
+  Reason   : System hallucinated slot values
+
+  >>> Config: homogeneous_haiku (218 failures)
+
+  --- Example 1 ---
+  Dialogue : MUL1271.json | Turn 6
+  User     : Yes, I'm looking for a hotel called the Lovell Lodge.
+  Response : Okay, let me look into booking a reservation for you at the Lovell Lodge for this Friday at 6:30pm for 3 people.
+
+Just t
+  Reason   : System hallucinated slot values
+
+  --- Example 2 ---
+  Dialogue : MUL1271.json | Turn 8
+  User     : Yes! I'd like to book it for the same group of people and 5 nights starting from the same day.
+  Response : Okay, let me go ahead and book a 5 night stay for you at the Lovell Lodge starting this Friday for the group of 3 people
+  Reason   : System hallucinated slot values
+
+  --- Example 3 ---
+  Dialogue : PMUL4075.json | Turn 0
+  User     : I would like to try some chinese food while I am visiting cambridge.
+  Response : Okay, I'd be happy to help you find a good Chinese restaurant in the Cambridge area. To provide some recommendations, do
+  Reason   : System hallucinated slot values
+
+  --- Example 4 ---
+  Dialogue : SNG02071.json | Turn 2
+  User     : Great! Do you know what price range they are in?
+  Response : Unfortunately, I don't have any specific pricing information for the Cotto restaurant in my system. Since you mentioned 
+  Reason   : System hallucinated slot values
+
+  --- Example 5 ---
+  Dialogue : PMUL4833.json | Turn 6
+  User     : Actually, it would be quite helpful if you'd book a table for 3 at 13:00 on Monday.
+  Response : Okay, let me see if I can book a table for you. What is the name of the Spanish restaurant you would like to make a rese
+  Reason   : System violated policy
+
+============================================================
+END OF ERROR ANALYSIS FOR MAS4CS EXPERIMENTS
+============================================================

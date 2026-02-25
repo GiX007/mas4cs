@@ -6,6 +6,7 @@ Compares multiple models using the same evaluation metrics on the validation spl
 """
 
 from typing import Any
+from tqdm import tqdm
 
 from src.data import load_split_data
 from src.models import clear_model_cache
@@ -58,7 +59,7 @@ def _run_single_model(model_name: str) -> dict[str, Any]:
     dialogue_results = []  # collect per-dialogue results
     failed_dialogues = 0
 
-    for idx, dialogue in enumerate(dialogues):
+    for idx, dialogue in enumerate(tqdm(dialogues, desc=f"  {model_name}", unit="dlg", leave=True)):
         print(f"  [{idx + 1}/{total}] {dialogue['dialogue_id']}...", end=" ")
 
         result = run_single_agent_dialogue(

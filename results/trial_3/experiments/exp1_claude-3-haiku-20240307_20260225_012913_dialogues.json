@@ -1,0 +1,3148 @@
+{
+  "experiment": "exp1",
+  "evaluation_level": "dialogue",
+  "split": "validation",
+  "timestamp": "2026-02-25 01:29:13",
+  "model_name": "claude-3-haiku-20240307",
+  "configuration": null,
+  "models": null,
+  "base_models": null,
+  "dialogues": [
+    {
+      "dialogue_id": "MUL1271.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6,
+      "avg_slot_accuracy": 0.8761904761904763,
+      "avg_jga": 0.2,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.8,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG0551.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 2,
+      "task_success": true,
+      "task_reason": "All goals achieved",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 1.0,
+      "avg_jga": 1.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL4075.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 0.6666666666666666,
+      "avg_action_type_accuracy": 0.6666666666666666,
+      "avg_slot_accuracy": 0.8611111111111112,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.16666666666666666,
+      "avg_system_correctness": 0.3333333333333333,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG02071.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 2,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 1.0,
+      "avg_jga": 1.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL4833.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 0.7142857142857143,
+      "avg_domain_accuracy": 0.8571428571428571,
+      "avg_action_type_accuracy": 0.5714285714285714,
+      "avg_slot_accuracy": 0.6496598639455782,
+      "avg_jga": 0.14285714285714285,
+      "avg_hallucination_rate": 0.17142857142857143,
+      "avg_system_correctness": 0.5714285714285714,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "PMUL0287.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.5,
+      "avg_domain_accuracy": 0.6666666666666666,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_slot_accuracy": 0.6507936507936508,
+      "avg_jga": 0.16666666666666666,
+      "avg_hallucination_rate": 0.4166666666666667,
+      "avg_system_correctness": 0.5,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "PMUL1591.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 0.75,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.8229166666666666,
+      "avg_jga": 0.5,
+      "avg_hallucination_rate": 0.15,
+      "avg_system_correctness": 0.5,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "SNG0899.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 3,
+      "task_success": true,
+      "task_reason": "All goals achieved",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_slot_accuracy": 0.8666666666666667,
+      "avg_jga": 0.3333333333333333,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0759.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 2,
+      "task_success": true,
+      "task_reason": "All goals achieved",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.9,
+      "avg_jga": 0.5,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL0126.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 8,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 0.75,
+      "avg_domain_accuracy": 0.875,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.47916666666666674,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.4625,
+      "avg_system_correctness": 0.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "PMUL4993.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 9,
+      "task_success": false,
+      "task_reason": "Booking required but missing slots in restaurant: ['name', 'bookday', 'bookpeople', 'booktime']",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 0.6666666666666666,
+      "avg_action_type_accuracy": 0.6666666666666666,
+      "avg_slot_accuracy": 0.6379188712522046,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.2222222222222222,
+      "avg_system_correctness": 0.7777777777777778,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG01184.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6666666666666666,
+      "avg_slot_accuracy": 0.7380952380952381,
+      "avg_jga": 0.3333333333333333,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.6666666666666666,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG1049.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_slot_accuracy": 0.5138888888888888,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.6666666666666666,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "PMUL0508.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6666666666666666,
+      "avg_slot_accuracy": 0.9523809523809524,
+      "avg_jga": 0.6666666666666666,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.6666666666666666,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG0665.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6666666666666666,
+      "avg_slot_accuracy": 0.8888888888888888,
+      "avg_jga": 0.6666666666666666,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0651.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_slot_accuracy": 0.5555555555555555,
+      "avg_jga": 0.3333333333333333,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL1653.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6666666666666666,
+      "avg_slot_accuracy": 0.375,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.6666666666666666,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG1046.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.6166666666666667,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.16666666666666666,
+      "avg_system_correctness": 0.25,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "SNG0807.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.75,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.8035714285714286,
+      "avg_jga": 0.25,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.75,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "MUL0129.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.8,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.4,
+      "avg_slot_accuracy": 0.4666666666666667,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.2,
+      "avg_system_correctness": 0.2,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "PMUL0032.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 10,
+      "task_success": false,
+      "task_reason": "Policy violations detected (4 violations)",
+      "avg_intent_accuracy": 0.8,
+      "avg_domain_accuracy": 0.8,
+      "avg_action_type_accuracy": 0.4,
+      "avg_slot_accuracy": 0.6318831168831169,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.16583333333333333,
+      "avg_system_correctness": 0.2,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 4
+    },
+    {
+      "dialogue_id": "SNG0535.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": true,
+      "task_reason": "All goals achieved",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_slot_accuracy": 0.7142857142857143,
+      "avg_jga": 0.3333333333333333,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0939.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.9642857142857143,
+      "avg_jga": 0.75,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.75,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG1007.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6,
+      "avg_slot_accuracy": 0.6011904761904762,
+      "avg_jga": 0.4,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.6,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "MUL1379.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 9,
+      "task_success": false,
+      "task_reason": "Policy violations detected (3 violations)",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 0.7777777777777778,
+      "avg_action_type_accuracy": 0.4444444444444444,
+      "avg_slot_accuracy": 0.6419753086419753,
+      "avg_jga": 0.1111111111111111,
+      "avg_hallucination_rate": 0.14814814814814814,
+      "avg_system_correctness": 0.6666666666666666,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 3
+    },
+    {
+      "dialogue_id": "SNG0588.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6666666666666666,
+      "avg_slot_accuracy": 0.8888888888888888,
+      "avg_jga": 0.6666666666666666,
+      "avg_hallucination_rate": 0.1111111111111111,
+      "avg_system_correctness": 0.6666666666666666,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG0521.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.75,
+      "avg_slot_accuracy": 1.0,
+      "avg_jga": 1.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL1370.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Policy violations detected (6 violations)",
+      "avg_intent_accuracy": 0.42857142857142855,
+      "avg_domain_accuracy": 0.42857142857142855,
+      "avg_action_type_accuracy": 0.14285714285714285,
+      "avg_slot_accuracy": 0.511058782487354,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.14285714285714285,
+      "avg_system_correctness": 0.14285714285714285,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 6
+    },
+    {
+      "dialogue_id": "SNG0922.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Policy violations detected (3 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_slot_accuracy": 0.5555555555555555,
+      "avg_jga": 0.16666666666666666,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.5,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 3
+    },
+    {
+      "dialogue_id": "SNG0698.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.75,
+      "avg_slot_accuracy": 0.5416666666666666,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG01777.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Policy violations detected (3 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.25,
+      "avg_slot_accuracy": 0.8666666666666667,
+      "avg_jga": 0.25,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.25,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 3
+    },
+    {
+      "dialogue_id": "SNG01609.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6,
+      "avg_slot_accuracy": 0.9428571428571428,
+      "avg_jga": 0.4,
+      "avg_hallucination_rate": 0.06666666666666667,
+      "avg_system_correctness": 0.4,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "SNG0900.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6666666666666666,
+      "avg_slot_accuracy": 0.7083333333333334,
+      "avg_jga": 0.3333333333333333,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.6666666666666666,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG1047.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5714285714285714,
+      "avg_slot_accuracy": 0.5793650793650793,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.023809523809523808,
+      "avg_system_correctness": 0.7142857142857143,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "SNG01297.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.3833333333333333,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.5,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "SNG1011.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 0.75,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.375,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.5,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "PMUL3735.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 0.5714285714285714,
+      "avg_domain_accuracy": 0.7142857142857143,
+      "avg_action_type_accuracy": 0.2857142857142857,
+      "avg_slot_accuracy": 0.5631868131868132,
+      "avg_jga": 0.2857142857142857,
+      "avg_hallucination_rate": 0.14285714285714285,
+      "avg_system_correctness": 0.5714285714285714,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "SNG0603.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": true,
+      "task_reason": "All goals achieved",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 1.0,
+      "avg_jga": 1.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0891.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6666666666666666,
+      "avg_slot_accuracy": 0.30158730158730157,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.6666666666666666,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "MUL1292.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Policy violations detected (3 violations)",
+      "avg_intent_accuracy": 0.2857142857142857,
+      "avg_domain_accuracy": 0.42857142857142855,
+      "avg_action_type_accuracy": 0.2857142857142857,
+      "avg_slot_accuracy": 0.5333333333333333,
+      "avg_jga": 0.2857142857142857,
+      "avg_hallucination_rate": 0.5714285714285714,
+      "avg_system_correctness": 0.42857142857142855,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 3
+    },
+    {
+      "dialogue_id": "PMUL0294.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 10,
+      "task_success": false,
+      "task_reason": "Policy violations detected (4 violations)",
+      "avg_intent_accuracy": 0.6,
+      "avg_domain_accuracy": 0.8,
+      "avg_action_type_accuracy": 0.6,
+      "avg_slot_accuracy": 0.6608658008658008,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.6,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 4
+    },
+    {
+      "dialogue_id": "MUL1381.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Booking required but missing slots in restaurant: ['name', 'bookday', 'bookpeople', 'booktime']",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.4,
+      "avg_slot_accuracy": 0.9333333333333332,
+      "avg_jga": 0.2,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL0356.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 8,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 0.375,
+      "avg_domain_accuracy": 0.75,
+      "avg_action_type_accuracy": 0.375,
+      "avg_slot_accuracy": 0.7732371794871795,
+      "avg_jga": 0.25,
+      "avg_hallucination_rate": 0.09375,
+      "avg_system_correctness": 0.625,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "SNG0494.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Policy violations detected (3 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.25,
+      "avg_slot_accuracy": 0.9583333333333334,
+      "avg_jga": 0.75,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.25,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 3
+    },
+    {
+      "dialogue_id": "MUL0065.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Policy violations detected (4 violations)",
+      "avg_intent_accuracy": 0.42857142857142855,
+      "avg_domain_accuracy": 0.7142857142857143,
+      "avg_action_type_accuracy": 0.2857142857142857,
+      "avg_slot_accuracy": 0.6465201465201466,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.14285714285714285,
+      "avg_system_correctness": 0.42857142857142855,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 4
+    },
+    {
+      "dialogue_id": "MUL1368.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": true,
+      "task_reason": "All goals achieved",
+      "avg_intent_accuracy": 0.75,
+      "avg_domain_accuracy": 0.75,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 1.0,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.175,
+      "avg_system_correctness": 0.5,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL3072.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.8333333333333334,
+      "avg_domain_accuracy": 0.8333333333333334,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_slot_accuracy": 0.507936507936508,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.8333333333333334,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG0934.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6,
+      "avg_slot_accuracy": 0.5916666666666666,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.8,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "PMUL3466.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 8,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 0.5,
+      "avg_domain_accuracy": 0.75,
+      "avg_action_type_accuracy": 0.375,
+      "avg_slot_accuracy": 0.7572916666666666,
+      "avg_jga": 0.125,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.75,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "SNG0845.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.75,
+      "avg_slot_accuracy": 0.4895833333333333,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.75,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG0883.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Policy violations detected (3 violations)",
+      "avg_intent_accuracy": 0.8333333333333334,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.4259259259259259,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.06666666666666667,
+      "avg_system_correctness": 0.5,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 3
+    },
+    {
+      "dialogue_id": "SNG01235.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6,
+      "avg_slot_accuracy": 0.9333333333333333,
+      "avg_jga": 0.6,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.6,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "SNG0896.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.4,
+      "avg_slot_accuracy": 0.48,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0942.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.75,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.75,
+      "avg_slot_accuracy": 0.375,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0625,
+      "avg_system_correctness": 0.75,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "PMUL0289.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 10,
+      "task_success": false,
+      "task_reason": "Policy violations detected (4 violations)",
+      "avg_intent_accuracy": 0.7,
+      "avg_domain_accuracy": 0.9,
+      "avg_action_type_accuracy": 0.4,
+      "avg_slot_accuracy": 0.7038095238095238,
+      "avg_jga": 0.2,
+      "avg_hallucination_rate": 0.13333333333333333,
+      "avg_system_correctness": 0.6,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 4
+    },
+    {
+      "dialogue_id": "SNG0996.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 1,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 1.0,
+      "avg_slot_accuracy": 1.0,
+      "avg_jga": 1.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG1023.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6666666666666666,
+      "avg_slot_accuracy": 0.375,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.6666666666666666,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG0650.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6666666666666666,
+      "avg_slot_accuracy": 0.7222222222222222,
+      "avg_jga": 0.3333333333333333,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0542.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.8,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6,
+      "avg_slot_accuracy": 0.7333333333333333,
+      "avg_jga": 0.2,
+      "avg_hallucination_rate": 0.1,
+      "avg_system_correctness": 0.6,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG0913.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.8571428571428571,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.42857142857142855,
+      "avg_slot_accuracy": 0.6198979591836734,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.2454081632653061,
+      "avg_system_correctness": 0.14285714285714285,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG0937.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Policy violations detected (4 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.2857142857142857,
+      "avg_slot_accuracy": 0.34863945578231287,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.42857142857142855,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 4
+    },
+    {
+      "dialogue_id": "SNG0751.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.8333333333333334,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.8333333333333334,
+      "avg_slot_accuracy": 0.9107142857142856,
+      "avg_jga": 0.5,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.8333333333333334,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG01172.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5714285714285714,
+      "avg_slot_accuracy": 0.5476190476190477,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.7142857142857143,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "MUL1256.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.8333333333333334,
+      "avg_domain_accuracy": 0.8333333333333334,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.9166666666666666,
+      "avg_jga": 0.5,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.8333333333333334,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG0490.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.875,
+      "avg_jga": 0.75,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL0142.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 9,
+      "task_success": false,
+      "task_reason": "Policy violations detected (5 violations)",
+      "avg_intent_accuracy": 0.4444444444444444,
+      "avg_domain_accuracy": 0.5555555555555556,
+      "avg_action_type_accuracy": 0.2222222222222222,
+      "avg_slot_accuracy": 0.543562610229277,
+      "avg_jga": 0.1111111111111111,
+      "avg_hallucination_rate": 0.24074074074074078,
+      "avg_system_correctness": 0.2222222222222222,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 5
+    },
+    {
+      "dialogue_id": "SNG01626.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.75,
+      "avg_slot_accuracy": 0.1125,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.29166666666666663,
+      "avg_system_correctness": 0.25,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0565.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Policy violations detected (4 violations)",
+      "avg_intent_accuracy": 0.7142857142857143,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.42857142857142855,
+      "avg_slot_accuracy": 0.6687074829931973,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.11904761904761904,
+      "avg_system_correctness": 0.2857142857142857,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 4
+    },
+    {
+      "dialogue_id": "PMUL3017.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 0.75,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.4895833333333333,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.36428571428571427,
+      "avg_system_correctness": 0.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "PMUL0348.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Policy violations detected (3 violations)",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 0.8333333333333334,
+      "avg_action_type_accuracy": 0.16666666666666666,
+      "avg_slot_accuracy": 0.6666666666666666,
+      "avg_jga": 0.3333333333333333,
+      "avg_hallucination_rate": 0.3333333333333333,
+      "avg_system_correctness": 0.3333333333333333,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 3
+    },
+    {
+      "dialogue_id": "SNG0829.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 0.5,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.0625,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.5,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "SNG0893.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_slot_accuracy": 0.9444444444444445,
+      "avg_jga": 0.6666666666666666,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.3333333333333333,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "SNG0554.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.886904761904762,
+      "avg_jga": 0.5,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.5,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "MUL1249.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 9,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.5555555555555556,
+      "avg_domain_accuracy": 0.7777777777777778,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_slot_accuracy": 0.7989417989417988,
+      "avg_jga": 0.4444444444444444,
+      "avg_hallucination_rate": 0.24074074074074078,
+      "avg_system_correctness": 0.5555555555555556,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG0804.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 3,
+      "task_success": true,
+      "task_reason": "All goals achieved",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_slot_accuracy": 1.0,
+      "avg_jga": 1.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL4332.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Policy violations detected (3 violations)",
+      "avg_intent_accuracy": 0.5714285714285714,
+      "avg_domain_accuracy": 0.5714285714285714,
+      "avg_action_type_accuracy": 0.5714285714285714,
+      "avg_slot_accuracy": 0.6547619047619048,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.14285714285714285,
+      "avg_system_correctness": 0.5714285714285714,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 3
+    },
+    {
+      "dialogue_id": "SNG0993.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.8333333333333334,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.626984126984127,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.8333333333333334,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "PMUL4877.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 10,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.8,
+      "avg_domain_accuracy": 0.8,
+      "avg_action_type_accuracy": 0.6,
+      "avg_slot_accuracy": 0.29,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.2,
+      "avg_system_correctness": 0.6,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG0501.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.25,
+      "avg_slot_accuracy": 0.8333333333333333,
+      "avg_jga": 0.5,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG1043.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.8,
+      "avg_slot_accuracy": 0.4833333333333333,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.24666666666666665,
+      "avg_system_correctness": 0.2,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL0051.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 8,
+      "task_success": false,
+      "task_reason": "Policy violations detected (4 violations)",
+      "avg_intent_accuracy": 0.75,
+      "avg_domain_accuracy": 0.75,
+      "avg_action_type_accuracy": 0.375,
+      "avg_slot_accuracy": 0.6363324175824175,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0625,
+      "avg_system_correctness": 0.375,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 4
+    },
+    {
+      "dialogue_id": "SNG02311.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 2,
+      "task_success": true,
+      "task_reason": "All goals achieved",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 1.0,
+      "avg_jga": 1.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0771.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.6202380952380953,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.5,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "PMUL0432.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Policy violations detected (5 violations)",
+      "avg_intent_accuracy": 0.7142857142857143,
+      "avg_domain_accuracy": 0.8571428571428571,
+      "avg_action_type_accuracy": 0.2857142857142857,
+      "avg_slot_accuracy": 0.5180272108843537,
+      "avg_jga": 0.14285714285714285,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.2857142857142857,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 5
+    },
+    {
+      "dialogue_id": "SNG1018.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 2,
+      "task_success": true,
+      "task_reason": "All goals achieved",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 1.0,
+      "avg_jga": 1.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0668.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 2,
+      "task_success": true,
+      "task_reason": "All goals achieved",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 1.0,
+      "avg_jga": 1.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0697.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.75,
+      "avg_slot_accuracy": 0.41369047619047616,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.75,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "PMUL0036.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Policy violations detected (3 violations)",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 0.8333333333333334,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.8928571428571429,
+      "avg_jga": 0.16666666666666666,
+      "avg_hallucination_rate": 0.16666666666666666,
+      "avg_system_correctness": 0.5,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 3
+    },
+    {
+      "dialogue_id": "SNG1017.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 1,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 1.0,
+      "avg_slot_accuracy": 0.0,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0769.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 3,
+      "task_success": true,
+      "task_reason": "All goals achieved",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_slot_accuracy": 0.5416666666666666,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG01664.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6,
+      "avg_slot_accuracy": 0.6533333333333333,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.6,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "MUL0046.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.7142857142857143,
+      "avg_domain_accuracy": 0.8571428571428571,
+      "avg_action_type_accuracy": 0.42857142857142855,
+      "avg_slot_accuracy": 0.32142857142857145,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.21428571428571427,
+      "avg_system_correctness": 0.5714285714285714,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG1035.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": true,
+      "task_reason": "All goals achieved",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.21428571428571427,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL1338.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Policy violations detected (3 violations)",
+      "avg_intent_accuracy": 0.7142857142857143,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.14285714285714285,
+      "avg_slot_accuracy": 0.9285714285714286,
+      "avg_jga": 0.2857142857142857,
+      "avg_hallucination_rate": 0.04642857142857143,
+      "avg_system_correctness": 0.5714285714285714,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 3
+    },
+    {
+      "dialogue_id": "PMUL3883.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 10,
+      "task_success": false,
+      "task_reason": "Policy violations detected (4 violations)",
+      "avg_intent_accuracy": 0.6,
+      "avg_domain_accuracy": 0.8,
+      "avg_action_type_accuracy": 0.2,
+      "avg_slot_accuracy": 0.5205555555555555,
+      "avg_jga": 0.5,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.5,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 4
+    },
+    {
+      "dialogue_id": "MUL0032.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 0.7142857142857143,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.42857142857142855,
+      "avg_slot_accuracy": 0.2619047619047619,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.07142857142857142,
+      "avg_system_correctness": 0.5714285714285714,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "MUL0095.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 11,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.45454545454545453,
+      "avg_domain_accuracy": 0.45454545454545453,
+      "avg_action_type_accuracy": 0.36363636363636365,
+      "avg_slot_accuracy": 0.4878787878787879,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.3621212121212121,
+      "avg_system_correctness": 0.09090909090909091,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG0660.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.25,
+      "avg_slot_accuracy": 1.0,
+      "avg_jga": 1.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.75,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "MUL0093.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.5,
+      "avg_domain_accuracy": 0.6666666666666666,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_slot_accuracy": 0.6666666666666666,
+      "avg_jga": 0.3333333333333333,
+      "avg_hallucination_rate": 0.3333333333333333,
+      "avg_system_correctness": 0.5,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "PMUL4955.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Booking required but missing slots in restaurant: ['name', 'bookday', 'bookpeople', 'booktime']",
+      "avg_intent_accuracy": 0.8,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.4,
+      "avg_slot_accuracy": 1.0,
+      "avg_jga": 0.4,
+      "avg_hallucination_rate": 0.15,
+      "avg_system_correctness": 0.8,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG01527.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_slot_accuracy": 0.7777777777777777,
+      "avg_jga": 0.3333333333333333,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0463.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.625,
+      "avg_jga": 0.25,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG02115.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6666666666666666,
+      "avg_slot_accuracy": 1.0,
+      "avg_jga": 1.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG02052.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Policy violations detected (3 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.8777777777777778,
+      "avg_jga": 0.5,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.5,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 3
+    },
+    {
+      "dialogue_id": "MUL0013.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.5206349206349207,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.8333333333333334,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG0711.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.7916666666666666,
+      "avg_jga": 0.5,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.75,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "PMUL4076.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 2,
+      "task_success": true,
+      "task_reason": "All goals achieved",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 1.0,
+      "avg_jga": 1.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG02121.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 2,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 1.0,
+      "avg_jga": 1.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL1382.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 9,
+      "task_success": false,
+      "task_reason": "Policy violations detected (5 violations)",
+      "avg_intent_accuracy": 0.7777777777777778,
+      "avg_domain_accuracy": 0.7777777777777778,
+      "avg_action_type_accuracy": 0.4444444444444444,
+      "avg_slot_accuracy": 0.5573853615520282,
+      "avg_jga": 0.3333333333333333,
+      "avg_hallucination_rate": 0.1111111111111111,
+      "avg_system_correctness": 0.4444444444444444,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 5
+    },
+    {
+      "dialogue_id": "SNG0550.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.6488095238095238,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.08333333333333333,
+      "avg_system_correctness": 0.25,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "SNG0684.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_slot_accuracy": 0.25,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.6666666666666666,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG0949.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6666666666666666,
+      "avg_slot_accuracy": 0.27777777777777773,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0846.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 2,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 1.0,
+      "avg_jga": 1.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG1050.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 2,
+      "task_success": true,
+      "task_reason": "All goals achieved",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 1.0,
+      "avg_jga": 1.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG1002.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 3,
+      "task_success": true,
+      "task_reason": "All goals achieved",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_slot_accuracy": 0.9166666666666666,
+      "avg_jga": 0.6666666666666666,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0862.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.8,
+      "avg_slot_accuracy": 0.7233333333333334,
+      "avg_jga": 0.2,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0609.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Policy violations detected (3 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.615079365079365,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.5,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 3
+    },
+    {
+      "dialogue_id": "PMUL4399.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Booking required but missing slots in restaurant: ['name', 'bookday', 'bookpeople', 'booktime']",
+      "avg_intent_accuracy": 0.8333333333333334,
+      "avg_domain_accuracy": 0.8333333333333334,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.673611111111111,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL0177.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 0.6666666666666666,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.05555555555555555,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0889.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.25,
+      "avg_slot_accuracy": 0.4208333333333333,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL0082.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.2,
+      "avg_slot_accuracy": 0.6007142857142858,
+      "avg_jga": 0.4,
+      "avg_hallucination_rate": 0.13333333333333333,
+      "avg_system_correctness": 0.4,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "SNG0736.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 2,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 1.0,
+      "avg_jga": 1.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL0706.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.8,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6,
+      "avg_slot_accuracy": 0.05,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.06666666666666667,
+      "avg_system_correctness": 0.6,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG0703.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 2,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.8333333333333333,
+      "avg_jga": 0.5,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0566.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 2,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.8333333333333333,
+      "avg_jga": 0.5,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0910.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Policy violations detected (3 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.42857142857142855,
+      "avg_slot_accuracy": 0.4219387755102041,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.5714285714285714,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 3
+    },
+    {
+      "dialogue_id": "SNG01196.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.7827380952380952,
+      "avg_jga": 0.25,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.5,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "SNG01411.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.75,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.75,
+      "avg_slot_accuracy": 0.3547619047619047,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0625,
+      "avg_system_correctness": 0.5,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "PMUL0266.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.8571428571428571,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.42857142857142855,
+      "avg_slot_accuracy": 0.5190476190476191,
+      "avg_jga": 0.2857142857142857,
+      "avg_hallucination_rate": 0.07142857142857142,
+      "avg_system_correctness": 0.8571428571428571,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "PMUL3105.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 0.5714285714285714,
+      "avg_domain_accuracy": 0.7142857142857143,
+      "avg_action_type_accuracy": 0.14285714285714285,
+      "avg_slot_accuracy": 0.5930735930735931,
+      "avg_jga": 0.42857142857142855,
+      "avg_hallucination_rate": 0.14285714285714285,
+      "avg_system_correctness": 0.5714285714285714,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "SNG0457.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": true,
+      "task_reason": "All goals achieved",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 1.0,
+      "avg_jga": 1.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG1019.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6,
+      "avg_slot_accuracy": 0.5428571428571429,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.6,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "SNG0700.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6666666666666666,
+      "avg_slot_accuracy": 0.16666666666666666,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0497.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_slot_accuracy": 0.8888888888888888,
+      "avg_jga": 0.6666666666666666,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0907.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.8333333333333334,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.48333333333333334,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.8333333333333334,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG0567.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Policy violations detected (4 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.2,
+      "avg_slot_accuracy": 0.9428571428571428,
+      "avg_jga": 0.2,
+      "avg_hallucination_rate": 0.06666666666666667,
+      "avg_system_correctness": 0.2,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 4
+    },
+    {
+      "dialogue_id": "MUL1247.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 8,
+      "task_success": false,
+      "task_reason": "Policy violations detected (5 violations)",
+      "avg_intent_accuracy": 0.625,
+      "avg_domain_accuracy": 0.875,
+      "avg_action_type_accuracy": 0.25,
+      "avg_slot_accuracy": 0.22083333333333333,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.03125,
+      "avg_system_correctness": 0.25,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 5
+    },
+    {
+      "dialogue_id": "SNG0633.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 5,
+      "task_success": true,
+      "task_reason": "All goals achieved",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.4,
+      "avg_slot_accuracy": 0.9428571428571428,
+      "avg_jga": 0.6,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG01698.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6,
+      "avg_slot_accuracy": 0.6761904761904762,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.6,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "MUL0182.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Policy violations detected (3 violations)",
+      "avg_intent_accuracy": 0.7142857142857143,
+      "avg_domain_accuracy": 0.8571428571428571,
+      "avg_action_type_accuracy": 0.42857142857142855,
+      "avg_slot_accuracy": 0.5031746031746032,
+      "avg_jga": 0.14285714285714285,
+      "avg_hallucination_rate": 0.18367346938775508,
+      "avg_system_correctness": 0.42857142857142855,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 3
+    },
+    {
+      "dialogue_id": "MUL0106.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.2857142857142857,
+      "avg_domain_accuracy": 0.2857142857142857,
+      "avg_action_type_accuracy": 0.42857142857142855,
+      "avg_slot_accuracy": 0.7279942279942279,
+      "avg_jga": 0.14285714285714285,
+      "avg_hallucination_rate": 0.14285714285714285,
+      "avg_system_correctness": 0.7142857142857143,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "PMUL3497.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 0.8333333333333334,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_slot_accuracy": 0.45634920634920634,
+      "avg_jga": 0.16666666666666666,
+      "avg_hallucination_rate": 0.16666666666666666,
+      "avg_system_correctness": 0.5,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "SNG0752.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6666666666666666,
+      "avg_slot_accuracy": 0.611111111111111,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.1111111111111111,
+      "avg_system_correctness": 0.3333333333333333,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "MUL0060.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.75,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.25,
+      "avg_slot_accuracy": 1.0,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.25,
+      "avg_system_correctness": 0.25,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "PMUL0318.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 8,
+      "task_success": false,
+      "task_reason": "Policy violations detected (4 violations)",
+      "avg_intent_accuracy": 0.75,
+      "avg_domain_accuracy": 0.75,
+      "avg_action_type_accuracy": 0.375,
+      "avg_slot_accuracy": 0.8226190476190477,
+      "avg_jga": 0.375,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.5,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 4
+    },
+    {
+      "dialogue_id": "PMUL3974.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": true,
+      "task_reason": "All goals achieved",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6666666666666666,
+      "avg_slot_accuracy": 0.8412698412698413,
+      "avg_jga": 0.3333333333333333,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0843.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.75,
+      "avg_slot_accuracy": 0.9166666666666666,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.5208333333333333,
+      "avg_system_correctness": 0.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL0389.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5714285714285714,
+      "avg_slot_accuracy": 0.3401360544217687,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.8571428571428571,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG0968.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6666666666666666,
+      "avg_slot_accuracy": 0.3,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.08333333333333333,
+      "avg_system_correctness": 0.6666666666666666,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0770.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.75,
+      "avg_slot_accuracy": 0.7083333333333333,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0597.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_slot_accuracy": 0.3666666666666667,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.6666666666666666,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG0694.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6666666666666666,
+      "avg_slot_accuracy": 1.0,
+      "avg_jga": 1.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG01699.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6,
+      "avg_slot_accuracy": 0.7666666666666666,
+      "avg_jga": 0.4,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0730.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.25,
+      "avg_slot_accuracy": 0.75,
+      "avg_jga": 0.5,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0783.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Policy violations detected (3 violations)",
+      "avg_intent_accuracy": 0.8,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.4,
+      "avg_slot_accuracy": 0.4,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.4,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 3
+    },
+    {
+      "dialogue_id": "SNG0495.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Information was required but not provided",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.75,
+      "avg_slot_accuracy": 0.8333333333333333,
+      "avg_jga": 0.25,
+      "avg_hallucination_rate": 0.125,
+      "avg_system_correctness": 0.75,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0475.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_slot_accuracy": 0.611111111111111,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.6666666666666666,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "PMUL3728.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.8571428571428571,
+      "avg_domain_accuracy": 0.8571428571428571,
+      "avg_action_type_accuracy": 0.42857142857142855,
+      "avg_slot_accuracy": 0.5178571428571429,
+      "avg_jga": 0.14285714285714285,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.8571428571428571,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG0856.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 3,
+      "task_success": true,
+      "task_reason": "All goals achieved",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6666666666666666,
+      "avg_slot_accuracy": 0.25,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.2222222222222222,
+      "avg_system_correctness": 0.6666666666666666,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0835.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 2,
+      "task_success": true,
+      "task_reason": "All goals achieved",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 1.0,
+      "avg_jga": 1.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL0016.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 8,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 0.875,
+      "avg_domain_accuracy": 0.875,
+      "avg_action_type_accuracy": 0.625,
+      "avg_slot_accuracy": 0.3854166666666667,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.2583333333333333,
+      "avg_system_correctness": 0.25,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "SNG01459.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.8,
+      "avg_slot_accuracy": 0.6428571428571428,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.8,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG0670.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.9642857142857143,
+      "avg_jga": 0.75,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.5,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "MUL1326.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 0.8333333333333334,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_slot_accuracy": 0.6507936507936508,
+      "avg_jga": 0.5,
+      "avg_hallucination_rate": 0.16666666666666666,
+      "avg_system_correctness": 0.5,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "SNG0921.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.75,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.1875,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.125,
+      "avg_system_correctness": 0.5,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG02276.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Policy violations detected (3 violations)",
+      "avg_intent_accuracy": 0.8333333333333334,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_slot_accuracy": 0.5953703703703703,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.03333333333333333,
+      "avg_system_correctness": 0.5,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 3
+    },
+    {
+      "dialogue_id": "PMUL0119.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 8,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 0.5,
+      "avg_domain_accuracy": 0.625,
+      "avg_action_type_accuracy": 0.25,
+      "avg_slot_accuracy": 0.15625,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.1875,
+      "avg_system_correctness": 0.625,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "PMUL3544.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Booking required but missing slots in restaurant: ['name', 'bookday', 'bookpeople', 'booktime']",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.4,
+      "avg_slot_accuracy": 0.55,
+      "avg_jga": 0.2,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL4029.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 0.6666666666666666,
+      "avg_action_type_accuracy": 0.5,
+      "avg_slot_accuracy": 0.6392496392496393,
+      "avg_jga": 0.16666666666666666,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.8333333333333334,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "MUL0128.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.14285714285714285,
+      "avg_domain_accuracy": 0.2857142857142857,
+      "avg_action_type_accuracy": 0.2857142857142857,
+      "avg_slot_accuracy": 0.3137755102040816,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.36326530612244895,
+      "avg_system_correctness": 0.42857142857142855,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "PMUL0077.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.4,
+      "avg_slot_accuracy": 0.7666666666666667,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.26666666666666666,
+      "avg_system_correctness": 0.2,
+      "memory_transfer_accuracy": 0,
+      "policy_violations": 1
+    }
+  ]
+}

@@ -28,7 +28,6 @@ class AgentState(TypedDict):
 
     # Slot tracking, e.g., {"restaurant": {"area": "centre"}}
     slots_values: dict[str, dict[str, str]]  # Accumulated across turns
-    turn_slot_delta: dict[str, dict[str, str]]  # Slots added in THIS turn only
 
     triage_reasoning: str | None  # for passing previous_system_message to triage
 
@@ -53,6 +52,10 @@ class AgentState(TypedDict):
 
     # Model configuration (for heterogeneous experiments)
     model_config: dict[str, str]  # Maps agent name -> model name
+
+    # Latency and cost tracking
+    turn_cost: float  # Total API cost for this turn (all agents)
+    turn_response_time: float  # Total response time for this turn (all agents)
 
 
 def initialize_state(dialogue_id: str, turn_id: int, services: list[str], user_utterance: str,) -> AgentState:
@@ -79,7 +82,6 @@ def initialize_state(dialogue_id: str, turn_id: int, services: list[str], user_u
         "active_intent": None,
 
         "slots_values": {},
-        "turn_slot_delta": {},
 
         "triage_reasoning": None,
 
@@ -98,5 +100,8 @@ def initialize_state(dialogue_id: str, turn_id: int, services: list[str], user_u
         "attempt_count": 0,
 
         "model_config": {},
+
+        "turn_cost": 0.0,
+        "turn_response_time": 0.0,
     }
 

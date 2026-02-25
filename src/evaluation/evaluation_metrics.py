@@ -198,10 +198,13 @@ def calculate_hallucination_rate(predicted_slots: dict[str, dict[str, str]], gro
         for slot, value in slots.items():
             num_predicted += 1
 
+            # Hallucination = predicting a slot key that doesn't exist in GT
             # Check if ground truth has this exact slot-value pair
             if domain not in ground_truth_slots:
                 num_hallucinated += 1
-            elif ground_truth_slots[domain].get(slot) != value:
+            # elif ground_truth_slots[domain].get(slot) != value:
+            #     num_hallucinated += 1
+            elif slot not in ground_truth_slots[domain]:  # ← key check only, not value
                 num_hallucinated += 1
 
     # Avoid division by zero

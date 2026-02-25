@@ -68,7 +68,8 @@ All results saved to `results/experiments/` per run:
 
 Local machine: 32GB RAM, NVIDIA GTX 1050 Ti (4GB VRAM).
 
-LLMs run on GPU, not RAM — 4GB VRAM limits local inference to 3B models. For example, during testing, 3B models struggled to follow structured JSON instructions reliably.
+LLMs run on GPU, not RAM — 4GB VRAM limits local inference to 3B models. 
+For example, during testing, 3B models struggled to follow structured JSON instructions reliably.
 
 **Running strategy:**
 - API-based models (`gpt-4o-mini`, `claude-3-haiku`) — run locally, no GPU required

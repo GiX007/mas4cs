@@ -1,0 +1,29 @@
+{
+  "experiment": "exp2",
+  "evaluation_level": "dataset",
+  "split": "validation",
+  "timestamp": "2026-02-25 03:23:49",
+  "model_name": "homogeneous_gpt",
+  "configuration": "homogeneous_gpt",
+  "models": {
+    "triage": "gpt-4o-mini",
+    "action": "gpt-4o-mini",
+    "supervisor": "gpt-4o-mini"
+  },
+  "base_models": null,
+  "num_dialogues": 171,
+  "failed_dialogues": 0,
+  "task_success_rate": 0.3567251461988304,
+  "avg_intent_accuracy": 0.6995949469633678,
+  "avg_domain_accuracy": 0.9394540644540642,
+  "avg_action_type_accuracy": 0.7015491168999939,
+  "avg_slot_accuracy": 0.6553733554367086,
+  "avg_jga": 0.13436368699526588,
+  "avg_hallucination_rate": 0.21362612127963,
+  "avg_system_correctness": 0.49166434605031095,
+  "avg_memory_transfer_accuracy": 0.0,
+  "policy_violation_rate": 0.03263403263403263,
+  "total_policy_violations": 28,
+  "total_cost": 0.24121710000000013,
+  "avg_latency_per_turn": 6.620352207086025
+}

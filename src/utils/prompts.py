@@ -113,6 +113,84 @@ DOMAIN: restaurant
 INTENT: inform
 SLOTS: food=any sort of food""",
 
+    "v4": """You are a domain classifier for a customer service system.
+
+User message: "{user_message}"
+Available domains: {services}
+
+**CONVERSATION HISTORY:**
+{history}
+
+Task: Identify the PRIMARY domain and intent, then extract slot values.
+Use the conversation history to understand context (e.g., "same group of people" refers to a previous booking).
+
+INTENTS:
+- find: User is searching/looking for options (e.g., "I need a restaurant", "looking for a hotel")
+- book: User wants to make a reservation (e.g., "book it", "reserve for 2 people")
+- inform: User is providing information or asking follow-up questions
+
+SLOTS TO EXTRACT:
+Basic: area, pricerange, food, name, type, stars, internet, parking
+Booking: bookday, bookpeople, booktime, bookstay
+
+EXTRACTION RULES:
+1. name: Extract exact restaurant/hotel names mentioned
+2. type: ALWAYS extract when domain is hotel AND user mentions accommodation type
+   - If user says "hotel" → type=hotel
+   - If user says "guesthouse" → type=guesthouse
+3. bookstay: Extract ONLY the number (e.g., "2 nights" → 2)
+4. bookpeople: Extract ONLY the number (e.g., "2 people" → 2)
+5. RESOLVE REFERENCES using history: "same group" → copy bookpeople from history, "same day" → copy bookday from history
+6. ONLY extract information explicitly stated OR resolvable from history
+
+Output format (one per line):
+DOMAIN: <domain_name>
+INTENT: <find|book|inform>
+SLOTS: <key1>=<value1>, <key2>=<value2> OR none""",
+
+
+    "v5": """You are a domain classifier for a customer service system.
+
+User message: "{user_message}"
+Available domains: {services}
+
+**CONVERSATION HISTORY:**
+{history}
+
+Task: Identify the PRIMARY domain and intent, then extract slot values.
+Use the conversation history to understand context (e.g., "same group of people" refers to a previous booking).
+
+INTENTS:
+- find: User is searching for options, asking for recommendations, or requesting information
+  Examples: "I need a restaurant", "looking for a hotel", "recommend one", "what hotels are available",
+            "can you find me", "I'd like something in the north", "accommodate 8 people" (no specific name yet)
+- book: User explicitly wants to make a reservation AND has already identified a specific place by name
+  Examples: "book it", "reserve a table", "book the Lovell Lodge", "can you book that for me"
+- inform: User is providing additional details or answering a question
+  Examples: "yes", "no", "any food is fine", "I don't have a preference"
+
+CRITICAL RULE: If the user mentions numbers (people, nights, time) but has NOT specified a name → intent is FIND, not BOOK.
+Only use BOOK when the user explicitly requests a reservation for a named place.
+
+SLOTS TO EXTRACT:
+Basic: area, pricerange, food, name, type, stars, internet, parking
+Booking: bookday, bookpeople, booktime, bookstay
+
+EXTRACTION RULES:
+1. name: Extract exact restaurant/hotel names mentioned
+2. type: ALWAYS extract when domain is hotel AND user mentions accommodation type
+   - If user says "hotel" → type=hotel
+   - If user says "guesthouse" → type=guesthouse
+3. bookstay: Extract ONLY the number (e.g., "2 nights" → 2)
+4. bookpeople: Extract ONLY the number (e.g., "2 people" → 2)
+5. RESOLVE REFERENCES using history: "same group" → copy bookpeople from history, "same day" → copy bookday from history
+6. ONLY extract information explicitly stated OR resolvable from history
+
+Output format (one per line):
+DOMAIN: <domain_name>
+INTENT: <find|book|inform>
+SLOTS: <key1>=<value1>, <key2>=<value2> OR none""",
+
 }
 
 
@@ -156,7 +234,49 @@ RULES:
 
 Begin!
 
-Thought:"""
+Thought:""",
+
+    "v3": """You are a helpful customer service agent.
+
+**CONVERSATION HISTORY:**
+{history}
+
+Domain: {domain}
+Intent: {intent}
+Available slots: {slots}
+Policy violations: {violations}
+
+User message: "{user_message}"
+
+Use the conversation history to give a coherent, contextual response.
+If the user refers to previous information (e.g., "same group", "that hotel"), resolve it from history.
+If there are policy violations, politely ask for the missing information.
+Do NOT make up hotel/restaurant names.
+
+Response:""",
+
+    "v4": """You are a helpful customer service agent.
+
+**CONVERSATION HISTORY:**
+{history}
+
+Domain: {domain}
+Intent: {intent}
+Available slots: {slots}
+Policy violations: {violations}
+
+User message: "{user_message}"
+
+STRICT RULES:
+1. If the user mentioned a specific hotel or restaurant name, treat it as REAL and work with it — never say you don't have information about it
+2. NEVER invent hotel or restaurant names — if no name is given, say you need one
+3. If the user refers to previous information (e.g., "same group", "that hotel"), resolve it from the conversation history
+4. If there are policy violations, politely ask for the missing information only
+5. Keep responses concise and focused on the user's current request
+
+IMPORTANT: You do NOT have access to a live database or search engine. You cannot suggest or list specific hotel/restaurant names unless the user explicitly provided them. If the user asks for options, ask them for their preference or for a specific name instead.
+
+Response:""",
 }
 
 
@@ -171,7 +291,48 @@ Check if the agent mentioned any specific names (hotels, restaurants, etc.) that
 
 Respond ONLY in this format:
 HALLUCINATION: yes/no
-ENTITIES: <comma-separated list of hallucinated entities, or 'none'>"""
+ENTITIES: <comma-separated list of hallucinated entities, or 'none'>""",
+
+    "v2": """You are a quality control supervisor for customer service responses.
+
+**CONVERSATION HISTORY:**
+{history}
+
+User message: "{user_message}"
+Agent response: "{agent_response}"
+Valid entities from database: {valid_entities}
+
+Check if the agent mentioned any specific names (hotels, restaurants, etc.) that are NOT in the valid entities list.
+Use the conversation history to understand context before judging.
+
+Respond ONLY in this format:
+HALLUCINATION: yes/no
+ENTITIES: <comma-separated list of hallucinated entities, or 'none'>""",
+
+    "v3": """You are a quality control supervisor for customer service responses.
+
+**CONVERSATION HISTORY:**
+{history}
+
+**USER MESSAGE:** "{user_message}"
+**AGENT RESPONSE:** "{agent_response}"
+**VALID ENTITIES (from user or database):** {valid_entities}
+
+Your ONLY job: detect if the agent invented specific named entities (hotel names, restaurant names) that:
+1. Are NOT in the valid entities list, AND
+2. Were NOT mentioned by the user in the conversation history
+
+RULES:
+- If an entity appears in the valid entities list → it is REAL, do NOT flag it
+- If an entity appears in the conversation history → it is REAL, do NOT flag it  
+- Only flag entities the agent invented out of nowhere
+- Generic descriptions ("a restaurant in the north") are NOT hallucinations
+- Numbers, dates, areas (north/south) are NOT hallucinations
+
+Respond ONLY in this format:
+HALLUCINATION: yes/no
+ENTITIES: <comma-separated list of invented entity names, or 'none'>""",
+
 }
 
 
@@ -289,9 +450,9 @@ Respond with JSON only:""",
 # Default versions to use
 DEFAULT_MEGA_PROMPT = MEGA_PROMPTS["v1"]
 
-DEFAULT_TRIAGE_PROMPT = TRIAGE_PROMPTS["v3"]
-DEFAULT_ACTION_PROMPT = ACTION_PROMPTS["v1"]
-DEFAULT_SUPERVISOR_PROMPT = SUPERVISOR_PROMPTS["v1"]
+DEFAULT_TRIAGE_PROMPT = TRIAGE_PROMPTS["v5"]
+DEFAULT_ACTION_PROMPT = ACTION_PROMPTS["v4"]
+DEFAULT_SUPERVISOR_PROMPT = SUPERVISOR_PROMPTS["v3"]
 
 DEFAULT_JUDGE_PROMPT = JUDGE_PROMPTS["v1"]
 

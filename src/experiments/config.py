@@ -93,25 +93,25 @@ EXP2_CONFIG: dict[str, Any] = {
     #     "action":     "unsloth/Qwen2.5-7B-Instruct-bnb-4bit",
     #     "supervisor": "unsloth/Qwen2.5-14B-Instruct-bnb-4bit",
     # },
-    "heterogeneous_5": {
-        "triage":     "gpt-4o-mini",
-        "action":     "claude-3-haiku-20240307",
-        "supervisor": "gpt-4o-mini",
-    },
-    # "heterogeneous_6": {
-    #     "triage":     "claude-3-haiku-20240307",
-    #     "action":     "gpt-4o-mini",
-    #     "supervisor": "claude-3-haiku-20240307",
-    # },
-    # "heterogeneous_7": {
-    #     "triage":     "claude-3-haiku-20240307",
+    # "heterogeneous_5": {
+    #     "triage":     "gpt-4o-mini",
     #     "action":     "claude-3-haiku-20240307",
     #     "supervisor": "gpt-4o-mini",
     # },
-    # "heterogeneous_8": {
-    #     "triage":     "gpt-4o-mini",
+    "heterogeneous_6": {
+        "triage":     "gpt-4o-mini",
+        "action":     "claude-3-haiku-20240307",
+        "supervisor": "claude-3-haiku-20240307",
+    },
+    # "heterogeneous_7": {
+    #     "triage":     "claude-3-haiku-20240307",
     #     "action":     "gpt-4o-mini",
     #     "supervisor": "claude-3-haiku-20240307",
+    # },
+    # "heterogeneous_8": {
+    #     "triage":     "claude-3-haiku-20240307",
+    #     "action":     "claude-3-haiku-20240307",
+    #     "supervisor": "gpt-4o-mini",
     # },
 }
 

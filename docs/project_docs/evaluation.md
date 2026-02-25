@@ -158,6 +158,10 @@ The hierarchical evaluation is orchestrated by `DialogueEvaluator` (turn + dialo
 - **Validation**: This metric directly measures success in multi-domain context carry-over
 - **Note**: Only dialogues with domain switches contribute to this metric. Dialogues without switches are excluded from the average
 - **Important**: Memory Transfer will only be non-zero when the user explicitly reuses constraints across domains (e.g. "find a hotel in the same area"). If user switches domain without reusing constraints, 0.0 is correct — not a bug
+- **Limitation & Decision**: After implementation and testing, this metric was excluded from the final evaluation results. The core assumption, that shared constraints 
+  (area, pricerange) should automatically transfer across domains, is not valid in general multi-domain dialogue. Users may want a restaurant in the north but a hotel 
+  in the center. Automatic transfer would penalize correct agent behavior. A better definition would measure explicit reference resolution (e.g., "same area", "same group of people"), 
+  but this requires utterance-level intent detection beyond the scope of this work
 
 ---
 

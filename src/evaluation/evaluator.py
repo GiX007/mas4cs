@@ -59,7 +59,9 @@ class DialogueEvaluator:
             predicted_domain: str,
             action_taken: str,
             user_message: str | None = None,
-            system_response: str | None = None
+            system_response: str | None = None,
+            response_time: float = 0.0,
+            cost: float = 0.0
     ) -> dict[str, Any]:
         """
         Evaluate a single dialogue turn with all metrics.
@@ -76,6 +78,8 @@ class DialogueEvaluator:
             action_taken: Action the system took
             user_message: Optional user message for LLM judge
             system_response: Optional system response for LLM judge
+            response_time: Time taken for system response (for efficiency metrics)
+            cost: Cost of system response (for efficiency metrics)
 
         Returns:
             Dictionary with all turn metrics
@@ -152,6 +156,10 @@ class DialogueEvaluator:
             # 8. System correctness
             "system_correct": system_correct,
             "system_reason": system_reason,
+
+            # 9. Latency and cost
+            "response_time": response_time,
+            "cost": cost,
         }
 
         # LLM judge evaluation
@@ -205,7 +213,7 @@ class DialogueEvaluator:
             task_ok, task_reason = calculate_task_success(self.turn_metrics, ground_truth_goal)
 
         # 10. Memory transfer accuracy
-        memory_acc, memory_correct, memory_total, memory_events = calculate_memory_transfer_accuracy(self.dialogue_history)
+        # memory_acc, memory_correct, memory_total, memory_events = calculate_memory_transfer_accuracy(self.dialogue_history)
         # print(f"\n  memory: acc={memory_acc:.2f} correct={memory_correct}/{memory_total} events={memory_events}")
 
         # Calculate averages
@@ -240,11 +248,11 @@ class DialogueEvaluator:
             # System behavior
             "avg_system_correctness": avg_system_correctness,
 
-            # Memory transfer
-            "memory_transfer_accuracy": memory_acc,
-            "memory_correct": memory_correct,
-            "memory_total": memory_total,
-            "memory_events": memory_events,
+            # Memory transfer - excluded (see evaluation.md)
+            "memory_transfer_accuracy": 0, # memory_acc,
+            "memory_correct": 0, # memory_correct,
+            "memory_total": 0, # memory_total,
+            "memory_events": [], # memory_events,
 
             # Policy
             "policy_violations": policy_violations,
@@ -310,6 +318,19 @@ class DatasetEvaluator:
             if judge_dialogues else None
         )
 
+        # Latency and Cost metrics
+        total_cost = sum(
+            t.get("cost", 0.0)
+            for d in self.dialogue_results
+            for t in d.get("turn_metrics", [])
+        )
+
+        avg_latency = sum(
+            t.get("response_time", 0.0)
+            for d in self.dialogue_results
+            for t in d.get("turn_metrics", [])
+        ) / total_turns if total_turns > 0 else 0.0
+
         return {
             "num_dialogues": num_dialogues,
 
@@ -338,6 +359,10 @@ class DatasetEvaluator:
             "avg_judge_score": avg_judge_score,
 
             # Detailed dialogue data
-            "dialogue_results": self.dialogue_results
+            "dialogue_results": self.dialogue_results,
+
+            # Latency and Cost
+            "total_cost": total_cost,
+            "avg_latency_per_turn": avg_latency,
         }
 

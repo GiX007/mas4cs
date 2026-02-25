@@ -6,7 +6,7 @@ Generates customer service responses based on detected intent, extracted slots, 
 
 from src.core import AgentState
 from src.models import call_model
-from src.utils import DEFAULT_ACTION_PROMPT
+from src.utils import DEFAULT_ACTION_PROMPT, format_agent_history
 
 
 def action_agent(state: AgentState) -> AgentState:
@@ -19,6 +19,14 @@ def action_agent(state: AgentState) -> AgentState:
     Returns:
         Updated state with agent_response populated
     """
+    # Check what history agents actually see
+    # history = state.get("conversation_history", [])
+    # print(f"\n[DEBUG action_agent] Turn {state['turn_id']}")
+    # print(f"  conversation_history length: {len(history)}")
+    # for i, msg in enumerate(history):
+    #     print(f"  [{i}] {msg['role']}: {msg['content'][:60]}...")
+    # print(f"  user_utterance: {state['user_utterance'][:60]}")
+
     domain = state["current_domain"]
     intent = state["active_intent"]
     slots = state["slots_values"].get(domain, {})
@@ -40,11 +48,12 @@ def action_agent(state: AgentState) -> AgentState:
         intent=intent,
         slots=slots_str,
         violations=violations_str,
-        user_message=user_message
+        user_message=user_message,
+        history=format_agent_history(state["conversation_history"])
     )
 
     # print(f"Prompt: {prompt}")
-    # print(f"Slots BEFORE action: {state['slots_values']}")
+    # print(f"\n[DEBUG policy IN]  intent={state['active_intent']} | slots={state['slots_values']}")
 
     # Generate response
     response = call_model(model_name=model_name, prompt=prompt)
@@ -58,9 +67,14 @@ def action_agent(state: AgentState) -> AgentState:
     state["action_taken"] = action_taken
     state["dialogue_acts"] = dialogue_acts
 
+    state["turn_cost"] += response.cost
+    state["turn_response_time"] += response.response_time
+
     # print(f"LLM response: {response}")
     # print(f"LLM response: {response.text}")
     # print(f"Slots AFTER action: {state['slots_values']}")
+    # print(f"\n[DEBUG policy OUT] violations={state['policy_violations']}")
+    # print(f"\n[DEBUG action PARSED]: response={state['agent_response'][:80] if state['agent_response'] else None}")
 
     return state
 

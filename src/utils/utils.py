@@ -107,6 +107,29 @@ def format_dialogue_history(turns: list[dict[str, Any]]) -> str:
     return history_text
 
 
+def format_agent_history(conversation_history: list[dict[str, str]]) -> str:
+    """
+    Format agent state conversation_history into readable string for prompt injection.
+
+    Args:
+        conversation_history: List of dicts with 'role' and 'content' keys
+                              e.g. [{"role": "user", "content": "..."}, ...]
+
+    Returns:
+        Formatted history string ready for prompt injection.
+        "No previous conversation." if history is empty.
+    """
+    if not conversation_history:
+        return "No previous conversation."
+
+    history_text = ""
+    for msg in conversation_history:
+        role = "USER" if msg["role"] == "user" else "ASSISTANT"
+        history_text += f"{role}: {msg['content']}\n"
+
+    return history_text
+
+
 def format_policy_rules(policy_dict: dict[str, list[str]]) -> str:
     """
     Format policy rules dictionary into readable string for prompt.

@@ -1,0 +1,23 @@
+{
+  "experiment": "exp1",
+  "evaluation_level": "dataset",
+  "split": "validation",
+  "timestamp": "2026-02-24 15:36:30",
+  "model_name": "gpt-4o-mini",
+  "configuration": null,
+  "models": null,
+  "base_models": null,
+  "num_dialogues": 171,
+  "failed_dialogues": 0,
+  "task_success_rate": 0.23976608187134502,
+  "avg_intent_accuracy": 0.8748645603908759,
+  "avg_domain_accuracy": 0.9549074706969444,
+  "avg_action_type_accuracy": 0.24400648084858617,
+  "avg_slot_accuracy": 0.6619792309060621,
+  "avg_jga": 0.2686136637891025,
+  "avg_hallucination_rate": 0.3082351032001199,
+  "avg_system_correctness": 0.3621112967604196,
+  "avg_memory_transfer_accuracy": 0.0,
+  "policy_violation_rate": 0.14219114219114218,
+  "total_policy_violations": 122
+}

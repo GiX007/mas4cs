@@ -29,6 +29,7 @@ from .helpers import (
     save_experiment_results,
     print_and_save_comparison_table,
 )
+from src.experiments.error_analysis import run_analysis
 
 __all__ = [
     # Config
@@ -54,5 +55,8 @@ __all__ = [
     "run_experiment_1",
     "run_experiment_2",
     "run_experiment_3",
+
+    # Error Analysis
+    "run_analysis",
 ]
 

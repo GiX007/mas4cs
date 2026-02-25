@@ -9,6 +9,7 @@ import os
 from pathlib import Path
 import json
 import time
+from tqdm import tqdm
 from typing import Any
 
 from torch.jit.annotations import get_param_names
@@ -106,7 +107,7 @@ def run_single_agent_dialogue(dialogue: dict[str, Any], model_name: str, max_tok
 
         # Only evaluate USER turns - SYSTEM turns update history only
         if turn["speaker"] != "USER":
-            history.append(turn)
+            # history.append(turn)  # Skip SYSTEM turns — including them leaks ground truth answers into the prompt
             continue
 
         # Run single agent turn
@@ -165,7 +166,9 @@ def run_single_agent_dialogue(dialogue: dict[str, Any], model_name: str, max_tok
             predicted_domain=result["domain"],
             action_taken=action_taken,
             user_message=turn["utterance"],
-            system_response=result["response"]
+            system_response=result["response"],
+            response_time=result.get("response_time", 0.0),
+            cost=result.get("cost", 0.0)
         )
 
         history.append(turn)
@@ -227,11 +230,8 @@ def run_mas_dialogue(dialogue: dict[str, Any], model_config: dict[str, str], wor
     services = dialogue["services"]
     turns = dialogue["turns"]
 
-    # CONSIDER THIS: slots_values resets every turn via initialize_state().
-    # Option A: reset each turn (current) - each turn is independent
-    # Option B: accumulate across turns - pass slots_values from previous state
-    # This decision affects JGA and slot accuracy calculations significantly.
     accumulated_slots: dict[str, dict[str, str]] = {}
+    accumulated_history: list[dict[str, str]] = []
 
     for turn in turns:
 
@@ -246,7 +246,22 @@ def run_mas_dialogue(dialogue: dict[str, Any], model_config: dict[str, str], wor
         )
 
         state["model_config"] = model_config
-        state["slots_values"] = accumulated_slots.copy()  # carry over accumulated slots
+        state["slots_values"] = accumulated_slots.copy()  # pass current slots into workflow
+        state["conversation_history"] = accumulated_history.copy() # pass dialogue history into workflow
+
+        # Populate valid entities from ALL turns' slot annotations for hallucination detection
+        valid_entities = []
+        for t in turns:
+            if t["speaker"] == "USER":
+                for domain_data in t.get("frames", {}).values():
+                    for slot_value in domain_data.get("slots_values", {}).values():
+                        if isinstance(slot_value, list):
+                            valid_entities.extend(slot_value)
+                        elif isinstance(slot_value, str):
+                            valid_entities.append(slot_value)
+        state["valid_entities"] = list(set(valid_entities))
+
+        # print(f"\n[DEBUG valid_entities] {state['valid_entities']}")
 
         try:
             final_state = workflow.invoke(state)
@@ -254,7 +269,8 @@ def run_mas_dialogue(dialogue: dict[str, Any], model_config: dict[str, str], wor
             print(f"\n  Workflow error turn {turn['turn_id']}: {e}")
             continue
 
-        accumulated_slots = final_state["slots_values"].copy()  # update for next turn
+        accumulated_slots = final_state["slots_values"].copy()  # save updated slots for next turn
+        accumulated_history = final_state["conversation_history"].copy()  # save updated history for next turn
 
         # 1. Extract ground truth intent
         ground_truth_intent = extract_ground_truth_intent(turn, services)
@@ -285,7 +301,9 @@ def run_mas_dialogue(dialogue: dict[str, Any], model_config: dict[str, str], wor
             predicted_domain=final_state["current_domain"] or "",
             action_taken=action_taken,
             user_message=turn["utterance"],
-            system_response=final_state["agent_response"] or ""
+            system_response=final_state["agent_response"] or "",
+            response_time=final_state["turn_response_time"],
+            cost=final_state["turn_cost"]
         )
 
     if not evaluator.turn_metrics:
@@ -348,7 +366,7 @@ def run_mas_config(config_name: str, model_config: dict[str, str], experiment_id
     dialogue_results = []
     failed_dialogues = 0
 
-    for idx, dialogue in enumerate(dialogues):
+    for idx, dialogue in enumerate(tqdm(dialogues, desc=f"  {config_name}", unit="dlg", leave=True)):
         print(f"  [{idx + 1}/{total}] {dialogue['dialogue_id']}...", end=" ")
 
         result = run_mas_dialogue(
@@ -435,6 +453,8 @@ def save_experiment_results(dataset_metrics: dict[str, Any], dialogue_results: l
         "avg_memory_transfer_accuracy": dataset_metrics.get("avg_memory_transfer_accuracy", 0.0),
         "policy_violation_rate": dataset_metrics.get("policy_violation_rate", 0.0),
         "total_policy_violations": dataset_metrics.get("total_policy_violations", 0),
+        "total_cost": dataset_metrics.get("total_cost", 0.0),
+        "avg_latency_per_turn": dataset_metrics.get("avg_latency_per_turn", 0.0),
     }
 
     # FILE 2: Dialogue-level
@@ -534,15 +554,17 @@ def print_and_save_comparison_table(all_results: dict[str, Any], experiment_id: 
             f"{result['avg_slot_accuracy']:.1%}",
             f"{result['avg_jga']:.1%}",
             f"{result['avg_hallucination_rate']:.1%}",
-            f"{result['avg_memory_transfer_accuracy']:.1%}",
+            # f"{result['avg_memory_transfer_accuracy']:.1%}",
             f"{result['policy_violation_rate']:.1%}",
             f"{result['avg_system_correctness']:.1%}",
             f"{result['task_success_rate']:.1%}",
             f"{result['avg_judge_score']:.2f}" if result.get('avg_judge_score') else "N/A",
+            f"${result.get('total_cost', 0.0):.4f}",
+            f"{result.get('avg_latency_per_turn', 0.0):.2f}s",
         ])
 
     # "Model/MAS" works for both single model (exp1) and architecture (exp2/3)
-    headers = ["Model/MAS", "Domain%", "Intent%", "ActType%", "Slot%", "JGA%", "Hall%", "Memory%", "Policy_Viol%", "SysCorrect%", "Task%", "Judge"]
+    headers = ["Model/MAS", "Domain%", "Intent%", "ActType%", "Slot%", "JGA%", "Hall%", "Policy_Viol%", "SysCorrect%", "Task%", "Judge", "Cost($)", "Latency(s)"]  # "Memory%",
     table = tabulate(rows, headers=headers, tablefmt="github")
 
     # Build text block

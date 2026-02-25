@@ -21,7 +21,9 @@ def should_retry(state: AgentState) -> str:
     """
     # Check if validation failed and we haven't exceeded retry limit
     if not state["validation_passed"] and state["attempt_count"] < 2:  # Allows maximum 2 total attempts (initial + 1 retry)
+        # print(f"\n[DEBUG retry] RETRYING | attempt={state['attempt_count']} | flags={state['hallucination_flags']}")
         return "action"
+    # print(f"\n[DEBUG retry] ENDING | attempt={state['attempt_count']} | validation_passed={state['validation_passed']}")
     return "end"
 
 

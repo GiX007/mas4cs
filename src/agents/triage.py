@@ -6,7 +6,7 @@ Entry point of the workflow. Analyzes user messages to identify the active domai
 
 from src.core import AgentState
 from src.models import call_model
-from src.utils import DEFAULT_TRIAGE_PROMPT
+from src.utils import DEFAULT_TRIAGE_PROMPT, format_agent_history
 from src.data import normalize_slot_value
 
 
@@ -23,11 +23,15 @@ def triage_agent(state: AgentState) -> AgentState:
     Returns:
         Updated state with current_domain, active_intent, and slots_values populated
     """
+    # Check what history agents actually see
+    # history = state.get("conversation_history", [])
+    # print(f"\n[DEBUG triage_agent] Turn {state['turn_id']}")
+    # print(f"  conversation_history length: {len(history)}")
+    # for i, msg in enumerate(history):
+    #     print(f"  [{i}] {msg['role']}: {msg['content'][:60]}...")
+
     user_message = state["user_utterance"]
     services = state["services"]
-
-    # Save previous slots to calculate delta later
-    # previous_slots = state["slots_values"].copy()
 
     # Read model from config, fallback to default
     model_name = state.get("model_config", {}).get("triage", "gpt-4o-mini")
@@ -35,16 +39,20 @@ def triage_agent(state: AgentState) -> AgentState:
     # Get and format prompt
     prompt = DEFAULT_TRIAGE_PROMPT.format(
         user_message=user_message,
-        services=', '.join(services)
+        services=', '.join(services),
+        history=format_agent_history(state["conversation_history"])
     )
 
     # Generate response
     response = call_model(model_name=model_name, prompt=prompt)
     # print(f"User message: {user_message}")
     # print(f"LLM response: {response}")
-    # print(f"LLM response: {response.text}")
+    # print(f"LLM response text: {response.text}")
 
     # Update state (Parse response)
+    state["turn_cost"] += response.cost
+    state["turn_response_time"] += response.response_time
+
     lines = response.text.strip().split('\n')
     for line in lines:
         if line.startswith("DOMAIN:"):
@@ -77,12 +85,18 @@ def triage_agent(state: AgentState) -> AgentState:
                             key = key.strip()
                             value = value.strip()
 
+                            # Skip unresolved placeholder values like <same day from history>
+                            if value.startswith("<") and value.endswith(">"):
+                                continue
+
                             # Normalize value using shared function
                             normalized_value = normalize_slot_value(value)
                             state["slots_values"][domain][key] = normalized_value
 
-    # Calculate delta (what's new this turn)
-    # state["turn_slot_delta"] = calculate_slot_delta(previous_slots, state["slots_values"])
+            break  # stop after first complete DOMAIN/INTENT/SLOTS block
+
+    # print(f"[DEBUG triage RAW OUTPUT]: {response.text[:200]}")
+    # print(f"[DEBUG triage PARSED]: domain={state['current_domain']} | intent={state['active_intent']} | slots={state['slots_values'].get(state['current_domain'], {})}")
 
     return state
 

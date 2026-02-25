@@ -21,6 +21,15 @@ def policy_agent(state: AgentState) -> AgentState:
     Returns:
         Updated state with policy_violations populated
     """
+    # Check what history agents actually see
+    # history = state.get("conversation_history", [])
+    # print(f"\n[DEBUG policy_agent] Turn {state['turn_id']}")
+    # print(f"  conversation_history length: {len(history)}")
+    # for i, msg in enumerate(history):
+    #     print(f"  [{i}] {msg['role']}: {msg['content'][:60]}
+
+    # print(f"\n[DEBUG policy IN]  intent={state['active_intent']} | slots={state['slots_values']}")
+
     active_intent = state["active_intent"]
     current_domain = state["current_domain"]
 
@@ -37,6 +46,8 @@ def policy_agent(state: AgentState) -> AgentState:
             if required_slot not in current_slots:
                 violation = f"Missing required slot: {required_slot}"
                 state["policy_violations"].append(violation)
+
+    # print(f"[DEBUG policy OUT/PARSED]: violations={state['policy_violations']}")
 
     return state
 
