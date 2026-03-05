@@ -1,4 +1,4 @@
-"""Script to explore MultiWOZ 2.2 dataset structure."""
+"""Exploration of MultiWOZ 2.2 dataset loaded via HuggingFace (datasets library)."""
 
 import json
 from pathlib import Path

@@ -5,18 +5,15 @@ Tests all objective metrics (JGA, slot accuracy, hallucination rate, policy comp
 task success, intent accuracy, action-type accuracy, domain accuracy, memory transfer)
 and subjective metrics (LLM-as-judge prompt formatting and response parsing).
 """
-
-
 from src.evaluation import (
     calculate_intent_accuracy, calculate_action_type_accuracy, calculate_jga, calculate_slot_accuracy, calculate_hallucination_rate, calculate_policy_compliance,
-    calculate_task_success, calculate_system_correctness, calculate_domain_accuracy, calculate_memory_transfer_accuracy, create_judge_prompt, parse_judge_response
+    calculate_booking_success, calculate_system_correctness, calculate_domain_accuracy, create_judge_prompt, parse_judge_response
 )
 from src.utils import print_separator, capture_and_save
 
 
 def test_domain_accuracy() -> None:
     """Test domain routing accuracy calculation."""
-
     # Test 1: Correct routing
     print_separator("TEST DOMAIN ACCURACY (1): CORRECT ROUTING")
     predicted = "restaurant"
@@ -68,7 +65,6 @@ def test_domain_accuracy() -> None:
 
 def test_intent_accuracy() -> None:
     """Test intent accuracy calculation."""
-
     # Test 1: Perfect match
     print_separator("TEST INTENT ACCURACY (1): PERFECT MATCH")
     predicted = "find_restaurant"
@@ -108,7 +104,7 @@ def test_intent_accuracy() -> None:
     ground_truth = "find_restaurant", "book_restaurant"
     print(f"\nPredicted: {predicted}")
     print(f"Ground truth: {ground_truth}\n")
-    acc, is_correct, recall, precision, correct, predicted_total, gt_total = calculate_intent_accuracy(predicted, ground_truth, return_detailed=True)
+    acc, is_correct, recall, precision, f1, correct, predicted_total, gt_total = calculate_intent_accuracy(predicted, ground_truth, return_detailed=True)
 
     print(f"Accuracy: {acc}")  # Should be 0.0
     print(f"Is Correct: {is_correct}")  # Should be False
@@ -117,7 +113,6 @@ def test_intent_accuracy() -> None:
 
 def test_action_type_accuracy() -> None:
     """Test action-type accuracy calculation with detailed metrics."""
-
     # Test 1: Perfect match (single act)
     print_separator("TEST ACTION-TYPE ACCURACY (1): SINGLE ACT MATCH")
     predicted = ["Restaurant-Inform"]
@@ -125,7 +120,7 @@ def test_action_type_accuracy() -> None:
     print(f"\nPredicted: {predicted}")
     print(f"Ground truth: {ground_truth}\n")
 
-    acc, is_correct, recall, precision, correct, p_total, gt_total = calculate_action_type_accuracy(predicted, ground_truth, return_detailed=True)
+    acc, is_correct, recall, precision, f1, correct, p_total, gt_total = calculate_action_type_accuracy(predicted, ground_truth, return_detailed=True)
     print(f"Accuracy: {acc}")  # Should be 1.0
     print(f"Is Correct: {is_correct}")  # Should be True
     print(f"Recall: {recall:.2f}, Precision: {precision:.2f} ({correct}/{gt_total}, {correct}/{p_total})")
@@ -137,7 +132,7 @@ def test_action_type_accuracy() -> None:
     print(f"\nPredicted: {predicted}")
     print(f"Ground truth: {ground_truth}\n")
 
-    acc, is_correct, recall, precision, correct, p_total, gt_total = calculate_action_type_accuracy(predicted, ground_truth, return_detailed=True)
+    acc, is_correct, recall, precision, f1, correct, p_total, gt_total = calculate_action_type_accuracy(predicted, ground_truth, return_detailed=True)
     print(f"Accuracy: {acc}")  # Should be 0.0
     print(f"Is Correct: {is_correct}")  # Should be False
     print(f"Recall: {recall:.2f}, Precision: {precision:.2f} ({correct}/{gt_total}, {correct}/{p_total})")
@@ -149,7 +144,7 @@ def test_action_type_accuracy() -> None:
     print(f"\nPredicted: {predicted}")
     print(f"Ground truth: {ground_truth}\n")
 
-    acc, is_correct, recall, precision, correct, p_total, gt_total = calculate_action_type_accuracy(predicted, ground_truth, return_detailed=True)
+    acc, is_correct, recall, precision, f1, correct, p_total, gt_total = calculate_action_type_accuracy(predicted, ground_truth, return_detailed=True)
     print(f"Accuracy: {acc}")  # Should be 1.0
     print(f"Is Correct: {is_correct}")  # Should be True
     print(f"Recall: {recall:.2f}, Precision: {precision:.2f} ({correct}/{gt_total}, {correct}/{p_total})")
@@ -161,7 +156,7 @@ def test_action_type_accuracy() -> None:
     print(f"\nPredicted: {predicted}")  # Should be 0.0
     print(f"Ground truth: {ground_truth}\n")  # Should be False
 
-    acc, is_correct, recall, precision, correct, p_total, gt_total = calculate_action_type_accuracy(predicted, ground_truth, return_detailed=True)
+    acc, is_correct, recall, precision, f1, correct, p_total, gt_total = calculate_action_type_accuracy(predicted, ground_truth, return_detailed=True)
     print(f"Accuracy: {acc}")
     print(f"Is Correct: {is_correct}")
     print(f"Recall: {recall:.2f}, Precision: {precision:.2f} ({correct}/{gt_total}, {correct}/{p_total})")
@@ -174,7 +169,7 @@ def test_action_type_accuracy() -> None:
     print(f"\nPredicted: {predicted}")
     print(f"Ground truth: {ground_truth}\n")
 
-    acc, is_correct, recall, precision, correct, p_total, gt_total = calculate_action_type_accuracy(predicted, ground_truth, return_detailed=True)
+    acc, is_correct, recall, precision, f1, correct, p_total, gt_total = calculate_action_type_accuracy(predicted, ground_truth, return_detailed=True)
     print(f"Accuracy: {acc}")  # Should be 0.0
     print(f"Is Correct: {is_correct}")  # Should be False
     print(f"Recall: {recall:.2f}, Precision: {precision:.2f} ({correct}/{gt_total}, {correct}/{p_total})")
@@ -187,7 +182,7 @@ def test_action_type_accuracy() -> None:
     print(f"\nPredicted: {predicted}")
     print(f"Ground truth: {ground_truth}\n")
 
-    acc, is_correct, recall, precision, correct, p_total, gt_total = calculate_action_type_accuracy(predicted, ground_truth, return_detailed=True)
+    acc, is_correct, recall, precision, f1, correct, p_total, gt_total = calculate_action_type_accuracy(predicted, ground_truth, return_detailed=True)
     print(f"Accuracy: {acc}")  # Should be 0.0
     print(f"Is Correct: {is_correct}")  # Should be False
     print(f"Recall: {recall:.2f}, Precision: {precision:.2f} ({correct}/{gt_total}, {correct}/{p_total})")
@@ -195,17 +190,18 @@ def test_action_type_accuracy() -> None:
 
 
 def test_slot_accuracy() -> None:
-    """Test slot-level accuracy calculation."""
-
-    # Test 1: Perfect match (same as JGA test)
+    """Test slot-level recall, precision, and F1 calculation."""
+    # Test 1: Perfect match
     print_separator("TEST SLOT ACCURACY (1): PERFECT MATCH")
     predicted = {"restaurant": {"area": "centre", "pricerange": "expensive"}}
     ground_truth = {"restaurant": {"area": "centre", "pricerange": "expensive"}}
     print(f"\nPredicted: {predicted}")
     print(f"Ground truth: {ground_truth}\n")
 
-    acc, correct, total = calculate_slot_accuracy(predicted, ground_truth)
-    print(f"Slot Accuracy: {acc:.2f} ({correct}/{total})")  # Should be 1.00 (2/2)
+    recall, precision, f1, num_correct, num_predicted, num_gt = calculate_slot_accuracy(predicted, ground_truth)
+    print(f"Recall: {recall:.2f} ({num_correct}/{num_gt})")  # 1.00 (2/2)
+    print(f"Precision: {precision:.2f} ({num_correct}/{num_predicted})")  # 1.00 (2/2)
+    print(f"F1: {f1:.2f}")  # 1.00
 
     # Test 2: Partial match (1 out of 2 correct)
     print_separator("TEST SLOT ACCURACY (2): PARTIAL MATCH")
@@ -214,8 +210,10 @@ def test_slot_accuracy() -> None:
     print(f"\nPredicted: {predicted}")
     print(f"Ground truth: {ground_truth}\n")
 
-    acc, correct, total = calculate_slot_accuracy(predicted, ground_truth)
-    print(f"Slot Accuracy: {acc:.2f} ({correct}/{total})")  # Should be 0.50 (1/2)
+    recall, precision, f1, num_correct, num_predicted, num_gt = calculate_slot_accuracy(predicted, ground_truth)
+    print(f"Recall: {recall:.2f} ({num_correct}/{num_gt})")  # 0.50 (1/2)
+    print(f"Precision: {precision:.2f} ({num_correct}/{num_predicted})")  # 0.50 (1/2)
+    print(f"F1: {f1:.2f}")  # 0.50
 
     # Test 3: Missing domain
     print_separator("TEST SLOT ACCURACY (3): MISSING DOMAIN")
@@ -227,23 +225,26 @@ def test_slot_accuracy() -> None:
     print(f"\nPredicted: {predicted}")
     print(f"Ground truth: {ground_truth}\n")
 
-    acc, correct, total = calculate_slot_accuracy(predicted, ground_truth)
-    print(f"Slot Accuracy: {acc:.2f} ({correct}/{total})")  # Should be 0.50 (1/2)
+    recall, precision, f1, num_correct, num_predicted, num_gt = calculate_slot_accuracy(predicted, ground_truth)
+    print(f"Recall: {recall:.2f} ({num_correct}/{num_gt})")  # 0.50 (1/2)
+    print(f"Precision: {precision:.2f} ({num_correct}/{num_predicted})")  # 1.00 (1/1)
+    print(f"F1: {f1:.2f}")  # 0.67
 
-    # Test 4: Extra slots in prediction (should not penalize)
+    # Test 4: Extra slots in prediction (precision penalized, recall unaffected)
     print_separator("TEST SLOT ACCURACY (4): EXTRA PREDICTION SLOTS")
     predicted = {"restaurant": {"area": "centre", "pricerange": "cheap", "food": "italian"}}
     ground_truth = {"restaurant": {"area": "centre", "pricerange": "cheap"}}
     print(f"\nPredicted: {predicted}")
     print(f"Ground truth: {ground_truth}\n")
 
-    acc, correct, total = calculate_slot_accuracy(predicted, ground_truth)
-    print(f"Slot Accuracy: {acc:.2f} ({correct}/{total})")  # Should be 1.00 (2/2)
+    recall, precision, f1, num_correct, num_predicted, num_gt = calculate_slot_accuracy(predicted, ground_truth)
+    print(f"Recall: {recall:.2f} ({num_correct}/{num_gt})")  # 1.00 (2/2)
+    print(f"Precision: {precision:.2f} ({num_correct}/{num_predicted})")  # 0.67 (2/3)
+    print(f"F1: {f1:.2f}")  # 0.80
 
 
 def test_jga() -> None:
     """Test jga calculation for simple cases."""
-
     predicted = {
         "hotel": {"area": "centre", "price": "cheap"},
         "restaurant": {"food": "indian"}
@@ -295,223 +296,60 @@ def test_jga() -> None:
 
 
 def test_hallucination_rate() -> None:
-    """Test hallucination rate calculation."""
+    """Test entity hallucination rate calculation."""
+    # Test 1: No DB query made this turn → skip check
+    print_separator("TEST HALLUCINATION (1): NO DB QUERY → SKIP")
+    system_response = "I can help you find a restaurant. What area do you prefer?"
+    valid_entities = []  # no DB query made
+    print(f"\nResponse: {system_response}")
+    print(f"Valid entities: {valid_entities}\n")
 
-    # Test 1: No hallucinations
-    print_separator("TEST HALLUCINATION (1): NO HALLUCINATIONS")
-    predicted = {"restaurant": {"area": "centre", "pricerange": "cheap"}}
-    ground_truth = {"restaurant": {"area": "centre", "pricerange": "cheap"}}
-    print(f"\nPredicted: {predicted}")
-    print(f"Ground truth: {ground_truth}\n")
+    hall_rate, entities_hallucinated, entities_mentioned = calculate_hallucination_rate(system_response, valid_entities)
+    print(f"Hallucination Rate: {hall_rate:.2f} ({entities_hallucinated}/{entities_mentioned})")  # 0.00 (0/0) — skipped
 
-    hall_rate, hall_count, predicted_count = calculate_hallucination_rate(predicted, ground_truth)
-    print(f"Hallucination Rate: {hall_rate:.2f} ({hall_count}/{predicted_count})")  # Should be 0.00 (0/2)
+    # Test 2: System mentions valid entity → no hallucination
+    print_separator("TEST HALLUCINATION (2): VALID ENTITY MENTIONED")
+    system_response = "I recommend Golden Wok, a chinese restaurant in the north."
+    valid_entities = ["Golden Wok"]
+    print(f"\nResponse: {system_response}")
+    print(f"Valid entities: {valid_entities}\n")
 
-    # Test 2: Hallucinated domain
-    print_separator("TEST HALLUCINATION (2): HALLUCINATED DOMAIN (1)")
-    predicted = {"hotel": {"pricerange": "cheap"}}
-    ground_truth = {"restaurant": {"area": "centre"}}
-    print(f"\nPredicted: {predicted}")
-    print(f"Ground truth: {ground_truth}\n")
+    hall_rate, entities_hallucinated, entities_mentioned = calculate_hallucination_rate(system_response, valid_entities)
+    print(f"Hallucination Rate: {hall_rate:.2f} ({entities_hallucinated}/{entities_mentioned})")  # 0.00 (0/1)
 
-    hall_rate, hall_count, predicted_count = calculate_hallucination_rate(predicted, ground_truth)
-    print(f"Hallucination Rate: {hall_rate:.2f} ({hall_count}/{predicted_count})")  # Should be 1.00 (1/1)
+    # Test 3: System mentions entity NOT in valid_entities → hallucination
+    print_separator("TEST HALLUCINATION (3): HALLUCINATED ENTITY")
+    system_response = "I recommend Lovell Lodge for your stay."
+    valid_entities = ["Golden Wok"]  # DB returned Golden Wok, not Lovell Lodge
+    print(f"\nResponse: {system_response}")
+    print(f"Valid entities: {valid_entities}\n")
 
-    # Test 3: Hallucinated domain (extra slot prediction)
-    print_separator("TEST HALLUCINATION (3): HALLUCINATED DOMAIN (2)")
-    predicted = {"restaurant": {"area": "centre"}, "hotel": {"pricerange": "cheap"}}  # User never mentioned hotel
-    ground_truth = {"restaurant": {"area": "centre"}}
-    print(f"\nPredicted: {predicted}")
-    print(f"Ground truth: {ground_truth}\n")
+    hall_rate, entities_hallucinated, entities_mentioned = calculate_hallucination_rate(system_response, valid_entities)
+    print(f"Hallucination Rate: {hall_rate:.2f} ({entities_hallucinated}/{entities_mentioned})")  # 1.00 (1/1)
 
-    hall_rate, hall_count, predicted_count = calculate_hallucination_rate(predicted, ground_truth)
-    print(f"Hallucination Rate: {hall_rate:.2f} ({hall_count}/{predicted_count})")  # Should be 0.50 (1/2)
+    # Test 4: System mentions both valid and hallucinated entity → partial hallucination
+    print_separator("TEST HALLUCINATION (4): PARTIAL HALLUCINATION")
+    system_response = "I recommend Golden Wok or Lovell Lodge for your stay."
+    valid_entities = ["Golden Wok"]  # Lovell Lodge not in DB results
+    print(f"\nResponse: {system_response}")
+    print(f"Valid entities: {valid_entities}\n")
 
-    # Test 4: Partial hallucinated (wrong slot name)
-    print_separator("TEST HALLUCINATION (4): HALLUCINATED SLOT NAME")
-    predicted = {"restaurant": {"pricerange": "expensive"}}  # User never mentioned hotel
-    ground_truth = {"restaurant": {"area": "centre"}}
-    print(f"\nPredicted: {predicted}")
-    print(f"Ground truth: {ground_truth}\n")
+    hall_rate, entities_hallucinated, entities_mentioned = calculate_hallucination_rate(system_response, valid_entities)
+    print(f"Hallucination Rate: {hall_rate:.2f} ({entities_hallucinated}/{entities_mentioned})")  # 0.50 (1/2)
 
-    hall_rate, hall_count, predicted_count = calculate_hallucination_rate(predicted, ground_truth)
-    print(f"Hallucination Rate: {hall_rate:.2f} ({hall_count}/{predicted_count})")  # Should be 1.00 (1/1)
+    # Test 5: System mentions no entity at all → 0.0
+    print_separator("TEST HALLUCINATION (5): NO ENTITY MENTIONED IN RESPONSE")
+    system_response = "I have booked a table for you on Friday at 18:30."
+    valid_entities = ["Golden Wok"]  # DB query was made but entity not mentioned by name
+    print(f"\nResponse: {system_response}")
+    print(f"Valid entities: {valid_entities}\n")
 
-    # Test 5: Partial hallucination (wrong slot value)
-    print_separator("TEST HALLUCINATION (5): WRONG SLOT VALUE")
-    predicted = {"restaurant": {"area": "centre", "pricerange": "expensive"}}
-    ground_truth = {"restaurant": {"area": "centre", "pricerange": "cheap"}}
-    print(f"\nPredicted: {predicted}")
-    print(f"Ground truth: {ground_truth}\n")
-
-    hall_rate, hall_count, predicted_count = calculate_hallucination_rate(predicted, ground_truth)
-    print(f"Hallucination Rate: {hall_rate:.2f} ({hall_count}/{predicted_count})")  # Should be 0.50 (1/2)
-
-    # Test 6: All hallucinations
-    print_separator("TEST HALLUCINATION (6): COMPLETE HALLUCINATION")
-    predicted = {"taxi": {"destination": "airport", "departure": "hotel"}}
-    ground_truth = {"restaurant": {"area": "centre"}}
-    print(f"\nPredicted: {predicted}")
-    print(f"Ground truth: {ground_truth}\n")
-
-    hall_rate, hall_count, predicted_count = calculate_hallucination_rate(predicted, ground_truth)
-    print(f"Hallucination Rate: {hall_rate:.2f} ({hall_count}/{predicted_count})")  # Should be 1.00 (2/2)
-
-
-def test_memory_transfer_accuracy() -> None:
-    """Test cross-domain memory transfer accuracy calculation."""
-
-    # Test 1: Successful transfer (Scenario A success case)
-    print_separator("TEST MEMORY TRANSFER (1): SUCCESSFUL TRANSFER")
-    dialogue_history = [
-        {
-            "turn_id": 1,
-            "domain": "restaurant",
-            "predicted_slots": {
-                "restaurant": {"area": "centre", "food": "indian"}
-            }
-        },
-        {
-            "turn_id": 2,
-            "domain": "hotel",
-            "predicted_slots": {
-                "restaurant": {"area": "centre", "food": "indian"},
-                "hotel": {"area": "centre", "pricerange": "cheap"}  # area transferred
-            }
-        }
-    ]
-
-    acc, correct, total, events = calculate_memory_transfer_accuracy(dialogue_history)
-    print(f"\nDialogue history:")
-    for turn in dialogue_history:
-        print(turn)
-    print(f"\nTransfer Accuracy: {acc:.2f} ({correct}/{total})")  # Should be 1.00 (1/1)
-    print(f"Transfer Events: {events}")
-
-    # Test 2: Failed transfer (Scenario A failure case)
-    print_separator("TEST MEMORY TRANSFER (2): FAILED TRANSFER")
-    dialogue_history = [
-        {
-            "turn_id": 1,
-            "domain": "restaurant",
-            "predicted_slots": {
-                "restaurant": {"area": "centre", "pricerange": "expensive"}
-            }
-        },
-        {
-            "turn_id": 2,
-            "domain": "hotel",
-            "predicted_slots": {
-                "restaurant": {"area": "centre", "pricerange": "expensive"},
-                "hotel": {"pricerange": "cheap"}  # area NOT transferred (memory failure)
-            }
-        }
-    ]
-
-    acc, correct, total, events = calculate_memory_transfer_accuracy(dialogue_history)
-    print(f"\nDialogue history:")
-    for turn in dialogue_history:
-        print(turn)
-    print(f"\nTransfer Accuracy: {acc:.2f} ({correct}/{total})")  # Should be 0.00
-    print(f"Transfer Events:")
-    for event in events:
-        print(f"  - {event}")
-
-    # Test 3: Partial transfer (one slot yes, one slot no)
-    print_separator("TEST MEMORY TRANSFER (3): PARTIAL TRANSFER")
-    dialogue_history = [
-        {
-            "turn_id": 1,
-            "domain": "restaurant",
-            "predicted_slots": {
-                "restaurant": {"area": "north", "pricerange": "moderate"}
-            }
-        },
-        {
-            "turn_id": 2,
-            "domain": "hotel",
-            "predicted_slots": {
-                "restaurant": {"area": "north", "pricerange": "moderate"},
-                "hotel": {"area": "north"}  # area yes, pricerange no
-            }
-        }
-    ]
-
-    acc, correct, total, events = calculate_memory_transfer_accuracy(dialogue_history)
-    print(f"\nDialogue history:")
-    for turn in dialogue_history:
-        print(turn)
-    print(f"\nTransfer Accuracy: {acc:.2f} ({correct}/{total})")  # Should be 0.50 (1/2)
-    print(f"Transfer Events:")
-    for event in events:
-        print(f"  - Slot '{event['slot']}': {event['value']} - Transferred: {event['transferred']}")
-
-    # Test 4: Multiple domain switches
-    print_separator("TEST MEMORY TRANSFER (4): MULTIPLE SWITCHES")
-    dialogue_history = [
-        {
-            "turn_id": 1,
-            "domain": "restaurant",
-            "predicted_slots": {
-                "restaurant": {"area": "centre"}
-            }
-        },
-        {
-            "turn_id": 2,
-            "domain": "hotel",
-            "predicted_slots": {
-                "restaurant": {"area": "centre"},
-                "hotel": {"area": "centre"}  # First transfer: success
-            }
-        },
-        {
-            "turn_id": 3,
-            "domain": "taxi",
-            "predicted_slots": {
-                "restaurant": {"area": "centre"},
-                "hotel": {"area": "centre"},
-                "taxi": {"departure": "hotel", "destination": "restaurant"}  # area not applicable to taxi
-            }
-        }
-    ]
-
-    acc, correct, total, events = calculate_memory_transfer_accuracy(dialogue_history)
-    print(f"\nDialogue history:")
-    for turn in dialogue_history:
-        print(turn)
-    print(f"\nTransfer Accuracy: {acc:.2f} ({correct}/{total})")
-    print(f"Number of transfer events: {len(events)}")
-
-    # Test 5: No domain switches
-    print_separator("TEST MEMORY TRANSFER (5): NO DOMAIN SWITCHES")
-    dialogue_history = [
-        {
-            "turn_id": 1,
-            "domain": "restaurant",
-            "predicted_slots": {
-                "restaurant": {"area": "centre"}
-            }
-        },
-        {
-            "turn_id": 2,
-            "domain": "restaurant",
-            "predicted_slots": {
-                "restaurant": {"area": "centre", "food": "italian"}
-            }
-        }
-    ]
-
-    acc, correct, total, events = calculate_memory_transfer_accuracy(dialogue_history)
-    print(f"\nDialogue history:")
-    for turn in dialogue_history:
-        print(turn)
-    print(f"\nTransfer Accuracy: {acc:.2f} ({correct}/{total})")  # Should be 0.00 (0/0)
-    print(f"Number of transfer events: {len(events)}")  # Should be 0
+    hall_rate, entities_hallucinated, entities_mentioned = calculate_hallucination_rate(system_response, valid_entities)
+    print(f"Hallucination Rate: {hall_rate:.2f} ({entities_hallucinated}/{entities_mentioned})")  # 0.00 (0/0)
 
 
 def test_policy_compliance() -> None:
     """Test policy compliance calculation."""
-
     from src.data import BOOKING_REQUIRED_SLOTS
     policy_requirements = BOOKING_REQUIRED_SLOTS
 
@@ -579,242 +417,108 @@ def test_policy_compliance() -> None:
     print(f"Reason: {reason}")
 
 
-
-
-
 def test_system_correctness() -> None:
     """Test system correctness calculation."""
-
-    # Test 1: Correctly handles incomplete booking
-    print_separator("TEST SYSTEM CORRECTNESS (1): INCOMPLETE BOOKING - REQUEST")
-    predicted_action = "request"
-    predicted_intent = "book_hotel"
-    predicted_slots = {"hotel": {"pricerange": "expensive", "bookpeople": "2"}}
+    # Test 1: No hallucination, policy compliant → correct
+    print_separator("TEST SYSTEM CORRECTNESS (1): NO HALLUCINATION + POLICY OK")
     hallucination_detected = False
     policy_compliant = True
-    current_domain = "hotel"
-
-    print(f"\nPredicted action: {predicted_action}")
-    print(f"Predicted intent: {predicted_intent}")
-    print(f"Predicted slots: {predicted_slots}")
-    print(f"Hallucination detected: {hallucination_detected}")
-    print(f"Policy compliant: {policy_compliant}")
-    print(f"Current domain: {current_domain}\n")
-
-    correct, reason = calculate_system_correctness(
-        predicted_action,
-        predicted_intent,
-        predicted_slots,
-        hallucination_detected,
-        policy_compliant,
-        current_domain
-    )
-    print(f"System Correct: {correct}")  # Should be True
+    print(f"\nHallucination: {hallucination_detected} | Policy compliant: {policy_compliant}\n")
+    correct, reason = calculate_system_correctness(hallucination_detected, policy_compliant)
+    print(f"System Correct: {correct}")  # True
     print(f"Reason: {reason}")
 
-    # Test 2: Fails - has all slots but doesn't book
-    print_separator("TEST SYSTEM CORRECTNESS (2): COMPLETE SLOTS - WRONG ACTION")
-    predicted_action = "search"
-    predicted_intent = "book_hotel"
-    predicted_slots = {"hotel": {"name": "hilton", "bookday": "monday", "bookpeople": "2", "bookstay": "3"}}
-    hallucination_detected = False
-    policy_compliant = True
-    current_domain = "hotel"
-
-    print(f"\nPredicted action: {predicted_action}")
-    print(f"Predicted intent: {predicted_intent}")
-    print(f"Predicted slots: {predicted_slots}")
-    print(f"Hallucination detected: {hallucination_detected}")
-    print(f"Policy compliant: {policy_compliant}")
-    print(f"Current domain: {current_domain}\n")
-
-    correct, reason = calculate_system_correctness(
-        predicted_action,
-        predicted_intent,
-        predicted_slots,
-        hallucination_detected,
-        policy_compliant,
-        current_domain
-    )
-    print(f"System Correct: {correct}")  # Should be False
-    print(f"Reason: {reason}")
-
-    # Test 3: Correctly completes booking
-    print_separator("TEST SYSTEM CORRECTNESS (3): COMPLETE BOOKING - SUCCESS")
-    predicted_action = "book"
-    predicted_intent = "book_hotel"
-    predicted_slots = {"hotel": {"name": "hilton", "bookday": "monday", "bookpeople": "2", "bookstay": "3"}}
-    hallucination_detected = False
-    policy_compliant = True
-    current_domain = "hotel"
-
-    print(f"\nPredicted action: {predicted_action}")
-    print(f"Predicted intent: {predicted_intent}")
-    print(f"Predicted slots: {predicted_slots}")
-    print(f"Hallucination detected: {hallucination_detected}")
-    print(f"Policy compliant: {policy_compliant}")
-    print(f"Current domain: {current_domain}\n")
-
-    correct, reason = calculate_system_correctness(
-        predicted_action,
-        predicted_intent,
-        predicted_slots,
-        hallucination_detected,
-        policy_compliant,
-        current_domain
-    )
-    print(f"System Correct: {correct}")  # Should be True
-    print(f"Reason: {reason}")
-
-    # Test 4: Fails - hallucination detected
-    print_separator("TEST SYSTEM CORRECTNESS (4): HALLUCINATION DETECTED")
-    predicted_action = "inform"
-    predicted_intent = "find_restaurant"
-    predicted_slots = {"restaurant": {"area": "centre"}}
+    # Test 2: Hallucination detected → incorrect
+    print_separator("TEST SYSTEM CORRECTNESS (2): HALLUCINATION DETECTED")
     hallucination_detected = True
     policy_compliant = True
-    current_domain = "restaurant"
-
-    print(f"\nPredicted action: {predicted_action}")
-    print(f"Predicted intent: {predicted_intent}")
-    print(f"Predicted slots: {predicted_slots}")
-    print(f"Hallucination detected: {hallucination_detected}")
-    print(f"Policy compliant: {policy_compliant}")
-    print(f"Current domain: {current_domain}\n")
-
-    correct, reason = calculate_system_correctness(
-        predicted_action,
-        predicted_intent,
-        predicted_slots,
-        hallucination_detected,
-        policy_compliant,
-        current_domain
-    )
-    print(f"System Correct: {correct}")  # Should be False
+    print(f"\nHallucination: {hallucination_detected} | Policy compliant: {policy_compliant}\n")
+    correct, reason = calculate_system_correctness(hallucination_detected, policy_compliant)
+    print(f"System Correct: {correct}")  # False
     print(f"Reason: {reason}")
 
-    # Test 5: Correctly handles search intent
-    print_separator("TEST SYSTEM CORRECTNESS (5): SEARCH INTENT - SUCCESS")
-    predicted_action = "search"
-    predicted_intent = "find_restaurant"
-    predicted_slots = {"restaurant": {"area": "centre", "pricerange": "expensive"}}
+    # Test 3: Policy violation → incorrect
+    print_separator("TEST SYSTEM CORRECTNESS (3): POLICY VIOLATION")
     hallucination_detected = False
-    policy_compliant = True
-    current_domain = "restaurant"
-
-    print(f"\nPredicted action: {predicted_action}")
-    print(f"Predicted intent: {predicted_intent}")
-    print(f"Predicted slots: {predicted_slots}")
-    print(f"Hallucination detected: {hallucination_detected}")
-    print(f"Policy compliant: {policy_compliant}")
-    print(f"Current domain: {current_domain}\n")
-
-    correct, reason = calculate_system_correctness(
-        predicted_action,
-        predicted_intent,
-        predicted_slots,
-        hallucination_detected,
-        policy_compliant,
-        current_domain
-    )
-    print(f"System Correct: {correct}")  # Should be True
+    policy_compliant = False
+    print(f"\nHallucination: {hallucination_detected} | Policy compliant: {policy_compliant}\n")
+    correct, reason = calculate_system_correctness(hallucination_detected, policy_compliant)
+    print(f"System Correct: {correct}")  # False
     print(f"Reason: {reason}")
 
-    # Test 6: Policy violation - but correctly requests missing slots
-    print_separator("TEST SYSTEM CORRECTNESS (6): POLICY VIOLATION - CORRECT REQUEST")
-    predicted_action = "request"
-    predicted_intent = "book_hotel"
-    predicted_slots = {"hotel": {"pricerange": "expensive"}}  # Missing required booking slots
-    hallucination_detected = False
-    policy_compliant = False  # Policy violated (missing required slots)
-    current_domain = "hotel"
-
-    print(f"\nPredicted action: {predicted_action}")
-    print(f"Predicted intent: {predicted_intent}")
-    print(f"Predicted slots: {predicted_slots}")
-    print(f"Hallucination detected: {hallucination_detected}")
-    print(f"Policy compliant: {policy_compliant}")
-    print(f"Current domain: {current_domain}\n")
-
-    correct, reason = calculate_system_correctness(
-        predicted_action,
-        predicted_intent,
-        predicted_slots,
-        hallucination_detected,
-        policy_compliant,
-        current_domain
-    )
-    print(f"System Correct: {correct}")  # Should be True (system correctly asks for missing info)
+    # Test 4: Both hallucination and policy violation → incorrect
+    print_separator("TEST SYSTEM CORRECTNESS (4): HALLUCINATION + POLICY VIOLATION")
+    hallucination_detected = True
+    policy_compliant = False
+    print(f"\nHallucination: {hallucination_detected} | Policy compliant: {policy_compliant}\n")
+    correct, reason = calculate_system_correctness(hallucination_detected, policy_compliant)
+    print(f"System Correct: {correct}")  # False
     print(f"Reason: {reason}")
 
 
-def test_task_success() -> None:
-    """Test task success rate calculation."""
-
-    # Test 1: Successful booking task
+def test_booking_success() -> None:
+    """Test booking success calculation."""
+    # Test 1: Successful booking — all slots present + booking action occurred
     print_separator("TEST TASK SUCCESS (1): SUCCESSFUL BOOKING")
     turn_results = [
-        {"domain": "hotel", "action": "search", "accumulated_slots": {"hotel": {"area": "centre"}}},
-        {"domain": "hotel", "action": "book", "accumulated_slots": {"hotel": {"name": "hilton", "bookday": "monday", "bookpeople": "2", "bookstay": "3"}}}
+        {"domain": "hotel", "action": "find_hotel", "predicted_slots": {"hotel": {"area": "centre"}}},
+        {"domain": "hotel", "action": "book_hotel", "predicted_slots": {"hotel": {"name": "hilton", "bookday": "monday", "bookpeople": "2", "bookstay": "3"}}}
     ]
-    ground_truth_goal = {
-        "domains": ["hotel"],
-        "requires_booking": True
-    }
-    print(f"\nTurn results: {len(turn_results)} turns")
-    print(f"Final slots: {turn_results[-1]['accumulated_slots']}")
-    print(f"Goal: {ground_truth_goal}\n")
+    services = ["hotel"]
+    requires_booking = True
+    print(f"\nFinal slots: {turn_results[-1]['predicted_slots']}")
+    print(f"Services: {services} | Requires booking: {requires_booking}\n")
 
-    success, reason = calculate_task_success(turn_results, ground_truth_goal)
-    print(f"Success: {success}")  # Should be True
+    success, reason = calculate_booking_success(turn_results, services, requires_booking)
+    print(f"Success: {success}")  # True
     print(f"Reason: {reason}")
 
-    # Test 2: Failed - missing booking slots
+    # Test 2: Failed — missing booking slots
     print_separator("TEST TASK SUCCESS (2): MISSING BOOKING SLOTS")
     turn_results = [
-        {"domain": "hotel", "action": "search", "accumulated_slots": {"hotel": {"area": "centre"}}},
-        {"domain": "hotel", "action": "book", "accumulated_slots": {"hotel": {"bookpeople": "2", "bookstay": "3"}}}  # Missing name and bookday
+        {"domain": "hotel", "action": "find_hotel", "predicted_slots": {"hotel": {"area": "centre"}}},
+        {"domain": "hotel", "action": "book_hotel", "predicted_slots": {"hotel": {"bookpeople": "2", "bookstay": "3"}}}  # missing name + bookday
     ]
-    ground_truth_goal = {
-        "domains": ["hotel"],
-        "requires_booking": True
-    }
-    print(f"\nTurn results: {len(turn_results)} turns")
-    print(f"Final slots: {turn_results[-1]['accumulated_slots']}")
-    print(f"Goal: {ground_truth_goal}\n")
+    services = ["hotel"]
+    requires_booking = True
+    print(f"\nFinal slots: {turn_results[-1]['predicted_slots']}")
+    print(f"Services: {services} | Requires booking: {requires_booking}\n")
 
-    success, reason = calculate_task_success(turn_results, ground_truth_goal)
-    print(f"Success: {success}")  # Should be False
+    success, reason = calculate_booking_success(turn_results, services, requires_booking)
+    print(f"Success: {success}")  # False
     print(f"Reason: {reason}")
 
-    # Test 3: Successful info-only task
-    print_separator("TEST TASK SUCCESS (3): INFO-ONLY SUCCESS")
+    # Test 3: Failed — booking action never occurred
+    print_separator("TEST TASK SUCCESS (3): NO BOOKING ACTION")
     turn_results = [
-        {"domain": "restaurant", "action": "search", "accumulated_slots": {"restaurant": {"area": "centre"}}},
-        {"domain": "restaurant", "action": "inform", "accumulated_slots": {"restaurant": {"area": "centre", "food": "italian"}}}
+        {"domain": "hotel", "action": "find_hotel", "predicted_slots": {"hotel": {"name": "hilton", "bookday": "monday", "bookpeople": "2", "bookstay": "3"}}},
     ]
-    ground_truth_goal = {
-        "domains": ["restaurant"],
-        "requires_booking": False
-    }
-    print(f"\nTurn results: {len(turn_results)} turns")
-    print(f"Final slots: {turn_results[-1]['accumulated_slots']}")
-    print(f"Goal: {ground_truth_goal}\n")
+    services = ["hotel"]
+    requires_booking = True
+    print(f"\nFinal slots: {turn_results[-1]['predicted_slots']}")
+    print(f"Services: {services} | Requires booking: {requires_booking}\n")
 
-    success, reason = calculate_task_success(turn_results, ground_truth_goal)
-    print(f"Success: {success}")  # Should be True
+    success, reason = calculate_booking_success(turn_results, services, requires_booking)
+    print(f"Success: {success}")  # False
     print(f"Reason: {reason}")
 
+    # Test 4: Info-only dialogue — not applicable, returns None
+    print_separator("TEST TASK SUCCESS (4): INFO-ONLY — NOT APPLICABLE")
+    turn_results = [
+        {"domain": "restaurant", "action": "find_restaurant", "predicted_slots": {"restaurant": {"area": "centre", "food": "italian"}}},
+    ]
+    services = ["restaurant"]
+    requires_booking = False
+    print(f"\nFinal slots: {turn_results[-1]['predicted_slots']}")
+    print(f"Services: {services} | Requires booking: {requires_booking}\n")
 
-
-
-
-
+    success, reason = calculate_booking_success(turn_results, services, requires_booking)
+    print(f"Success: {success}")  # None — skipped in aggregation
+    print(f"Reason: {reason}")
 
 
 def test_judge_prompt_creation() -> None:
     """Test judge prompt creation."""
-
     print_separator("TEST LLM JUDGE PROMPT FORMATTING")
 
     user_message = "I want a cheap hotel in the centre"
@@ -841,7 +545,6 @@ def test_judge_prompt_creation() -> None:
 
 def test_judge_response_parsing() -> None:
     """Test parsing of judge responses."""
-
     # Test 1: Valid JSON response
     print_separator("TEST PARSING (1): VALID JSON")
     valid_response = """{
@@ -935,10 +638,9 @@ def run_all_tests() -> None:
     test_slot_accuracy()
     test_jga()
     test_hallucination_rate()
-    test_memory_transfer_accuracy()
     test_policy_compliance()
     test_system_correctness()
-    test_task_success()
+    test_booking_success()
 
     print_separator("PART B: SUBJECTIVE METRICS")
     test_judge_prompt_creation()
@@ -952,4 +654,3 @@ if __name__ == "__main__":
     capture_and_save(func=run_all_tests,
                      output_path="docs/evals_inspection/objective_and_judge_metrics.txt"
     )
-

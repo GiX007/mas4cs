@@ -1,6 +1,6 @@
 """Tests for data preprocessing functionality."""
-
-from src.data import load_multiwoz, select_dialogue_sample, transform_dialogue, run_preprocessing_pipeline
+from src.data import load_multiwoz, select_dialogue_sample, transform_dialogue, run_preprocessing_pipeline, load_split
+from src.data.extraction import extract_dialogue_acts
 from src.utils import print_separator
 
 
@@ -83,11 +83,68 @@ def test_sample_transformation() -> None:
     print("\nNotice how slots appear in turn 0 — before: parallel lists, after: flat dict keyed by slot name.\n")
 
 
+def test_dialog_acts_integration() -> None:
+    """
+    Inspect dialog_act attachment and extraction for one dialogue.
+
+    Verifies:
+    - load_split() attaches dialog_act to each turn
+    - extract_dialogue_acts() returns correct acts from SYSTEM turns
+    - Look-ahead logic returns correct GT act for each USER turn
+    """
+    TARGET_ID = "MUL1271.json"
+    SERVICES = ["hotel", "restaurant"]
+
+    dialogues = load_split("dev")
+    dialogue = next((d for d in dialogues if d["dialogue_id"] == TARGET_ID), None)
+
+    if not dialogue:
+        print(f"{TARGET_ID} not found in dev split.")
+        return
+
+    turns = dialogue["turns"]
+
+    # Test 1: dialog_act attached to each turn
+    print_separator("TEST 1: dialog_act attached to turns")
+    for turn in turns:
+        speaker = turn["speaker"]
+        turn_id = turn["turn_id"]
+        dialog_act = turn.get("dialog_act", "MISSING")
+        print(f"  [{speaker}] Turn {turn_id} | dialog_act={dialog_act}")
+        print(f"    utterance:{turn['utterance'][:60]}")
+
+    # Test 2: extract_dialogue_acts on SYSTEM turns
+    print_separator("TEST 2: extract_dialogue_acts on SYSTEM turns")
+    for turn in turns:
+        if turn["speaker"] != "SYSTEM":
+            continue
+        acts = extract_dialogue_acts(turn, SERVICES)
+        print(f"  [SYSTEM] Turn {turn['turn_id']}")
+        print(f"    utterance:{turn['utterance'][:60]}")
+        print(f"    raw acts:{turn.get('dialog_act', {})}")
+        print(f"    extracted:{acts}")
+
+    # Test 3: look-ahead USER → next SYSTEM GT act
+    print_separator("TEST 3: look-ahead USER → SYSTEM GT act")
+    for turn in turns:
+        if turn["speaker"] != "USER":
+            continue
+
+        next_system = next((t for t in turns[turns.index(turn) + 1:] if t["speaker"] == "SYSTEM"), None)
+        ground_truth_acts = extract_dialogue_acts(next_system, SERVICES) if next_system else []
+
+        print(f"\n  [USER] Turn {turn['turn_id']}: {turn['utterance'][:60]}")
+        print(f"  [SYSTEM] Turn {next_system['turn_id'] if next_system else 'N/A'}: {next_system['utterance'][:60] if next_system else 'None'}")
+        print(f"  GT acts: {ground_truth_acts}")
+
+
 if __name__ == "__main__":
 
-    # Inspect a dialogue before and after processing
-    test_sample_transformation()
+    # Inspect a dialogue before and after processing (HF format → our internal format)
+    # test_sample_transformation()
 
-    # Run Preprocess -> Pipeline(Transform + Domain Filtering)
-    run_preprocessing_pipeline(load_multiwoz(), verbose=True)
+    # Run Preprocess for HF dataset -> Pipeline(Transform + Domain Filtering)
+    # run_preprocessing_pipeline(load_multiwoz(), verbose=True)
 
+    # Test dialog_acts.json integration with GitHub format
+    test_dialog_acts_integration()

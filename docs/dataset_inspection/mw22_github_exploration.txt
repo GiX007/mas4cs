@@ -1,0 +1,367 @@
+
+============================================================
+BASIC STRUCTURE — OFFICIAL MULTIWOZ 2.2 (GitHub)
+============================================================
+
+File: data\multiwoz_github\data\MultiWOZ_2.2\train\dialogues_001.json
+Type: <class 'list'> | is a list of: <class 'dict'>
+Number of dialogues in this file: 512
+
+Top-level keys: ['dialogue_id', 'services', 'turns']
+dialogue_id: str | PMUL4398.json
+services: list | length=2 | ['restaurant', 'hotel']
+turns: list of dict | length=12
+
+First turn keys: ['frames', 'speaker', 'turn_id', 'utterance']
+speaker: str | USER
+turn_id: str | 0
+utterance: str | i need a place to dine in the center thats expensive
+frames: list of dict | length=8
+
+First frame keys: ['actions', 'service', 'slots', 'state']
+actions: list | length=0
+service: str | restaurant
+slots: list | length=0
+state: dict | keys=['active_intent', 'requested_slots', 'slot_values']
+
+Unpacking state:
+  active_intent: str | find_restaurant
+  requested_slots: list | length=0 | []
+  slot_values: dict | length=2 | {'restaurant-area': ['centre'], 'restaurant-pricerange': ['expensive']}
+
+============================================================
+END OF BASIC STRUCTURE
+============================================================
+
+============================================================
+SINGLE DIALOGUE (Index 0)
+============================================================
+
+dialogue_id: PMUL4398.json
+services: ['restaurant', 'hotel']
+num turns: 12
+
+  Turn 0 [USER]: i need a place to dine in the center thats expensive
+           service: restaurant
+           intent: find_restaurant
+           slots: {'restaurant-area': ['centre'], 'restaurant-pricerange': ['expensive']}
+           requested: []
+           service: hotel
+           intent: find_hotel
+           slots: {}
+           requested: []
+  Turn 1 [SYSTEM]: I have several options for you; do you prefer African, Asian, or British food?
+  Turn 2 [USER]: Any sort of food would be fine, as long as it is a bit expensive. Could I get the phone number for your recommendation?
+           service: restaurant
+           intent: find_restaurant
+           slots: {'restaurant-area': ['centre'], 'restaurant-pricerange': ['expensive']}
+           requested: ['restaurant-food']
+           service: hotel
+           intent: find_hotel
+           slots: {}
+           requested: []
+  Turn 3 [SYSTEM]: There is an Afrian place named Bedouin in the centre. How does that sound?
+  Turn 4 [USER]: Sounds good, could I get that phone number? Also, could you recommend me an expensive hotel?
+           service: restaurant
+           intent: find_restaurant
+           slots: {'restaurant-area': ['centre'], 'restaurant-name': ['bedouin'], 'restaurant-pricerange': ['expensive']}
+           requested: ['restaurant-phone']
+           service: hotel
+           intent: find_hotel
+           slots: {'hotel-pricerange': ['expensive'], 'hotel-type': ['hotel']}
+           requested: []
+  Turn 5 [SYSTEM]: Bedouin's phone is 01223367660. As far as hotels go, I recommend the University Arms Hotel in the center of town.
+  Turn 6 [USER]: Yes. Can you book it for me?
+           service: hotel
+           intent: find_hotel
+           slots: {'hotel-name': ['university arms hotel'], 'hotel-pricerange': ['expensive'], 'hotel-type': ['hotel']}
+           requested: []
+  Turn 7 [SYSTEM]: Sure, when would you like that reservation?
+  Turn 8 [USER]: i want to book it for 2 people and 2 nights starting from saturday.
+           service: hotel
+           intent: book_hotel
+           slots: {'hotel-bookday': ['saturday'], 'hotel-bookpeople': ['2'], 'hotel-bookstay': ['2'], 'hotel-name': ['university arms hotel'], 'hotel-pricerange': ['expensive'], 'hotel-type': ['hotel']}
+           requested: []
+  Turn 9 [SYSTEM]: Your booking was successful. Your reference number is FRGZWQL2 . May I help you further?
+  Turn 10 [USER]: That is all I need to know. Thanks, good bye.
+  Turn 11 [SYSTEM]: Thank you so much for Cambridge TownInfo centre. Have a great day!
+
+============================================================
+END OF SINGLE DIALOGUE
+============================================================
+
+============================================================
+TURN DETAILS (Dialogue 0, Turn 4)
+============================================================
+
+turn_id: str | 4
+speaker: str | USER
+utterance: str | Sounds good, could I get that phone number? Also, could you recommend me an expensive hotel?
+frames: list of dict | length=8
+
+Active frames (active_intent != NONE):
+
+  service: str | restaurant
+  active_intent: str | find_restaurant
+  slot_values: dict | {'restaurant-area': ['centre'], 'restaurant-name': ['bedouin'], 'restaurant-pricerange': ['expensive']}
+  requested_slots: list | length=1 | ['restaurant-phone']
+  slots (spans): list | length=0
+
+  service: str | hotel
+  active_intent: str | find_hotel
+  slot_values: dict | {'hotel-pricerange': ['expensive'], 'hotel-type': ['hotel']}
+  requested_slots: list | length=0 | []
+  slots (spans): list | length=0
+
+Note on USER turns:
+  frames = 8 dicts → one frame per service (hotel, restaurant, taxi, ...)
+  intent = NONE → service not active in this turn (skipped)
+  intent = find_X → user is searching for an entity
+  intent = book_X → user wants to make a booking
+  slot_values → constraints user has specified so far (accumulate across turns)
+  requested_slots → information user is asking the system to provide
+  Example: 'I need a cheap hotel in the north' → slot_values={hotel-area: north, hotel-pricerange: cheap}
+  Example: 'What is the phone number?' → requested_slots=[hotel-phone]
+
+Note on SYSTEM turns:
+  frames = [] → system is asking a question (no entity mentioned)
+  frames = [...] → system mentioned a specific entity (span annotations present)
+  Example: 'Do you prefer African or British food?' → frames=[]
+  Example: 'I recommend Bedouin in the centre.' → frames=[{slot: restaurant-name, value: Bedouin, start: 31, end: 38}]
+
+============================================================
+END OF TURN DETAILS
+============================================================
+
+============================================================
+DB STRUCTURE — HOTEL & RESTAURANT
+============================================================
+
+Hotel DB type: <class 'list'> | is a list of: <class 'dict'>
+Hotel DB length: 33 entries
+
+First hotel entry keys:
+  address: str | 124 tenison road
+  area: str | east
+  internet: str | yes
+  parking: str | no
+  id: str | 0
+  location: list | [52.1963733, 0.1987426]
+  name: str | a and b guest house
+  phone: str | 01223315702
+  postcode: str | cb12dp
+  price: dict | {'double': '70', 'family': '90', 'single': '50'}
+  pricerange: str | moderate
+  stars: str | 4
+  takesbookings: str | yes
+  type: str | guesthouse
+
+Full first hotel entry:
+{
+    "address": "124 tenison road",
+    "area": "east",
+    "internet": "yes",
+    "parking": "no",
+    "id": "0",
+    "location": [
+        52.1963733,
+        0.1987426
+    ],
+    "name": "a and b guest house",
+    "phone": "01223315702",
+    "postcode": "cb12dp",
+    "price": {
+        "double": "70",
+        "family": "90",
+        "single": "50"
+    },
+    "pricerange": "moderate",
+    "stars": "4",
+    "takesbookings": "yes",
+    "type": "guesthouse"
+}
+
+Restaurant DB type: <class 'list'> | is a list of: <class 'dict'>
+Restaurant DB length: 110 entries
+
+First restaurant entry keys:
+  address: str | Regent Street City Centre
+  area: str | centre
+  food: str | italian
+  id: str | 19210
+  introduction: str | Pizza hut is a large chain with restaurants nationwide offer...
+  location: list | [52.20103, 0.126023]
+  name: str | pizza hut city centre
+  phone: str | 01223323737
+  postcode: str | cb21ab
+  pricerange: str | cheap
+  type: str | restaurant
+
+Full first restaurant entry:
+{
+    "address": "Regent Street City Centre",
+    "area": "centre",
+    "food": "italian",
+    "id": "19210",
+    "introduction": "Pizza hut is a large chain with restaurants nationwide offering convenience pizzas pasta and salads to eat in or take away",
+    "location": [
+        52.20103,
+        0.126023
+    ],
+    "name": "pizza hut city centre",
+    "phone": "01223323737",
+    "postcode": "cb21ab",
+    "pricerange": "cheap",
+    "type": "restaurant"
+}
+
+Key differences hotel vs restaurant:
+  Hotel only: stars, parking, internet, takesbookings, type, price (dict)
+  Restaurant only: food, introduction
+  Shared: name, area, pricerange, phone, address, postcode, location, id
+
+============================================================
+END OF DB STRUCTURE
+============================================================
+
+============================================================
+CONVERSATION EXAMPLES — HOTEL & RESTAURANT ONLY
+============================================================
+
+Total dialogues in file: 512
+Hotel/restaurant only dialogues: 164
+Showing first 2:
+
+------------------------------------------------------------
+Dialogue ID: PMUL4398.json
+Services: ['restaurant', 'hotel']
+Num turns: 12
+
+  Turn 0 [USER]: i need a place to dine in the center thats expensive
+           service: restaurant
+           intent: find_restaurant
+           slots: {'restaurant-area': ['centre'], 'restaurant-pricerange': ['expensive']}
+           requested: []
+           service: hotel
+           intent: find_hotel
+           slots: {}
+           requested: []
+
+  Turn 1 [SYSTEM]: I have several options for you; do you prefer African, Asian, or British food?
+
+  Turn 2 [USER]: Any sort of food would be fine, as long as it is a bit expensive. Could I get the phone number for your recommendation?
+           service: restaurant
+           intent: find_restaurant
+           slots: {'restaurant-area': ['centre'], 'restaurant-pricerange': ['expensive']}
+           requested: ['restaurant-food']
+           service: hotel
+           intent: find_hotel
+           slots: {}
+           requested: []
+
+  Turn 3 [SYSTEM]: There is an Afrian place named Bedouin in the centre. How does that sound?
+
+  Turn 4 [USER]: Sounds good, could I get that phone number? Also, could you recommend me an expensive hotel?
+           service: restaurant
+           intent: find_restaurant
+           slots: {'restaurant-area': ['centre'], 'restaurant-name': ['bedouin'], 'restaurant-pricerange': ['expensive']}
+           requested: ['restaurant-phone']
+           service: hotel
+           intent: find_hotel
+           slots: {'hotel-pricerange': ['expensive'], 'hotel-type': ['hotel']}
+           requested: []
+
+  Turn 5 [SYSTEM]: Bedouin's phone is 01223367660. As far as hotels go, I recommend the University Arms Hotel in the center of town.
+
+  Turn 6 [USER]: Yes. Can you book it for me?
+           service: hotel
+           intent: find_hotel
+           slots: {'hotel-name': ['university arms hotel'], 'hotel-pricerange': ['expensive'], 'hotel-type': ['hotel']}
+           requested: []
+
+  Turn 7 [SYSTEM]: Sure, when would you like that reservation?
+
+  Turn 8 [USER]: i want to book it for 2 people and 2 nights starting from saturday.
+           service: hotel
+           intent: book_hotel
+           slots: {'hotel-bookday': ['saturday'], 'hotel-bookpeople': ['2'], 'hotel-bookstay': ['2'], 'hotel-name': ['university arms hotel'], 'hotel-pricerange': ['expensive'], 'hotel-type': ['hotel']}
+           requested: []
+
+  Turn 9 [SYSTEM]: Your booking was successful. Your reference number is FRGZWQL2 . May I help you further?
+
+  Turn 10 [USER]: That is all I need to know. Thanks, good bye.
+
+  Turn 11 [SYSTEM]: Thank you so much for Cambridge TownInfo centre. Have a great day!
+
+------------------------------------------------------------
+Dialogue ID: SNG1013.json
+Services: ['hotel']
+Num turns: 12
+
+  Turn 0 [USER]: Guten Tag, I am staying overnight in Cambridge and need a place to sleep. I need free parking and internet.
+           service: hotel
+           intent: find_hotel
+           slots: {'hotel-area': ['centre'], 'hotel-internet': ['yes'], 'hotel-parking': ['yes']}
+           requested: []
+
+  Turn 1 [SYSTEM]: I have 4 different options for you. I have two cheaper guesthouses and two expensive hotels. Do you have a preference?
+
+  Turn 2 [USER]: No, but I'd really like to be on the south end of the city. Do any of those fit the bill?
+           service: hotel
+           intent: find_hotel
+           slots: {'hotel-area': ['south'], 'hotel-internet': ['yes'], 'hotel-parking': ['yes']}
+           requested: []
+           service: restaurant
+           intent: find_restaurant
+           slots: {}
+           requested: []
+
+  Turn 3 [SYSTEM]: Sure. Does price matter? We can narrow it down and find exactly what you need.
+
+  Turn 4 [USER]: No I don't care about the price. Which one do you recommend?
+           service: hotel
+           intent: find_hotel
+           slots: {'hotel-area': ['south'], 'hotel-internet': ['yes'], 'hotel-parking': ['yes']}
+           requested: []
+           service: restaurant
+           intent: find_restaurant
+           slots: {}
+           requested: []
+
+  Turn 5 [SYSTEM]: I would recommend aylesbray lodge guest house. Would you like me to book that for you?
+
+  Turn 6 [USER]: Yes, book it for 4 people and 4 nights starting from tuesday.
+           service: hotel
+           intent: book_hotel
+           slots: {'hotel-area': ['south'], 'hotel-bookday': ['tuesday'], 'hotel-bookpeople': ['4'], 'hotel-bookstay': ['4'], 'hotel-internet': ['yes'], 'hotel-parking': ['yes']}
+           requested: []
+
+  Turn 7 [SYSTEM]: The booking was unsuccessful. would you like another day or a shorter stay?
+
+  Turn 8 [USER]: How about for 3 nights?
+           service: hotel
+           intent: book_hotel
+           slots: {'hotel-area': ['south'], 'hotel-bookday': ['tuesday'], 'hotel-bookpeople': ['4'], 'hotel-bookstay': ['3'], 'hotel-internet': ['yes'], 'hotel-name': ['aylesbray lodge guest house'], 'hotel-parking': ['yes']}
+           requested: []
+
+  Turn 9 [SYSTEM]: Booked! Reference number is: 84ESP6F5
+
+  Turn 10 [USER]: Great. I am all set then. Have a nice day. Bye.
+
+  Turn 11 [SYSTEM]: Have a nice stay. Bye.
+
+============================================================
+END OF CONVERSATION EXAMPLES
+============================================================
+
+============================================================
+HOTEL/RESTAURANT DIALOGUE COUNTS ACROSS SPLITS
+============================================================
+
+train: 8437 total → 2850 hotel/restaurant only (33.8%)
+dev: 1000 total → 171 hotel/restaurant only (17.1%)
+test: 1000 total → 186 hotel/restaurant only (18.6%)
+
+============================================================
+END OF DIALOGUE COUNTS
+============================================================

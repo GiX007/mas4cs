@@ -1,5 +1,4 @@
 """Integration tests for the full Multi-Agent System with LangGraph."""
-
 import json
 from pathlib import Path
 
@@ -47,7 +46,6 @@ def test_workflow_single_turn(enable_retry: bool = True) -> None:
     initial_state["model_config"] = {
         "triage": "gpt-4o-mini",
         "action": "gpt-4o-mini",
-        "supervisor": "gpt-4o-mini"
     }
 
     # Run workflow with specified mode
@@ -76,7 +74,7 @@ def test_workflow_single_turn(enable_retry: bool = True) -> None:
     print(f"MAS Response: {final_state['agent_response']}")
     print(f"Policy Violations: {final_state['policy_violations']}")
     print(f"Validation Passed: {final_state['validation_passed']}")
-    print(f"Hallucinations: {final_state['hallucination_flags']}")
+    print(f"Supervisor Feedback: {final_state['supervisor_feedback']}")
     print(f"Attempt Count: {final_state['attempt_count']}")
     print("\nAll agents executed successfully!")
 
@@ -117,52 +115,6 @@ def find_dialogue_with_entities() -> tuple[dict | None, dict | None, list[str]]:
     return None, None, []
 
 
-def test_workflow_with_entity_validation() -> None:
-    """Test workflow with valid entities passed to supervisor for hallucination detection."""
-    # Find dialogue with entity mentions
-    dialogue, turn, valid_entities = find_dialogue_with_entities()
-
-    if not dialogue or not valid_entities:
-        print("Skipping test - no suitable dialogue found")
-        return
-
-    # Initialize state
-    initial_state = initialize_state(
-        dialogue_id=dialogue["dialogue_id"],
-        turn_id=turn["turn_id"],
-        services=dialogue["services"],
-        user_utterance=turn["utterance"]
-    )
-
-    # Add model_config
-    initial_state["model_config"] = {
-        "triage": "gpt-4o-mini",
-        "action": "gpt-4o-mini",
-        "supervisor": "gpt-4o-mini"
-    }
-
-    # Run workflow with retry enabled
-    workflow = create_workflow(enable_retry=True)
-    final_state = workflow.invoke(initial_state)
-
-    # Verify all agents executed
-    assert final_state["current_domain"] is not None, "Triage failed: domain not set"
-    assert final_state["active_intent"] is not None, "Triage failed: intent not set"
-    assert final_state["agent_response"] is not None, "Action failed: no response"
-    assert len(final_state["conversation_history"]) > 0, "Memory failed: history empty"
-
-    # Print results
-    print_separator("TEST WORKFLOW WITH ENTITY MENTIONED")
-    print(f"\nUser message: {final_state['user_utterance']}")
-    print("\nMAS State:")
-    print(f"Valid Entities: {valid_entities}")
-    print(f"MAS Response: {final_state['agent_response']}")
-    print(f"Validation Passed: {final_state['validation_passed']}")
-    print(f"Hallucinations Detected: {final_state['hallucination_flags']}")
-    print(f"Attempt Count: {final_state['attempt_count']}")
-    print("\nAll agents executed successfully!")
-
-
 if __name__ == "__main__":
     # test_workflow_creation()
 
@@ -171,7 +123,3 @@ if __name__ == "__main__":
 
     # Test 2: Conditional retry workflow
     test_workflow_single_turn(enable_retry=True)
-
-    # Test 3: Entity validation
-    test_workflow_with_entity_validation()
-

@@ -33,3 +33,5 @@ protobuf>=3.20.0
 langgraph==0.2.34
 langchain-core==0.3.15
 
+# Tomiinek Evaluator
+git+https://github.com/Tomiinek/MultiWOZ_Evaluation.git@master

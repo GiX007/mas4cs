@@ -1,0 +1,73 @@
+
+============================================================
+TEST TOMIINEK ADAPTER
+============================================================
+
+Dummy Tomiinek input structure:
+Dialogue ID: mul0001
+  Turn 0: response: I found a [restaurant_name] in the [restaurant_area] area. | state: {'restaurant': {'area': 'centre', 'food': 'chinese'}} | active_domains: ['restaurant']
+  Turn 1: response: The phone number is [restaurant_phone]. | state: {'restaurant': {'area': 'centre', 'food': 'chinese'}} | active_domains: ['restaurant']
+
+Before tomiinek adapter (MAS4CS format):
+dialogue_id : MUL1271.json
+  Turn 0: response: I found a nice restaurant in the centre. | predicted_slots: {'restaurant': {'area': 'centre', 'food': 'chinese'}} | domain: restaurant
+  Turn 1: response: The phone number is 01223 323737. | predicted_slots: {'restaurant': {'area': 'centre', 'food': 'chinese'}} | domain: restaurant
+
+After tomiinek adapter (Tomiinek format)
+dialogue_id : mul1271
+  turn 0: response: I found a nice restaurant in the centre. | state: {'restaurant': {'area': 'centre', 'food': 'chinese'}} | active_domains: ['restaurant']
+  turn 1: response: The phone number is 01223 323737. | state: {'restaurant': {'area': 'centre', 'food': 'chinese'}} | active_domains: ['restaurant']
+
+Running Tomiinek Evaluator on sample input:
+ {'mul1271': [{'response': 'I found a nice restaurant in the centre.', 'state': {'restaurant': {'area': 'centre', 'food': 'chinese'}}, 'active_domains': ['restaurant']}, {'response': 'The phone number is 01223 323737.', 'state': {'restaurant': {'area': 'centre', 'food': 'chinese'}}, 'active_domains': ['restaurant']}]}
+
+Tomiinek Evaluator raw output:
+
+{
+  "bleu": {
+    "mwz22": 1.0439634138040899
+  },
+  "success": {
+    "inform": {
+      "restaurant": 0.0,
+      "hotel": 100.0,
+      "total": 0.0
+    },
+    "success": {
+      "restaurant": 0.0,
+      "hotel": 0.0,
+      "total": 0.0
+    }
+  },
+  "richness": null,
+  "dst": null
+}
+
+Running Tomiinek Evaluator on two-dialogue sample:
+ {'mul1271': [{'response': 'I found a nice restaurant in the centre.', 'state': {'restaurant': {'area': 'centre', 'food': 'chinese'}}, 'active_domains': ['restaurant']}, {'response': 'The phone number is 01223 323737.', 'state': {'restaurant': {'area': 'centre', 'food': 'chinese'}}, 'active_domains': ['restaurant']}], 'sng0551': [{'response': 'I found a hotel in the north with free parking.', 'state': {'hotel': {'area': 'north', 'parking': 'yes'}}, 'active_domains': ['hotel']}, {'response': 'I have booked it for you. Your reference is ABC123.', 'state': {'hotel': {'area': 'north', 'parking': 'yes', 'book stay': '2'}}, 'active_domains': ['hotel']}]}
+
+Tomiinek Evaluator raw output:
+
+{
+  "bleu": {
+    "mwz22": 2.4905416054369676
+  },
+  "success": {
+    "inform": {
+      "restaurant": 50.0,
+      "hotel": 100.0,
+      "total": 50.0
+    },
+    "success": {
+      "restaurant": 0.0,
+      "hotel": 0.0,
+      "total": 0.0
+    }
+  },
+  "richness": null,
+  "dst": null
+}
+
+============================================================
+END TEST TOMIINEK ADAPTER
+============================================================

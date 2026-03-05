@@ -8,8 +8,15 @@ venv/
 __pycache__/
 *.pyc
 
-# Hugging Face model cache (large files)
+# Hugging Face dataset and model cache (large files)
 hf_cache/
+
+# Official dataset from GitHub (large files)
+data/
+
+# HuggingFace processed dataset
+dataset/mw22_transformed.json
+dataset/mw22_filtered.json
 
 # OS files
 .DS_Store
@@ -17,7 +24,3 @@ Thumbs.db
 
 # Environment variables
 .env
-
-# Large files
-dataset/mw22_transformed.json
-dataset/mw22_filtered.json

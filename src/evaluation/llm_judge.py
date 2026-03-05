@@ -4,7 +4,6 @@ LLM-as-judge evaluation infrastructure.
 Provides rubric-based scoring (1-5 scale) for response quality assessment.
 Uses prompts from src/utils/prompts.py for consistency.
 """
-
 import json
 from typing import Any
 from src.models import call_model

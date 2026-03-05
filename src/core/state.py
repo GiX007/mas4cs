@@ -4,7 +4,6 @@ Agent state definition for MAS4CS workflow.
 Defines AgentState TypedDict structure that flows through the LangGraph workflow.
 All agents read from and write to this shared state.
 """
-
 from typing import TypedDict
 
 
@@ -29,8 +28,6 @@ class AgentState(TypedDict):
     # Slot tracking, e.g., {"restaurant": {"area": "centre"}}
     slots_values: dict[str, dict[str, str]]  # Accumulated across turns
 
-    triage_reasoning: str | None  # for passing previous_system_message to triage
-
     # Conversation state
     conversation_history: list[dict[str, str]]  # e.g., [{"role": "user", "content": "..."}]
 
@@ -44,8 +41,13 @@ class AgentState(TypedDict):
 
     # Supervisor validation
     validation_passed: bool  # Did Supervisor approve the response?
-    hallucination_flags: list[str]  # e.g., ["Hotel 'Sunset Inn' not in database"]
     valid_entities: list[str]  # Valid entity names from database for hallucination detection
+    supervisor_feedback: str | None  # Correction instructions for Action retry
+
+    # DB query results (populated by Action agent via tools.py)
+    db_results: list[dict]  # Matching entities returned by find_entity
+    booked_entity: dict | None  # Booking confirmation returned by book_entity
+    informed_entity: dict | None  # The specific entity the agent chose to recommend (First in DB results or None if no recommendation)
 
     # Retry control
     attempt_count: int  # Self-refinement mechanism
@@ -75,33 +77,23 @@ def initialize_state(dialogue_id: str, turn_id: int, services: list[str], user_u
         "dialogue_id": dialogue_id,
         "turn_id": turn_id,
         "services": services,
-
         "user_utterance": user_utterance,
-
         "current_domain": None,
         "active_intent": None,
-
         "slots_values": {},
-
-        "triage_reasoning": None,
-
         "conversation_history": [],
-
         "agent_response": None,
         "action_taken": "",
         "dialogue_acts": [],
-
         "policy_violations": [],
-
         "validation_passed": False,
-        "hallucination_flags": [],
         "valid_entities": [],
-
+        "supervisor_feedback": None,
+        "db_results": [],
+        "booked_entity": None,
+        "informed_entity": None,
         "attempt_count": 0,
-
         "model_config": {},
-
         "turn_cost": 0.0,
         "turn_response_time": 0.0,
     }
-

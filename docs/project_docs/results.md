@@ -2,7 +2,7 @@
 
 ## 1. Experiment Summary
 - Comparison table (all experiments, all models)
-- Metrics overview (Task%, Intent%, Domain%, Slot%, JGA%)
+- Metrics overview table
 
 ---
 

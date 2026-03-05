@@ -5,7 +5,6 @@ Loads raw MultiWOZ 2.2 dataset from HuggingFace Hub with automatic caching to av
 Also provides access to the loaded dataset per split.
 Entry point for all dataset operations.
 """
-
 import json
 from pathlib import Path
 from typing import Any
@@ -63,4 +62,3 @@ def load_split_data(filepath: str, split: str) -> list[dict[str, Any]]:
         raise KeyError(f"Split '{split}' not found. Available: {list(data.keys())}")
 
     return data[split]
-

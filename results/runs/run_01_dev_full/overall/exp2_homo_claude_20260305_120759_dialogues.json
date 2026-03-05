@@ -1,0 +1,3323 @@
+{
+  "experiment": "exp2",
+  "evaluation_level": "dialogue",
+  "split": "dev",
+  "timestamp": "2026-03-05 12:07:59",
+  "model_name": "homo_claude",
+  "configuration": "homo_claude",
+  "models": {
+    "triage": "claude-3-haiku-20240307",
+    "action": "claude-3-haiku-20240307",
+    "supervisor": "claude-3-haiku-20240307"
+  },
+  "base_models": null,
+  "dialogues": [
+    {
+      "dialogue_id": "MUL1271.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": true,
+      "task_reason": "Booking completed successfully",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.4,
+      "avg_action_type_f1": 0.6666666666666666,
+      "avg_slot_accuracy": 0.7648268398268399,
+      "avg_slot_f1": 0.6881598793363499,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.3333333333333333,
+      "avg_system_correctness": 0.8,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0551.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 2,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.3333333333333333,
+      "avg_slot_accuracy": 0.375,
+      "avg_slot_f1": 0.42857142857142855,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.5,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "PMUL4075.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.3333333333333333,
+      "avg_domain_accuracy": 0.6666666666666666,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.4444444444444444,
+      "avg_slot_accuracy": 0.4305555555555556,
+      "avg_slot_f1": 0.34757834757834755,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG02071.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 2,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 1.0,
+      "avg_action_type_f1": 1.0,
+      "avg_slot_accuracy": 1.0,
+      "avg_slot_f1": 1.0,
+      "avg_jga": 1.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL4833.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.5714285714285714,
+      "avg_domain_accuracy": 0.7142857142857143,
+      "avg_action_type_accuracy": 0.14285714285714285,
+      "avg_action_type_f1": 0.3333333333333333,
+      "avg_slot_accuracy": 0.49969078540507106,
+      "avg_slot_f1": 0.46843464658590717,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL0287.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Missing booking slots in hotel: ['bookday', 'bookpeople', 'bookstay']",
+      "avg_intent_accuracy": 0.8333333333333334,
+      "avg_domain_accuracy": 0.8333333333333334,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_action_type_f1": 0.5,
+      "avg_slot_accuracy": 0.6882936507936507,
+      "avg_slot_f1": 0.7745734657499362,
+      "avg_jga": 0.16666666666666666,
+      "avg_hallucination_rate": 0.1,
+      "avg_system_correctness": 0.8333333333333334,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL1591.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.75,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.16666666666666666,
+      "avg_slot_accuracy": 0.7604166666666666,
+      "avg_slot_f1": 0.703030303030303,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0899.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 3,
+      "task_success": true,
+      "task_reason": "Booking completed successfully",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_action_type_f1": 0.3333333333333333,
+      "avg_slot_accuracy": 0.6666666666666666,
+      "avg_slot_f1": 0.5841269841269842,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0759.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 3,
+      "task_success": true,
+      "task_reason": "Booking completed successfully",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6666666666666666,
+      "avg_action_type_f1": 0.6666666666666666,
+      "avg_slot_accuracy": 0.6,
+      "avg_slot_f1": 0.6666666666666666,
+      "avg_jga": 0.3333333333333333,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL0126.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 8,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.625,
+      "avg_domain_accuracy": 0.75,
+      "avg_action_type_accuracy": 0.125,
+      "avg_action_type_f1": 0.20833333333333331,
+      "avg_slot_accuracy": 0.40793650793650793,
+      "avg_slot_f1": 0.4479704162366701,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL4993.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 9,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 0.8888888888888888,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.2222222222222222,
+      "avg_slot_accuracy": 0.4017255892255893,
+      "avg_slot_f1": 0.4943832208964349,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG01184.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.3333333333333333,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.2222222222222222,
+      "avg_slot_accuracy": 0.7261904761904762,
+      "avg_slot_f1": 0.7523809523809524,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG1049.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.2222222222222222,
+      "avg_slot_accuracy": 0.4305555555555555,
+      "avg_slot_f1": 0.4799182299182299,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL0508.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.2222222222222222,
+      "avg_slot_accuracy": 0.15873015873015872,
+      "avg_slot_f1": 0.2074074074074074,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0665.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6666666666666666,
+      "avg_action_type_f1": 0.8888888888888888,
+      "avg_slot_accuracy": 0.7222222222222222,
+      "avg_slot_f1": 0.611111111111111,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0651.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_action_type_f1": 0.3333333333333333,
+      "avg_slot_accuracy": 0.0,
+      "avg_slot_f1": 0.0,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL1653.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.2222222222222222,
+      "avg_slot_accuracy": 0.25,
+      "avg_slot_f1": 0.27777777777777773,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG1046.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.5,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.5,
+      "avg_slot_accuracy": 0.3416666666666667,
+      "avg_slot_f1": 0.38392857142857145,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0807.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.5,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.25,
+      "avg_action_type_f1": 0.41666666666666663,
+      "avg_slot_accuracy": 0.6071428571428571,
+      "avg_slot_f1": 0.6277777777777778,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL0129.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6,
+      "avg_action_type_f1": 0.7333333333333333,
+      "avg_slot_accuracy": 0.3933333333333333,
+      "avg_slot_f1": 0.3666666666666666,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL0032.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 10,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.7,
+      "avg_domain_accuracy": 0.8,
+      "avg_action_type_accuracy": 0.1,
+      "avg_action_type_f1": 0.2833333333333333,
+      "avg_slot_accuracy": 0.35810966810966816,
+      "avg_slot_f1": 0.39967148262813895,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.9,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG0535.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.2222222222222222,
+      "avg_slot_accuracy": 0.14285714285714285,
+      "avg_slot_f1": 0.19999999999999998,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.6666666666666666,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG0939.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.25,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.16666666666666666,
+      "avg_slot_accuracy": 0.8571428571428571,
+      "avg_slot_f1": 0.7649350649350649,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG1007.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.6,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.26666666666666666,
+      "avg_slot_accuracy": 0.4404761904761904,
+      "avg_slot_f1": 0.42153846153846153,
+      "avg_jga": 0.2,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL1379.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 9,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 0.6666666666666666,
+      "avg_action_type_accuracy": 0.1111111111111111,
+      "avg_action_type_f1": 0.25925925925925924,
+      "avg_slot_accuracy": 0.43233618233618226,
+      "avg_slot_f1": 0.513362108976144,
+      "avg_jga": 0.1111111111111111,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0588.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 0.75,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_action_type_f1": 0.8333333333333333,
+      "avg_slot_accuracy": 0.8333333333333333,
+      "avg_slot_f1": 0.7,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0521.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.25,
+      "avg_action_type_f1": 0.41666666666666663,
+      "avg_slot_accuracy": 0.45833333333333326,
+      "avg_slot_f1": 0.475,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL1370.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.2857142857142857,
+      "avg_domain_accuracy": 0.5714285714285714,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.19047619047619047,
+      "avg_slot_accuracy": 0.3122274550845979,
+      "avg_slot_f1": 0.37156041903941067,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.8571428571428571,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG0922.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.5,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.16666666666666666,
+      "avg_action_type_f1": 0.25,
+      "avg_slot_accuracy": 0.40972222222222227,
+      "avg_slot_f1": 0.46858974358974365,
+      "avg_jga": 0.16666666666666666,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0698.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.25,
+      "avg_action_type_f1": 0.5833333333333333,
+      "avg_slot_accuracy": 0.9166666666666666,
+      "avg_slot_f1": 0.7952380952380953,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG01777.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": true,
+      "task_reason": "Booking completed successfully",
+      "avg_intent_accuracy": 0.5,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.25,
+      "avg_action_type_f1": 0.5833333333333333,
+      "avg_slot_accuracy": 0.6,
+      "avg_slot_f1": 0.6027777777777777,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG01609.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 5,
+      "task_success": true,
+      "task_reason": "Booking completed successfully",
+      "avg_intent_accuracy": 0.8,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.4,
+      "avg_action_type_f1": 0.5333333333333333,
+      "avg_slot_accuracy": 0.8857142857142856,
+      "avg_slot_f1": 0.8483116883116881,
+      "avg_jga": 0.2,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0900.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.4444444444444444,
+      "avg_slot_accuracy": 0.5833333333333334,
+      "avg_slot_f1": 0.5444444444444444,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG1047.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.7142857142857143,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.14285714285714285,
+      "avg_action_type_f1": 0.4285714285714285,
+      "avg_slot_accuracy": 0.732142857142857,
+      "avg_slot_f1": 0.6751177394034537,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG01297.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.25,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.25,
+      "avg_action_type_f1": 0.41666666666666663,
+      "avg_slot_accuracy": 0.19583333333333333,
+      "avg_slot_f1": 0.2534090909090909,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG1011.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.75,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_action_type_f1": 0.5,
+      "avg_slot_accuracy": 0.875,
+      "avg_slot_f1": 0.7982905982905983,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL3735.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.5714285714285714,
+      "avg_domain_accuracy": 0.7142857142857143,
+      "avg_action_type_accuracy": 0.14285714285714285,
+      "avg_action_type_f1": 0.3333333333333333,
+      "avg_slot_accuracy": 0.6848290598290598,
+      "avg_slot_f1": 0.7272675736961451,
+      "avg_jga": 0.14285714285714285,
+      "avg_hallucination_rate": 0.25,
+      "avg_system_correctness": 0.7142857142857143,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG0603.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Missing booking slots in restaurant: ['bookday', 'bookpeople', 'booktime']",
+      "avg_intent_accuracy": 0.5,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.125,
+      "avg_slot_accuracy": 0.8928571428571428,
+      "avg_slot_f1": 0.7984848484848486,
+      "avg_jga": 0.25,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0891.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_action_type_f1": 0.7777777777777777,
+      "avg_slot_accuracy": 0.15873015873015872,
+      "avg_slot_f1": 0.17777777777777778,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL1292.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Missing booking slots in hotel: ['bookday', 'bookpeople', 'bookstay']",
+      "avg_intent_accuracy": 0.5714285714285714,
+      "avg_domain_accuracy": 0.8571428571428571,
+      "avg_action_type_accuracy": 0.42857142857142855,
+      "avg_action_type_f1": 0.42857142857142855,
+      "avg_slot_accuracy": 0.8112244897959184,
+      "avg_slot_f1": 0.7982993197278913,
+      "avg_jga": 0.2857142857142857,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL0294.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 9,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 0.8888888888888888,
+      "avg_action_type_accuracy": 0.1111111111111111,
+      "avg_action_type_f1": 0.18518518518518517,
+      "avg_slot_accuracy": 0.36624579124579126,
+      "avg_slot_f1": 0.44821968155301495,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL1381.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.75,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.25,
+      "avg_action_type_f1": 0.5833333333333333,
+      "avg_slot_accuracy": 0.8928571428571428,
+      "avg_slot_f1": 0.8333333333333333,
+      "avg_jga": 0.5,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL0356.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 8,
+      "task_success": false,
+      "task_reason": "Missing booking slots in hotel: ['name', 'bookday', 'bookpeople', 'bookstay']",
+      "avg_intent_accuracy": 0.5,
+      "avg_domain_accuracy": 0.625,
+      "avg_action_type_accuracy": 0.125,
+      "avg_action_type_f1": 0.29166666666666663,
+      "avg_slot_accuracy": 0.7451350732600732,
+      "avg_slot_f1": 0.8102202621939465,
+      "avg_jga": 0.375,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0494.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.25,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.5,
+      "avg_slot_accuracy": 0.6,
+      "avg_slot_f1": 0.6027777777777779,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL0065.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.42857142857142855,
+      "avg_domain_accuracy": 0.7142857142857143,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.2857142857142857,
+      "avg_slot_accuracy": 0.2435025292168149,
+      "avg_slot_f1": 0.31069163035107306,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL1368.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Missing booking slots in restaurant: ['bookday', 'bookpeople', 'booktime']",
+      "avg_intent_accuracy": 0.75,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_action_type_f1": 0.6666666666666666,
+      "avg_slot_accuracy": 0.90625,
+      "avg_slot_f1": 0.7947330447330447,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL3072.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.5,
+      "avg_domain_accuracy": 0.8333333333333334,
+      "avg_action_type_accuracy": 0.16666666666666666,
+      "avg_action_type_f1": 0.27777777777777773,
+      "avg_slot_accuracy": 0.3365079365079365,
+      "avg_slot_f1": 0.397953216374269,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0934.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.8,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.26666666666666666,
+      "avg_slot_accuracy": 0.6916666666666667,
+      "avg_slot_f1": 0.6766666666666666,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL3466.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.42857142857142855,
+      "avg_domain_accuracy": 0.7142857142857143,
+      "avg_action_type_accuracy": 0.14285714285714285,
+      "avg_action_type_f1": 0.3333333333333333,
+      "avg_slot_accuracy": 0.4294372294372294,
+      "avg_slot_f1": 0.48163265306122444,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0845.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.75,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.5,
+      "avg_slot_accuracy": 0.4895833333333333,
+      "avg_slot_f1": 0.5553571428571429,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0883.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.5,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.2222222222222222,
+      "avg_slot_accuracy": 0.3148148148148148,
+      "avg_slot_f1": 0.33585858585858586,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.8333333333333334,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG01235.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.6,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.2,
+      "avg_action_type_f1": 0.3333333333333333,
+      "avg_slot_accuracy": 0.5666666666666667,
+      "avg_slot_f1": 0.6,
+      "avg_jga": 0.4,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0896.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.4,
+      "avg_action_type_f1": 0.7999999999999999,
+      "avg_slot_accuracy": 0.48,
+      "avg_slot_f1": 0.5365079365079366,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0942.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.25,
+      "avg_action_type_f1": 0.41666666666666663,
+      "avg_slot_accuracy": 0.375,
+      "avg_slot_f1": 0.4285714285714286,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL0289.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 9,
+      "task_success": false,
+      "task_reason": "Missing booking slots in restaurant: ['name', 'bookday', 'bookpeople', 'booktime']",
+      "avg_intent_accuracy": 0.8888888888888888,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.1111111111111111,
+      "avg_action_type_f1": 0.31481481481481477,
+      "avg_slot_accuracy": 0.30291005291005285,
+      "avg_slot_f1": 0.3391534391534392,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0996.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 1,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 1.0,
+      "avg_action_type_f1": 1.0,
+      "avg_slot_accuracy": 0.0,
+      "avg_slot_f1": 0.0,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG1023.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_action_type_f1": 0.5555555555555555,
+      "avg_slot_accuracy": 0.375,
+      "avg_slot_f1": 0.38888888888888884,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.6666666666666666,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG0650.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.6666666666666666,
+      "avg_slot_accuracy": 0.7222222222222222,
+      "avg_slot_f1": 0.6793650793650795,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0542.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 5,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 0.8,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.4,
+      "avg_action_type_f1": 0.4,
+      "avg_slot_accuracy": 1.0,
+      "avg_slot_f1": 0.8476190476190476,
+      "avg_jga": 0.2,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0913.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Missing booking slots in hotel: ['bookday', 'bookpeople', 'bookstay']",
+      "avg_intent_accuracy": 0.42857142857142855,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.38095238095238093,
+      "avg_slot_accuracy": 0.38605442176870747,
+      "avg_slot_f1": 0.3105703819989535,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0937.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.42857142857142855,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.19047619047619047,
+      "avg_slot_accuracy": 0.23384353741496594,
+      "avg_slot_f1": 0.271552257266543,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0751.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_action_type_f1": 0.5555555555555555,
+      "avg_slot_accuracy": 0.7261904761904762,
+      "avg_slot_f1": 0.6396825396825397,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG01172.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.7142857142857143,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.14285714285714285,
+      "avg_action_type_f1": 0.14285714285714285,
+      "avg_slot_accuracy": 0.14285714285714285,
+      "avg_slot_f1": 0.16825396825396827,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL1256.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Missing booking slots in hotel: ['bookday', 'bookpeople', 'bookstay']",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_action_type_f1": 0.4444444444444444,
+      "avg_slot_accuracy": 0.19444444444444442,
+      "avg_slot_f1": 0.23137254901960783,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0490.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 0.75,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.25,
+      "avg_action_type_f1": 0.41666666666666663,
+      "avg_slot_accuracy": 0.9375,
+      "avg_slot_f1": 0.8142857142857144,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL0142.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 9,
+      "task_success": false,
+      "task_reason": "Missing booking slots in restaurant: ['name', 'bookday', 'bookpeople', 'booktime']",
+      "avg_intent_accuracy": 0.4444444444444444,
+      "avg_domain_accuracy": 0.6666666666666666,
+      "avg_action_type_accuracy": 0.1111111111111111,
+      "avg_action_type_f1": 0.24074074074074073,
+      "avg_slot_accuracy": 0.44659291325957995,
+      "avg_slot_f1": 0.5263560694933244,
+      "avg_jga": 0.1111111111111111,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG01626.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.25,
+      "avg_action_type_f1": 0.7499999999999999,
+      "avg_slot_accuracy": 0.875,
+      "avg_slot_f1": 0.7928571428571429,
+      "avg_jga": 0.25,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0565.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.42857142857142855,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.19047619047619047,
+      "avg_slot_accuracy": 0.3108843537414966,
+      "avg_slot_f1": 0.3582766439909297,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL3017.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.75,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.25,
+      "avg_action_type_f1": 0.25,
+      "avg_slot_accuracy": 0.78125,
+      "avg_slot_f1": 0.8440934065934066,
+      "avg_jga": 0.25,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL0348.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.3333333333333333,
+      "avg_domain_accuracy": 0.8333333333333334,
+      "avg_action_type_accuracy": 0.16666666666666666,
+      "avg_action_type_f1": 0.25,
+      "avg_slot_accuracy": 0.4583333333333333,
+      "avg_slot_f1": 0.5422466422466422,
+      "avg_jga": 0.16666666666666666,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0829.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.25,
+      "avg_action_type_f1": 0.5833333333333333,
+      "avg_slot_accuracy": 0.15416666666666667,
+      "avg_slot_f1": 0.189484126984127,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0893.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_action_type_f1": 0.5555555555555555,
+      "avg_slot_accuracy": 0.9444444444444445,
+      "avg_slot_f1": 0.8111111111111112,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.6666666666666666,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG0554.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.5,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.16666666666666666,
+      "avg_slot_accuracy": 0.5238095238095238,
+      "avg_slot_f1": 0.5875,
+      "avg_jga": 0.25,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL1249.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 9,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.5555555555555556,
+      "avg_domain_accuracy": 0.7777777777777778,
+      "avg_action_type_accuracy": 0.2222222222222222,
+      "avg_action_type_f1": 0.2962962962962963,
+      "avg_slot_accuracy": 0.7963804713804714,
+      "avg_slot_f1": 0.8091521882543555,
+      "avg_jga": 0.3333333333333333,
+      "avg_hallucination_rate": 0.14285714285714285,
+      "avg_system_correctness": 0.6666666666666666,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG0804.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.3333333333333333,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_action_type_f1": 0.3333333333333333,
+      "avg_slot_accuracy": 0.5,
+      "avg_slot_f1": 0.6,
+      "avg_jga": 0.3333333333333333,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL4332.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.5714285714285714,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.09523809523809523,
+      "avg_slot_accuracy": 0.07437641723356007,
+      "avg_slot_f1": 0.11324786324786325,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0993.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.16666666666666666,
+      "avg_action_type_f1": 0.27777777777777773,
+      "avg_slot_accuracy": 0.42857142857142855,
+      "avg_slot_f1": 0.4785714285714285,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL4877.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 10,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.7,
+      "avg_domain_accuracy": 0.8,
+      "avg_action_type_accuracy": 0.2,
+      "avg_action_type_f1": 0.4,
+      "avg_slot_accuracy": 0.6306926406926406,
+      "avg_slot_f1": 0.6225017088174983,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0501.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.75,
+      "avg_action_type_f1": 0.9166666666666666,
+      "avg_slot_accuracy": 0.37499999999999994,
+      "avg_slot_f1": 0.42500000000000004,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG1043.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.8,
+      "avg_action_type_f1": 0.8,
+      "avg_slot_accuracy": 0.3833333333333333,
+      "avg_slot_f1": 0.44333333333333336,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL0051.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 8,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.375,
+      "avg_domain_accuracy": 0.875,
+      "avg_action_type_accuracy": 0.25,
+      "avg_action_type_f1": 0.41666666666666663,
+      "avg_slot_accuracy": 0.2976953601953602,
+      "avg_slot_f1": 0.3920454545454546,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.875,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG02311.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 2,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.5,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.3333333333333333,
+      "avg_slot_accuracy": 0.625,
+      "avg_slot_f1": 0.5,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0771.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.75,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.3333333333333333,
+      "avg_slot_accuracy": 0.40119047619047615,
+      "avg_slot_f1": 0.4630952380952381,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.75,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "PMUL0432.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.2857142857142857,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.14285714285714285,
+      "avg_action_type_f1": 0.23809523809523808,
+      "avg_slot_accuracy": 0.3215522572665429,
+      "avg_slot_f1": 0.31462585034013607,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG1018.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 2,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.5,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.6666666666666666,
+      "avg_slot_accuracy": 0.5,
+      "avg_slot_f1": 0.3333333333333333,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0668.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 2,
+      "task_success": true,
+      "task_reason": "Booking completed successfully",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_action_type_f1": 0.75,
+      "avg_slot_accuracy": 0.9166666666666667,
+      "avg_slot_f1": 0.8166666666666667,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.25,
+      "avg_system_correctness": 0.5,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0697.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.5,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.16666666666666666,
+      "avg_slot_accuracy": 0.7113095238095237,
+      "avg_slot_f1": 0.730952380952381,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL0036.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 0.8333333333333334,
+      "avg_action_type_accuracy": 0.5,
+      "avg_action_type_f1": 0.5,
+      "avg_slot_accuracy": 0.7619047619047619,
+      "avg_slot_f1": 0.7930069930069928,
+      "avg_jga": 0.3333333333333333,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG1017.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 1,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 1.0,
+      "avg_action_type_f1": 1.0,
+      "avg_slot_accuracy": 0.0,
+      "avg_slot_f1": 0.0,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0769.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_action_type_f1": 0.5555555555555555,
+      "avg_slot_accuracy": 0.4166666666666667,
+      "avg_slot_f1": 0.4444444444444444,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG01664.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.6,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.4,
+      "avg_slot_accuracy": 0.48944444444444446,
+      "avg_slot_f1": 0.5448717948717948,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL0046.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 0.7142857142857143,
+      "avg_domain_accuracy": 0.7142857142857143,
+      "avg_action_type_accuracy": 0.2857142857142857,
+      "avg_action_type_f1": 0.47619047619047616,
+      "avg_slot_accuracy": 0.38095238095238093,
+      "avg_slot_f1": 0.3523809523809524,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG1035.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": true,
+      "task_reason": "Booking completed successfully",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.75,
+      "avg_action_type_f1": 0.9166666666666666,
+      "avg_slot_accuracy": 0.494047619047619,
+      "avg_slot_f1": 0.5583333333333333,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL1338.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.7142857142857143,
+      "avg_domain_accuracy": 0.8571428571428571,
+      "avg_action_type_accuracy": 0.14285714285714285,
+      "avg_action_type_f1": 0.3333333333333333,
+      "avg_slot_accuracy": 0.34285714285714286,
+      "avg_slot_f1": 0.4047619047619047,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL3883.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 10,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.7,
+      "avg_domain_accuracy": 0.8,
+      "avg_action_type_accuracy": 0.3,
+      "avg_action_type_f1": 0.4333333333333333,
+      "avg_slot_accuracy": 0.45115995115995117,
+      "avg_slot_f1": 0.4383473389355742,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL0032.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5714285714285714,
+      "avg_action_type_f1": 0.7619047619047619,
+      "avg_slot_accuracy": 0.0,
+      "avg_slot_f1": 0.0,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL0095.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 11,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.45454545454545453,
+      "avg_domain_accuracy": 0.45454545454545453,
+      "avg_action_type_accuracy": 0.2727272727272727,
+      "avg_action_type_f1": 0.3333333333333333,
+      "avg_slot_accuracy": 0.3353535353535354,
+      "avg_slot_f1": 0.3169027941755215,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0660.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 0.75,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.25,
+      "avg_action_type_f1": 0.25,
+      "avg_slot_accuracy": 0.6875,
+      "avg_slot_f1": 0.7428571428571429,
+      "avg_jga": 0.5,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.5,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "MUL0093.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Missing booking slots in restaurant: ['bookday', 'bookpeople', 'booktime']",
+      "avg_intent_accuracy": 0.8333333333333334,
+      "avg_domain_accuracy": 0.8333333333333334,
+      "avg_action_type_accuracy": 0.16666666666666666,
+      "avg_action_type_f1": 0.49999999999999994,
+      "avg_slot_accuracy": 0.7847222222222223,
+      "avg_slot_f1": 0.7991452991452993,
+      "avg_jga": 0.3333333333333333,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL4955.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.4,
+      "avg_action_type_f1": 0.4,
+      "avg_slot_accuracy": 0.9666666666666666,
+      "avg_slot_f1": 0.7952747252747253,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.8,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG01527.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6666666666666666,
+      "avg_action_type_f1": 0.8888888888888888,
+      "avg_slot_accuracy": 0.7777777777777777,
+      "avg_slot_f1": 0.6793650793650795,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0463.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.25,
+      "avg_action_type_f1": 0.25,
+      "avg_slot_accuracy": 0.625,
+      "avg_slot_f1": 0.625,
+      "avg_jga": 0.25,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG02115.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_action_type_f1": 0.5555555555555555,
+      "avg_slot_accuracy": 1.0,
+      "avg_slot_f1": 0.8666666666666667,
+      "avg_jga": 0.3333333333333333,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG02052.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Policy violations detected (2 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_action_type_f1": 0.3333333333333333,
+      "avg_slot_accuracy": 0.7999999999999999,
+      "avg_slot_f1": 0.7767676767676767,
+      "avg_jga": 0.16666666666666666,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.6666666666666666,
+      "policy_violations": 2
+    },
+    {
+      "dialogue_id": "MUL0013.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.8333333333333334,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_action_type_f1": 0.6388888888888888,
+      "avg_slot_accuracy": 0.3611111111111111,
+      "avg_slot_f1": 0.36378490790255497,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0711.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.75,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.16666666666666666,
+      "avg_slot_accuracy": 0.875,
+      "avg_slot_f1": 0.8166666666666667,
+      "avg_jga": 0.25,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL4076.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 2,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.5,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_action_type_f1": 0.5,
+      "avg_slot_accuracy": 0.0,
+      "avg_slot_f1": 0.0,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG02121.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 2,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_action_type_f1": 0.5,
+      "avg_slot_accuracy": 1.0,
+      "avg_slot_f1": 0.8,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL1382.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 9,
+      "task_success": false,
+      "task_reason": "Missing booking slots in hotel: ['name', 'bookday', 'bookpeople', 'bookstay']",
+      "avg_intent_accuracy": 0.5555555555555556,
+      "avg_domain_accuracy": 0.7777777777777778,
+      "avg_action_type_accuracy": 0.1111111111111111,
+      "avg_action_type_f1": 0.3333333333333333,
+      "avg_slot_accuracy": 0.6427248677248677,
+      "avg_slot_f1": 0.6815262515262517,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.5,
+      "avg_system_correctness": 0.8888888888888888,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0550.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.5,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.25,
+      "avg_action_type_f1": 0.41666666666666663,
+      "avg_slot_accuracy": 0.4345238095238094,
+      "avg_slot_f1": 0.42467532467532476,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0684.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.0,
+      "avg_slot_accuracy": 0.25,
+      "avg_slot_f1": 0.2857142857142857,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.6666666666666666,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "SNG0949.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_action_type_f1": 0.6944444444444443,
+      "avg_slot_accuracy": 0.3611111111111111,
+      "avg_slot_f1": 0.37222222222222223,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0846.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 2,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 1.0,
+      "avg_action_type_f1": 1.0,
+      "avg_slot_accuracy": 1.0,
+      "avg_slot_f1": 1.0,
+      "avg_jga": 1.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG1050.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 2,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.5,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.0,
+      "avg_slot_accuracy": 0.0,
+      "avg_slot_f1": 0.0,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG1002.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.3333333333333333,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.2222222222222222,
+      "avg_slot_accuracy": 0.0,
+      "avg_slot_f1": 0.0,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0862.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.2,
+      "avg_action_type_f1": 0.3333333333333333,
+      "avg_slot_accuracy": 0.5933333333333333,
+      "avg_slot_f1": 0.5253968253968255,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0609.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.25,
+      "avg_slot_accuracy": 0.4404761904761904,
+      "avg_slot_f1": 0.4858974358974358,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.8333333333333334,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "PMUL4399.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 0.6666666666666666,
+      "avg_action_type_accuracy": 0.16666666666666666,
+      "avg_action_type_f1": 0.49999999999999994,
+      "avg_slot_accuracy": 0.6833333333333332,
+      "avg_slot_f1": 0.6789682539682539,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL0177.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 0.7142857142857143,
+      "avg_domain_accuracy": 0.7142857142857143,
+      "avg_action_type_accuracy": 0.2857142857142857,
+      "avg_action_type_f1": 0.47619047619047616,
+      "avg_slot_accuracy": 0.06388888888888888,
+      "avg_slot_f1": 0.08524332810047096,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0889.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.25,
+      "avg_action_type_f1": 0.5833333333333333,
+      "avg_slot_accuracy": 0.8375,
+      "avg_slot_f1": 0.6976190476190476,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL0082.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.5,
+      "avg_domain_accuracy": 0.8333333333333334,
+      "avg_action_type_accuracy": 0.16666666666666666,
+      "avg_action_type_f1": 0.49999999999999994,
+      "avg_slot_accuracy": 0.6291666666666667,
+      "avg_slot_f1": 0.5291666666666667,
+      "avg_jga": 0.16666666666666666,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0736.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 2,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_action_type_f1": 0.5,
+      "avg_slot_accuracy": 1.0,
+      "avg_slot_f1": 0.8333333333333333,
+      "avg_jga": 0.5,
+      "avg_hallucination_rate": 0.5,
+      "avg_system_correctness": 0.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL0706.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.6,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.2,
+      "avg_action_type_f1": 0.5999999999999999,
+      "avg_slot_accuracy": 0.0,
+      "avg_slot_f1": 0.0,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0703.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 2,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_action_type_f1": 0.8333333333333333,
+      "avg_slot_accuracy": 0.8333333333333333,
+      "avg_slot_f1": 0.7333333333333334,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0566.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 2,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 1.0,
+      "avg_action_type_f1": 1.0,
+      "avg_slot_accuracy": 0.8333333333333333,
+      "avg_slot_f1": 0.7333333333333334,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0910.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.5714285714285714,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.2857142857142857,
+      "avg_action_type_f1": 0.5714285714285714,
+      "avg_slot_accuracy": 0.24591836734693878,
+      "avg_slot_f1": 0.33290043290043286,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG01196.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 5,
+      "task_success": true,
+      "task_reason": "Booking completed successfully",
+      "avg_intent_accuracy": 0.8,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.4,
+      "avg_action_type_f1": 0.5333333333333333,
+      "avg_slot_accuracy": 0.8833333333333332,
+      "avg_slot_f1": 0.8833333333333332,
+      "avg_jga": 0.6,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG01411.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 0.75,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_action_type_f1": 0.5,
+      "avg_slot_accuracy": 0.11904761904761904,
+      "avg_slot_f1": 0.15000000000000002,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL0266.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.42857142857142855,
+      "avg_action_type_f1": 0.7142857142857143,
+      "avg_slot_accuracy": 0.28741496598639454,
+      "avg_slot_f1": 0.31060606060606055,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL3105.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.42857142857142855,
+      "avg_domain_accuracy": 0.7142857142857143,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.2857142857142857,
+      "avg_slot_accuracy": 0.3810760667903525,
+      "avg_slot_f1": 0.4979591836734693,
+      "avg_jga": 0.14285714285714285,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0457.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": true,
+      "task_reason": "Booking completed successfully",
+      "avg_intent_accuracy": 0.75,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_action_type_f1": 0.5,
+      "avg_slot_accuracy": 0.7916666666666667,
+      "avg_slot_f1": 0.7694444444444445,
+      "avg_jga": 0.25,
+      "avg_hallucination_rate": 0.16666666666666666,
+      "avg_system_correctness": 0.75,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG1019.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.6,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.26666666666666666,
+      "avg_slot_accuracy": 0.3071428571428571,
+      "avg_slot_f1": 0.3393939393939394,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0700.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6666666666666666,
+      "avg_action_type_f1": 0.6666666666666666,
+      "avg_slot_accuracy": 0.611111111111111,
+      "avg_slot_f1": 0.6333333333333333,
+      "avg_jga": 0.3333333333333333,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0497.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.4444444444444444,
+      "avg_slot_accuracy": 0.8888888888888888,
+      "avg_slot_f1": 0.7555555555555555,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0907.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.16666666666666666,
+      "avg_action_type_f1": 0.5,
+      "avg_slot_accuracy": 0.2833333333333333,
+      "avg_slot_f1": 0.3009259259259259,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0567.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 5,
+      "task_success": true,
+      "task_reason": "Booking completed successfully",
+      "avg_intent_accuracy": 0.6,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.2,
+      "avg_action_type_f1": 0.3333333333333333,
+      "avg_slot_accuracy": 0.6171428571428571,
+      "avg_slot_f1": 0.6369230769230769,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL1247.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 8,
+      "task_success": false,
+      "task_reason": "Missing booking slots in hotel: ['name', 'bookday', 'bookpeople', 'bookstay']",
+      "avg_intent_accuracy": 0.75,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.25,
+      "avg_action_type_f1": 0.41666666666666663,
+      "avg_slot_accuracy": 0.29971590909090906,
+      "avg_slot_f1": 0.35999066293183946,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0633.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.6,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.2,
+      "avg_action_type_f1": 0.2,
+      "avg_slot_accuracy": 0.7714285714285714,
+      "avg_slot_f1": 0.721038961038961,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG01698.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.25,
+      "avg_action_type_f1": 0.25,
+      "avg_slot_accuracy": 0.6666666666666666,
+      "avg_slot_f1": 0.7318181818181818,
+      "avg_jga": 0.25,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.75,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "MUL0182.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Missing booking slots in restaurant: ['bookday', 'bookpeople', 'booktime']",
+      "avg_intent_accuracy": 0.8571428571428571,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.2857142857142857,
+      "avg_action_type_f1": 0.47619047619047616,
+      "avg_slot_accuracy": 0.8492063492063492,
+      "avg_slot_f1": 0.8002983011386372,
+      "avg_jga": 0.14285714285714285,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL0106.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 8,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.375,
+      "avg_domain_accuracy": 0.5,
+      "avg_action_type_accuracy": 0.125,
+      "avg_action_type_f1": 0.29166666666666663,
+      "avg_slot_accuracy": 0.5731421356421357,
+      "avg_slot_f1": 0.6988651871004812,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL3497.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 0.8333333333333334,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.1111111111111111,
+      "avg_slot_accuracy": 0.561111111111111,
+      "avg_slot_f1": 0.5810185185185185,
+      "avg_jga": 0.16666666666666666,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0752.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Policy violations detected (1 violations)",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.4444444444444444,
+      "avg_slot_accuracy": 0.46296296296296297,
+      "avg_slot_f1": 0.47023809523809534,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 0.6666666666666666,
+      "policy_violations": 1
+    },
+    {
+      "dialogue_id": "MUL0060.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": false,
+      "task_reason": "Missing booking slots in restaurant: ['bookday', 'bookpeople', 'booktime']",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_action_type_f1": 0.8333333333333333,
+      "avg_slot_accuracy": 1.0,
+      "avg_slot_f1": 0.7606060606060606,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL0318.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 8,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.375,
+      "avg_domain_accuracy": 0.625,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.14583333333333331,
+      "avg_slot_accuracy": 0.5538690476190476,
+      "avg_slot_f1": 0.5659406565656565,
+      "avg_jga": 0.125,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL3974.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": true,
+      "task_reason": "Booking completed successfully",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 1.0,
+      "avg_action_type_f1": 1.0,
+      "avg_slot_accuracy": 0.7936507936507936,
+      "avg_slot_f1": 0.7452991452991453,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0843.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_action_type_f1": 0.6666666666666666,
+      "avg_slot_accuracy": 1.0,
+      "avg_slot_f1": 0.5208333333333334,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL0389.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.8571428571428571,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.2857142857142857,
+      "avg_action_type_f1": 0.5476190476190476,
+      "avg_slot_accuracy": 0.5761904761904761,
+      "avg_slot_f1": 0.5044653758939474,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0968.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 3,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_action_type_f1": 0.7777777777777777,
+      "avg_slot_accuracy": 0.3,
+      "avg_slot_f1": 0.3571428571428572,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0770.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.25,
+      "avg_action_type_f1": 0.5416666666666666,
+      "avg_slot_accuracy": 0.7916666666666666,
+      "avg_slot_f1": 0.825,
+      "avg_jga": 0.25,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0597.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.3333333333333333,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.4444444444444444,
+      "avg_slot_accuracy": 0.0,
+      "avg_slot_f1": 0.0,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0694.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.4444444444444444,
+      "avg_slot_accuracy": 0.0,
+      "avg_slot_f1": 0.0,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG01699.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 5,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.6,
+      "avg_action_type_f1": 0.7333333333333333,
+      "avg_slot_accuracy": 0.7666666666666666,
+      "avg_slot_f1": 0.7142857142857142,
+      "avg_jga": 0.2,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0730.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.25,
+      "avg_action_type_f1": 0.5833333333333333,
+      "avg_slot_accuracy": 0.0,
+      "avg_slot_f1": 0.0,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0783.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.6,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.36666666666666664,
+      "avg_slot_accuracy": 0.475,
+      "avg_slot_f1": 0.5366666666666666,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0495.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.5,
+      "avg_slot_accuracy": 0.8333333333333333,
+      "avg_slot_f1": 0.7499999999999999,
+      "avg_jga": 0.25,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0475.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.3333333333333333,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.2222222222222222,
+      "avg_slot_accuracy": 0.5555555555555555,
+      "avg_slot_f1": 0.562962962962963,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL3728.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.7142857142857143,
+      "avg_domain_accuracy": 0.8571428571428571,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.38095238095238093,
+      "avg_slot_accuracy": 0.014285714285714287,
+      "avg_slot_f1": 0.017857142857142856,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0856.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 3,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_action_type_f1": 0.3333333333333333,
+      "avg_slot_accuracy": 0.0,
+      "avg_slot_f1": 0.0,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0835.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 2,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.5,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.5,
+      "avg_action_type_f1": 0.5,
+      "avg_slot_accuracy": 0.625,
+      "avg_slot_f1": 0.7,
+      "avg_jga": 0.5,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL0016.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 8,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.75,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.125,
+      "avg_action_type_f1": 0.5416666666666666,
+      "avg_slot_accuracy": 0.26666666666666666,
+      "avg_slot_f1": 0.2674349547511312,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG01459.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.8,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.4,
+      "avg_slot_accuracy": 0.8857142857142858,
+      "avg_slot_f1": 0.7833766233766234,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0670.json",
+      "services": [
+        "restaurant"
+      ],
+      "num_turns": 4,
+      "task_success": true,
+      "task_reason": "Booking completed successfully",
+      "avg_intent_accuracy": 0.75,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.25,
+      "avg_action_type_f1": 0.41666666666666663,
+      "avg_slot_accuracy": 0.6785714285714285,
+      "avg_slot_f1": 0.6700854700854701,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL1326.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.8333333333333334,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.3333333333333333,
+      "avg_action_type_f1": 0.5555555555555555,
+      "avg_slot_accuracy": 0.8092592592592592,
+      "avg_slot_f1": 0.6628306878306879,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG0921.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 4,
+      "task_success": null,
+      "task_reason": "No booking required \u2014 not applicable",
+      "avg_intent_accuracy": 1.0,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.25,
+      "avg_action_type_f1": 0.41666666666666663,
+      "avg_slot_accuracy": 0.1875,
+      "avg_slot_f1": 0.2142857142857143,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "SNG02276.json",
+      "services": [
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.6666666666666666,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.2222222222222222,
+      "avg_slot_accuracy": 0.5027777777777779,
+      "avg_slot_f1": 0.5732905982905984,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL0119.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 8,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.5,
+      "avg_domain_accuracy": 0.625,
+      "avg_action_type_accuracy": 0.125,
+      "avg_action_type_f1": 0.20833333333333331,
+      "avg_slot_accuracy": 0.359375,
+      "avg_slot_f1": 0.35416666666666663,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL3544.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.8,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.4,
+      "avg_action_type_f1": 0.5333333333333333,
+      "avg_slot_accuracy": 0.4,
+      "avg_slot_f1": 0.39714285714285713,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL4029.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 6,
+      "task_success": false,
+      "task_reason": "Missing booking slots in hotel: ['bookday', 'bookpeople', 'bookstay']",
+      "avg_intent_accuracy": 0.8333333333333334,
+      "avg_domain_accuracy": 0.8333333333333334,
+      "avg_action_type_accuracy": 0.5,
+      "avg_action_type_f1": 0.7222222222222222,
+      "avg_slot_accuracy": 0.7036435786435785,
+      "avg_slot_f1": 0.6655788655788655,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.2,
+      "avg_system_correctness": 0.8333333333333334,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "MUL0128.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 7,
+      "task_success": false,
+      "task_reason": "Missing domains: {'restaurant'}",
+      "avg_intent_accuracy": 0.42857142857142855,
+      "avg_domain_accuracy": 0.7142857142857143,
+      "avg_action_type_accuracy": 0.14285714285714285,
+      "avg_action_type_f1": 0.3333333333333333,
+      "avg_slot_accuracy": 0.5394248608534322,
+      "avg_slot_f1": 0.5566395789084865,
+      "avg_jga": 0.0,
+      "avg_hallucination_rate": 0.4,
+      "avg_system_correctness": 0.7142857142857143,
+      "policy_violations": 0
+    },
+    {
+      "dialogue_id": "PMUL0077.json",
+      "services": [
+        "restaurant",
+        "hotel"
+      ],
+      "num_turns": 5,
+      "task_success": false,
+      "task_reason": "Booking required but no booking action occurred",
+      "avg_intent_accuracy": 0.8,
+      "avg_domain_accuracy": 1.0,
+      "avg_action_type_accuracy": 0.0,
+      "avg_action_type_f1": 0.13333333333333333,
+      "avg_slot_accuracy": 0.5619047619047619,
+      "avg_slot_f1": 0.5900000000000001,
+      "avg_jga": 0.4,
+      "avg_hallucination_rate": 0.0,
+      "avg_system_correctness": 1.0,
+      "policy_violations": 0
+    }
+  ]
+}

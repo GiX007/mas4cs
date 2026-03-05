@@ -1,7 +1,6 @@
 """
 Unit tests for src/utils/python_fundamentals.py helper functions.
 """
-
 import json
 
 from src.utils import format_dialogue_history, format_policy_rules, parse_model_json_response, DEFAULT_MEGA_PROMPT, print_separator
@@ -111,4 +110,3 @@ if __name__ == "__main__":
             test_map[key]()
         else:
             print(f"Unknown test '{key}'. Choose from: {list(test_map.keys())}")
-

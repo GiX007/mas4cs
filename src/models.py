@@ -4,7 +4,6 @@ LLM Model Factory: Unified interface for commercial and open-source models.
 Provides a single call_model() function that handles OpenAI (GPT), Anthropic (Claude), and local HuggingFace models (via Unsloth).
 Standardizes responses and tracks costs.
 """
-
 import os
 
 # Disable HuggingFace symlink warning on Windows
@@ -175,17 +174,27 @@ def _call_openai(model_name: str, prompt: str, max_tokens: int, temperature: flo
 
     # Initialize client
     client = OpenAI(api_key=api_key)
-
-    # Measure response time
     start_time = time.time()
 
-    # Make API call
-    response = client.chat.completions.create(
-        model=model_name,
-        messages=[{"role": "user", "content": prompt}],
-        max_tokens=max_tokens,
-        temperature=temperature
-    )
+    # Make API call with retry
+    response = None
+    for attempt in range(3):
+        try:
+            response = client.chat.completions.create(
+                model=model_name,
+                messages=[{"role": "user", "content": prompt}],
+                max_tokens=max_tokens,
+                temperature=temperature
+            )
+            break  # Success, exit retry loop
+        except Exception as e:
+            status = getattr(e, 'status_code', None)
+            is_retryable = (status in (500, 529, 403) or "Connection error" in str(e) or "getaddrinfo failed" in str(e))
+            if is_retryable and attempt < 2:
+                wait = 30 * (attempt + 1)
+                time.sleep(wait)
+            else:
+                raise Exception(f"OpenAI API call failed after 3 attempts: {e}")
 
     response_time = time.time() - start_time
 
@@ -255,13 +264,24 @@ def _call_anthropic(model_name: str, prompt: str, max_tokens: int, temperature: 
     # Measure response time
     start_time = time.time()
 
-    # Make API call
-    response = client.messages.create(
-        model=model_name,
-        max_tokens=max_tokens,
-        temperature=temperature,
-        messages=[{"role": "user", "content": prompt}]
-    )
+    # Make API call with retry
+    response = None
+    for attempt in range(3):  # Retry up to 3 times on failure
+        try:
+            response = client.messages.create(
+                model=model_name,
+                max_tokens=max_tokens,
+                temperature=temperature,
+                messages=[{"role": "user", "content": prompt}]
+            )
+            break  # Success, exit retry loop
+        except Exception as e:
+            status = getattr(e, 'status_code', None)
+            if status in (500, 529, 403) and attempt < 2:
+                wait = 30 * (attempt +1)  # 30s, 60s
+                time.sleep(wait)  # Wait before retrying
+            else:
+                raise Exception(f"Anthropic API call failed after 3 attempts: {e}")
 
     response_time = time.time() - start_time
 
@@ -451,4 +471,3 @@ def clear_model_cache() -> None:
 
     _MODEL_CACHE = {}
     # print("Model cache cleared")
-

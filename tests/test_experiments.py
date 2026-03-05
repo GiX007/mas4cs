@@ -1,5 +1,4 @@
 """Unit tests of modules of experiments directory."""
-
 from src.utils import print_separator
 
 
@@ -127,4 +126,3 @@ if __name__ == "__main__":
 
     keys = sys.argv[1:] if len(sys.argv) > 1 else ["single_turn", "single_dialogue"]
     run_tests(keys)
-

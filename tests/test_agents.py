@@ -7,8 +7,7 @@ from pprint import pprint
 
 def test_state_usage() -> None:
     """Test creating and inspecting AgentState."""
-
-    # Use the simplest way to create a dummy state
+    # Simplest way to create a dummy state
     state: AgentState = {
         "dialogue_id": "PMUL4398.json",
         "turn_id": 0,
@@ -49,7 +48,6 @@ def test_state_usage() -> None:
 
 def test_extended_state() -> None:
     """Test AgentState with policy and validation fields."""
-
     # Simplest way to create a state
     state: AgentState = {
         "dialogue_id": "PMUL4398.json",
@@ -91,7 +89,6 @@ def test_extended_state() -> None:
 
 def test_prompt_and_state_parsing() -> None:
     """Validate prompt formatting and structured LLM state parsing."""
-
     print_separator("TEST PROMPT FORMATING")
     from src.utils import DEFAULT_TRIAGE_PROMPT
     prompt = DEFAULT_TRIAGE_PROMPT.format(  # .format() replaces the variables inside prompt's {}
@@ -133,7 +130,6 @@ SLOTS: area=centre, pricerange=cheap, internet=yes"""
 
 def test_triage_agent() -> None:
     """Test triage agent with real LLM call."""
-
     # Initialize a dummy state
     state = initialize_state(dialogue_id="TEST01",turn_id=0, services=["hotel", "restaurant"], user_utterance="i need a cheap hotel in the centre")
 
@@ -152,7 +148,6 @@ def test_triage_agent() -> None:
 
 def test_policy_agent() -> None:
     """Test policy agent detects missing required slots."""
-
     # Simulate state after triage: user wants to book but missing slots (initial state)
     state = initialize_state(dialogue_id="TEST02", turn_id=0, services=["hotel"], user_utterance="book a hotel")
 
@@ -174,7 +169,6 @@ def test_policy_agent() -> None:
 
 def test_action_agent_with_violations() -> None:
     """Test action agent asks for missing slots."""
-
     # Initialize a dummy state
     state = initialize_state(dialogue_id="TEST03", turn_id=0, services=["hotel"], user_utterance="book a hotel for me")
 
@@ -195,7 +189,6 @@ def test_action_agent_with_violations() -> None:
 
 def test_memory_agent() -> None:
     """Test memory agent updates conversation history."""
-
     # Initialize a dummy state
     state = initialize_state(dialogue_id="TEST04", turn_id=0, services=["hotel"], user_utterance="i need a hotel")
 
@@ -213,7 +206,6 @@ def test_memory_agent() -> None:
 
 def test_supervisor_detects_hallucination() -> None:
     """Test supervisor flags hallucinated entity names."""
-
     # Initialize a dummy state
     state = initialize_state(dialogue_id="TEST05", turn_id=0, services=["hotel"], user_utterance="find me a hotel")
 
@@ -231,7 +223,7 @@ def test_supervisor_detects_hallucination() -> None:
 
     print("\nSupervisor agent's response:")
     print(f"Validation passed: {updated_state['validation_passed']}")
-    print(f"Hallucinated entities: {updated_state['hallucination_flags']}")
+    print(f"Feedback: {updated_state['supervisor_feedback']}")
 
 
 def run_tests(test_keys: list[str]) -> None:
@@ -268,4 +260,3 @@ if __name__ == "__main__":
 
     keys = sys.argv[1:] if len(sys.argv) > 1 else ["triage", "policy", "action", "memory", "supervisor"]
     run_tests(keys)
-

@@ -1,0 +1,307 @@
+================================================================================
+MAS4CS EVALUATION METRICS - QUICK REFERENCE
+================================================================================
+
+1. DOMAIN ACCURACY (Domain%)
+------------------
+Measures: Did the system route to the correct domain (hotel/restaurant)?
+
+Use of: calculate_domain_accuracy(predicted_domain, gt_intent) funct → predicted_domain == gt_domain → 1.0 or 0.0
+
+Data flow:
+
+  gt_domain for both exp1 (run_sa_dialogue) and exp2 (run_mas_dlg):
+    → extract_gt_intent(turn, services) returns gt_intent (from turn[frames][state][active_intent] of multiwoz USER's turn)
+    → gt_intent = "find_restaurant"
+    → gt_domain = gt_intent.split("_")[-1] = "restaurant" inside calculate_domain_accuracy func
+	
+  predicted_domain → (exp1) result["domain"] in (run_sa_dialogue). 'domain' is produced by LLM (see mega_prompt, parsed_final in single_sa_turn)
+		   → (exp2) state["current_domain"] in (MAS). 'current_domain' is updated by the workflow graph (see run_mas_dlg). It exists in Agents state and updated by Triage agent
+
+
+Aggregation:
+  turn score: 1.0 or 0.0
+  dialogue score: avg(turn scores)
+  dataset score: avg(dialogue scores)
+
+--------------------------------------------------------------------------------
+
+2. INTENT ACCURACY (Intent%)
+------------------
+Measures: Did the system predict the correct user intent (find_hotel, book_restaurant, etc.)?
+
+Use of: calculate_intent_accuracy(predicted_intent, gt_intent) func → predicted_intent == gt_intent → 1.0 or 0.0
+
+Data flow:
+
+  gt_intent for both exp1 (run_sa_dialogue) and exp2 (run_mas_dlg):
+    → extract_gt_intent(turn, services) returns gt_intent (from turn[frames][state][active_intent] of MultiWOZ USER's turn)
+    → gt_intent = "find_restaurant"
+
+  predicted_intent → (exp1) result["intent"] in (run_sa_dialogue). 'intent' is produced by LLM (see mega_prompt, parsed_final in run_sa_turn)
+                   → (exp2) final_state["active_intent"] in (MAS). 'active_intent' exists in AgentState and updated by Triage agent
+
+Aggregation:
+  turn score: 1.0 or 0.0
+  dialogue score: avg(turn scores)
+  dataset score: avg(dialogue scores)
+ 
+--------------------------------------------------------------------------------
+
+3. ACTION TYPE ACCURACY (ActType-R% & ActType-F1%)
+---------------
+Measures: Did the system produce the correct dialogue act type (Inform, Request, Book, etc.)?
+
+Use of: calculate_action_type_accuracy(predicted_act_type, gt_act_type) func → set-based comparison → set-based comparison → 1.0 if sets match exactly, 0.0 otherwise
+
+Data flow:
+
+  gt_act_type for both exp1 and exp2:
+    → look-ahead to next SYSTEM turn (turns[i+1:] where speaker=="SYSTEM")
+    → extract_dialogue_acts(next_system_turn, services) → filters keys relevant to target services + booking + general acts (e.g. ["Restaurant-Inform", "Restaurant-Request"])
+      (from turn["dialog_act"] attached by _attach_dialog_acts() during load_split())
+      (dialog_acts.json loaded once per split from MULTIWOZ_DIR/dialog_acts.json)
+
+  
+
+  predicted_act_type: → (exp1) result["action_type"] in (run_sa_dialogue). 'action_type' is produced by LLM (see mega_prompt, parsed_final in single_sa_turn)
+		      → (exp2) final_state["dialogue_acts"] in (MAS). 'dialogue_acts' exists in AgentState and updated by Action agent (see in action.py)
+
+Aggregation:
+  turn score: 1.0 or 0.0 for a) ActType-R (exact set match), b) ActType-F1 (F1 between predicted & gt act)
+  dialogue score: avg(turn scores)
+  dataset score: avg(dialogue scores)
+
+Notes:
+  - dialog_acts.json annotates BOTH USER and SYSTEM turns
+  - We use SYSTEM turn acts as GT, as they represent what the system SHOULD respond with
+  - Act slot-value pairs ignored for now (future work)
+
+--------------------------------------------------------------------------------
+
+4. SLOT ACCURACY (Slot-R% & Slot-F1%)
+----------------
+Measures: Did the system correctly extract and track slot values?
+
+Use of: calculate_slot_accuracy(predicted_slots, ground_truth_slots) func → precision, recall, f1 score
+
+Data flow:
+
+  gt_slots for both exp1 (run_sa_dialogue) and exp2 (run_mas_dlg):
+    → extract_gt_slots(turn["frames"])  (from turn[frames][state][slot_values] of MultiWOZ USER's turn)
+    → strips domain prefix: "restaurant-area" → "area" and takes first value from list: ["north"] → "north"
+    → returns {"restaurant": {"area": "north"}}
+
+  predicted_slots: → (exp1) (run_sa_dialogue): accumulated_slots → dict built across turns → updated inside run_sa_turn by merging result["slots"] → format: {"restaurant": {"area": "north", "pricerange": "moderate"}}
+                   → (exp2) (run_mas_dlg): final_state["slots_values"] → updated by Triage agent at each turn
+
+Aggregation:
+  turn score: precision, recall, f1 score
+  dialogue score: avg(turn scores)
+  dataset score: avg(dialogue scores)
+
+Key difference from JGA:
+  Slot Accuracy is PARTIAL — rewards partial slot matches
+  JGA is STRICT, e.g., 0.0 if ANY single slot is wrong
+
+--------------------------------------------------------------------------------
+
+5. JGA - Joint Goal Accuracy (JGA%)
+-----------------------------
+Measures: Did the system track ALL slots correctly across ALL domains? (strict, no partial credit, all or nothing)
+
+Use of calculate_jga(predicted_slots, ground_truth_slots) func → 1.0 if ALL slot-value pairs match exactly across ALL domains, else 0.0
+
+Data flow:
+
+  gt_slots for both exp1 (run_sa_dialogue) and exp2 (run_mas_dlg): → same as above
+  predicted_slots for both exp1 (run_sa_dialogue) and exp2 (run_mas_dlg): → same as above
+
+Aggregation:
+  turn score: 1.0 or 0.0 (strict — any single wrong slot → 0)
+  dialogue score: avg(turn scores)
+  dataset score: avg(dialogue scores)
+
+Key difference:
+  Slot Accuracy = partial credit → rewards progress
+  JGA = strict binary → standard DST benchmark metric
+
+--------------------------------------------------------------------------------
+
+6. HALLUCINATION RATE (Hall%)
+---------------------
+
+Measures: Did the system mention hotel/restaurant names NOT returned by the DB for this turn?
+
+Use of: calculate_hallucination_rate(system_response, valid_entities) func → entities_hallucinated / entities_mentioned → float score
+
+Data flow:
+
+  (gt) valid_entities for both exp1 (run_sa_dialogue) and exp2 (run_mas_dlg): 
+    → (exp1) [e["name"] for e in result.get("db_results", [])]. 'db_results' populated in run_sa_turn via find_entity() or book_entity()
+    → (exp2) final_state["valid_entities"]. populated in action.py: [e["name"] for e in db_results if "name" in e]
+
+  (predicted) system_response for both exp1 (run_sa_dialogue) and exp2 (run_mas_dlg):
+    → (exp1) result["response"] passed to evaluate_turn. 'response' is the LLM natural language output from (run_sa_turn)
+    → (exp2) final_state["agent_response"] passed to evaluate_turn. 'agent_response' is generated by action agent in action.py
+
+  Logic inside calculate_hallucination_rate:
+    → if valid_entities=[] → no DB query made this turn → return (0.0, 0, 0) → skipped in aggregation
+    → load ALL known entity names from hotel_db.json + restaurant_db.json (cached via load_db)
+    → any DB entity name found in response but NOT in valid_entities → hallucination
+    → entities_hallucinated / entities_mentioned = hallucination_rate
+
+Aggregation:
+  turn score: entities_hallucinated / entities_mentioned → skipped (not counted) if valid_entities=[] for this turn
+  dialogue score: avg(turn scores) — only over turns where entities_mentioned > 0
+  dataset score: avg(dialogue scores) — only over dialogues with at least one DB query turn
+
+Novel contribution: Not a standard MultiWOZ metric. Measures whether the system invents hotel/restaurant names not returned by the DB (directly relevant to response grounding and trustworthiness in customer service automation)
+
+--------------------------------------------------------------------------------
+
+7. POLICY COMPLIANCE (Policy_Viol%)
+----------------------
+
+Measures: Did the system attempt a booking only when all required slots were present?
+
+Use of: calculate_policy_compliance(action_taken, required_slots, current_slots) func → checks if all required slots present before booking → (bool, reason)
+
+Data flow:
+
+  action_taken for both exp1 (run_sa_dialogue) and exp2 (run_mas_dlg):
+    → (exp1) result["intent"] → LLM predicted intent from run_sa_turn
+    → (exp2) final_state["active_intent"] → intent set by Triage agent
+
+  required_slots: BOOKING_REQUIRED_SLOTS from src.data.dataset_constants → {"book_hotel": ["name", "bookday", "bookpeople", "bookstay"],
+        								     "book_restaurant": ["name", "bookday", "bookpeople", "booktime"]}
+
+  current_slots for both exp1 and exp2:
+    → (exp1) accumulated_slots → slots accumulated across all turns so far → dict built across turns → updated inside run_sa_turn by merging result["slots"] → format: {"restaurant": {"area": "north", "pricerange": "moderate"}}
+    → (exp2) final_state["slots_values"] → updated by Triage agent
+
+  Logic inside calculate_policy_compliance:
+    → if action_taken not in required_slots → compliant (no booking attempted)
+    → extract domain from action: "book_restaurant" → "restaurant"
+    → check all required slots present in current_slots[domain]
+    → if any missing → violation: system should have requested them first
+
+Aggregation:
+  turn score: True/False → 1.0/0.0
+  dialogue score: count of violations (not averaged → violations are counted)
+  dataset score: total_violations / total_turns = violation_rate
+
+Novel contribution: Not a standard MultiWOZ metric. Enforces business rules: system must not attempt booking without checking required slots (directly relevant to safe deployment of customer service automation)
+
+--------------------------------------------------------------------------------
+
+8. SYSTEM CORRECTNESS (SysCorrect%)
+----------------------
+Measures: Did the system respond correctly for this turn? We assume as 'correct response' = No hallucination, No policy violation.
+
+Use of: calculate_system_correctness(hallucination_detected, policy_compliant) func → composite binary metric → True only if no hallucination AND policy respected
+
+Data flow:
+
+  hallucination_detected: → (hall_rate > 0) from calculate_hallucination_rate result for this turn
+  policy_compliant: → policy_ok from calculate_policy_compliance result for this turn
+
+  Logic:
+    → if hallucination_detected → False, "Entity hallucination detected in response"
+    → if not policy_compliant → False, "Policy violation detected"
+    → else → True, "System response correct"
+
+Aggregation:
+  turn score: 1.0 or 0.0
+  dialogue score: avg(turn scores)
+  dataset score: avg(dialogue scores)
+
+Novel contribution: Composite metric. A turn is correct if and only if the system neither invented entities nor violated booking policy. Captures overall turn-level reliability in a single binary score.
+
+--------------------------------------------------------------------------------
+
+9. BOOKING SUCCESS (Book%)
+---------------
+Measures: Did the system successfully complete a booking when one was required?
+
+Use of: calculate_booking_success(turn_results, services, requires_booking) func → True if booking action occurred AND all required slots filled at end of dialogue 
+								       	  → None if no booking required (info-only dialogue), skipped in aggregation
+
+Data flow:
+
+  turn_results: list of turn metric dicts from DialogueEvaluator.turn_metrics → each turn has "action" key = action_taken = result["intent"] (exp1) or final_state["active_intent"] (exp2)
+
+  services: dialogue["services"] → domains required for this dialogue
+
+  requires_booking: extract_booking(turns, services) → scans all USER turns for booking intents (find "book_" in active_intent) → returns True if any turn had a booking intent
+
+  Logic inside calculate_booking_success:
+    → if requires_booking=False → return None → skipped in aggregation
+    → check all services were addressed (domain appeared in at least one turn)
+    → check "book" in any turn's action → booking attempt occurred
+    → check all BOOKING_REQUIRED_SLOTS present in final predicted_slots
+    → all conditions met → True, "Booking completed successfully"
+
+Aggregation:
+  dialogue score: True/False/None
+  dataset score: sum(True) / count(non-None dialogues) → only booking dialogues counted, info-only excluded
+
+Novel contribution: Not a standard MultiWOZ metric (directly measures end-to-end booking completion, the primary success criterion for customer service automation).
+Complements Policy Compliance: policy checks per-turn slot requirements, Booking Success checks final dialogue outcome.
+
+--------------------------------------------------------------------------------
+
+10. LLM JUDGE (Judge)
+---------------
+Measures: Is the system's natural language response correct, complete, and clear?
+
+Data flow:
+
+  evaluate_turn() → if judge_llm_fn provided: create_judge_prompt(user_message, system_response, gt_slots, policy_rules)
+                    → call judge_llm_fn(prompt) → parse_judge_response(raw_text)
+                    → extract score (1-5) + feedback fields
+  evaluate_dialogue() → avg(judge_scores) over turns with scores
+  compute_dataset_metrics() → avg over dialogues with judge scores
+
+Rubric (1-5):
+  1 = Poor: wrong info, ignores user, violates policy
+  2 = Below avg: partially correct, missing key info
+  3 = Average: correct but incomplete or unclear
+  4 = Good: correct, complete, clear with minor issues
+  5 = Excellent: perfect response, fully addresses user needs
+
+Evaluated on: Correctness | Completeness | Clarity | Policy Adherence
+
+Note: Judge is DISABLED by default (judge_llm_fn=None) to avoid extra API costs. Created to run separately on a subset of dialogues for qualitative analysis.
+
+Aggregation:
+  turn score: 1-5 (float)
+  dialogue score: avg(turn scores) → only turns where judge was called
+  dataset score: avg over dialogues that had judge scores
+
+--------------------------------------------------------------------------------
+
+11. COST & LATENCY (Cost($) & Latency(s))
+---------------
+
+Measures: API cost in USD and average response time per turn
+
+Data flow:
+
+  cost per turn:
+     → (exp1) first_response.cost + second_response.cost → two LLM calls per turn
+     → (exp2) final_state["turn_cost"] → sum of all agent call costs per turn
+
+  latency per turn:
+     → (exp1) first_response.response_time + second_response.response_time
+    → (exp2) final_state["turn_response_time"] → sum of all agent response times
+
+Aggregation:
+  total_cost: sum of all turn costs across all dialogues
+  avg_latency_per_turn: sum of all turn latencies / total_turns
+
+--------------------------------------------------------------------------------
+
+================================================================================
+END OF MAS4CS EVALUATION METRICS - QUICK REFERENCE
+================================================================================

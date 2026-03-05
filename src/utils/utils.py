@@ -1,5 +1,4 @@
 """Utility functions for MAS4CS."""
-
 import json
 from pathlib import Path
 from typing import Any
@@ -47,7 +46,6 @@ def calculate_cost(model_name: str, input_tokens: int, output_tokens: int) -> fl
     Returns:
         Total cost in USD (0.0 for free models)
     """
-    # Free models
     if model_name.startswith("unsloth/"):
         return 0.0
 
@@ -199,4 +197,3 @@ def capture_and_save(func, output_path: str) -> None:
     Path(output_path).parent.mkdir(parents=True, exist_ok=True)
     Path(output_path).write_text(output, encoding='utf-8')
     print(f"Saved to: {output_path}")
-

@@ -7,8 +7,6 @@ This project investigates whether a structured, hierarchical multi-agent archite
 The system is built on **MultiWOZ 2.2**, a standard multi-domain dialogue dataset (hotel, restaurant), and implemented using LangGraph. Five specialized agents handle distinct roles: 
 intent detection, policy enforcement, response generation, memory management, and output validation.
 
-See: [GitHub link](https://github.com/GiX007/mas4cs)
-
 ---
 
 ## Research Question

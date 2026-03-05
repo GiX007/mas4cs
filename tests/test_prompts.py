@@ -1,6 +1,5 @@
 """Test prompts for evaluating model reasoning capabilities."""
 
-
 # Test cases designed to reveal model weaknesses
 TEST_CASES: list[dict[str, str]] = [
     # Slot Extraction
@@ -207,4 +206,3 @@ TEST_CASES: list[dict[str, str]] = [
         )
     }
 ]
-

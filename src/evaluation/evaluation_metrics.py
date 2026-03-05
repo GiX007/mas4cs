@@ -1,7 +1,6 @@
 """Evaluation metrics for calculating MAS4CS performance."""
-
 from typing import Any
-from src.data import BOOKING_REQUIRED_SLOTS, VALID_ACTION_TYPES
+from src.data import BOOKING_REQUIRED_SLOTS
 
 
 def calculate_domain_accuracy(predicted_domain: str, ground_truth_intent: str) -> tuple[float, bool, str]:
@@ -32,24 +31,24 @@ def calculate_domain_accuracy(predicted_domain: str, ground_truth_intent: str) -
     return accuracy, is_correct, ground_truth_domain
 
 
-def calculate_set_based_accuracy(predicted: str | list[str], ground_truth: str | list[str], return_detailed: bool = False) -> tuple[float, bool] | tuple[float, bool, float, float, int, int, int]:
+def calculate_set_based_accuracy(predicted: str | list[str], ground_truth: str | list[str], return_detailed: bool = False) -> tuple[float, bool] | tuple[float, bool, float, float, float, int, int, int]:
     """
     Generic accuracy calculator for set-based comparisons (intent, action-type, etc.).
 
-    Handles both single values (str) and multiple values (List[str]).
+    Handles both single values (str) and multiple values (list[str]).
 
     Args:
         predicted: System's prediction (single string or list)
         ground_truth: Ground truth annotation (single string or list)
-        return_detailed: If True, also return recall/precision metrics
+        return_detailed: If True, also return recall/precision/f1 metrics
 
     Returns:
         If return_detailed=False: (accuracy, is_correct)
-        If return_detailed=True: (accuracy, is_correct, recall, precision, num_correct, num_predicted, num_ground_truth)
+        If return_detailed=True:  (accuracy, is_correct, recall, precision, f1, num_correct, num_predicted, num_ground_truth)
     """
     # Convert to sets for uniform handling
-    predicted_set = {predicted} if isinstance(predicted, str) else set(predicted)  # {predicted} -> set([predicted])
-    ground_truth_set = {ground_truth} if isinstance(ground_truth, str) else set(ground_truth)  # {ground_truth} -> set([ground_truth])
+    predicted_set = {predicted} if isinstance(predicted, str) else set(predicted)
+    ground_truth_set = {ground_truth} if isinstance(ground_truth, str) else set(ground_truth)
 
     # Exact match (strict accuracy)
     is_correct = predicted_set == ground_truth_set
@@ -58,7 +57,7 @@ def calculate_set_based_accuracy(predicted: str | list[str], ground_truth: str |
     if not return_detailed:
         return accuracy, is_correct
 
-    # Detailed metrics (recall/precision)
+    # Detailed metrics
     correct_items = predicted_set & ground_truth_set
     num_correct = len(correct_items)
     num_predicted = len(predicted_set)
@@ -66,8 +65,9 @@ def calculate_set_based_accuracy(predicted: str | list[str], ground_truth: str |
 
     recall = num_correct / num_ground_truth if num_ground_truth > 0 else 0.0
     precision = num_correct / num_predicted if num_predicted > 0 else 0.0
+    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0
 
-    return accuracy, is_correct, recall, precision, num_correct, num_predicted, num_ground_truth
+    return accuracy, is_correct, recall, precision, f1, num_correct, num_predicted, num_ground_truth
 
 
 def calculate_intent_accuracy(predicted_intent: str, ground_truth_intent: str, return_detailed: bool = False) -> tuple[float, bool] | tuple[float, bool, float, float, int, int, int]:
@@ -103,36 +103,44 @@ def calculate_action_type_accuracy(predicted_act_type: list[str], ground_truth_a
     return calculate_set_based_accuracy(predicted_act_type, ground_truth_act_type, return_detailed)
 
 
-def calculate_slot_accuracy(predicted_slots: dict[str, dict[str, str]], ground_truth_slots: dict[str, dict[str, str]]) -> tuple[float, int, int]:
+def calculate_slot_accuracy(predicted_slots: dict[str, dict[str, str]], ground_truth_slots: dict[str, dict[str, str]]) -> tuple[float, float, float, int, int, int]:
     """
-    Calculate slot-level accuracy across all domains.
+    Calculate slot-level recall, precision, and F1 across all domains.
 
-    Slot Accuracy = (correct slot-value pairs) / (total ground-truth pairs)
+    Slot Recall = correct / num_gt_slots (how many GT slots we got right)
+    Slot Precision = correct / num_predicted_slots (how many predicted slots are correct)
+    Slot F1 = 2 * precision * recall / (precision + recall)
 
     Args:
         predicted_slots: System's tracked slots, format: {"hotel": {"area": "south"}}
         ground_truth_slots: Annotated ground truth, same format
 
     Returns:
-        (accuracy, num_correct, num_total): Accuracy score, correct count, total count
+        (recall, precision, f1, num_correct, num_predicted, num_gt)
     """
     num_correct = 0
-    num_total = 0
+    num_gt = 0
+    num_predicted = 0
 
     # Count all ground truth slot-value pairs
     for domain, slots in ground_truth_slots.items():
         for slot, value in slots.items():
-            num_total += 1
-
-            # Check if prediction has this exact slot-value pair
+            num_gt += 1
             if domain in predicted_slots:
                 if predicted_slots[domain].get(slot) == value:
                     num_correct += 1
 
-    # Calculate accuracy
-    accuracy = num_correct / num_total if num_total > 0 else 0.0
+    # Count all predicted slot-value pairs
+    for domain, slots in predicted_slots.items():
+        for slot, value in slots.items():
+            if value and value not in ("none", "not mentioned", "dontcare"):  # Filter out dontcare values before metric calculation
+                num_predicted += 1
 
-    return accuracy, num_correct, num_total
+    recall = num_correct / num_gt if num_gt > 0 else 0.0
+    precision = num_correct / num_predicted if num_predicted > 0 else 0.0
+    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0
+
+    return recall, precision, f1, num_correct, num_predicted, num_gt
 
 
 def calculate_jga(predicted_slots: dict[str, dict[str, str]], ground_truth_slots: dict[str, dict[str, str]]) -> tuple[float, dict[str, bool]]:
@@ -171,115 +179,58 @@ def calculate_jga(predicted_slots: dict[str, dict[str, str]], ground_truth_slots
     return jga_score, per_domain_accuracy
 
 
-def calculate_hallucination_rate(predicted_slots: dict[str, dict[str, str]], ground_truth_slots: dict[str, dict[str, str]], current_domain: str | None = None) -> tuple[float, int, int]:
+def calculate_hallucination_rate(system_response: str, valid_entities: list[str]) -> tuple[float, int, int]:
     """
-    Calculate hallucination rate (false positives in predictions).
+    Calculate entity hallucination rate for a single turn.
 
-    Hallucination Rate = (wrong/extra slot-value pairs) / (total predicted pairs)
+    Measures whether the system response mentions hotel/restaurant names that were NOT returned by the DB query for this turn.
+
+    Hallucination Rate = hallucinated_entities / total_entities_mentioned
+
+    If no DB query was made this turn (valid_entities=[]), skip check → return (0.0, 0, 0).
+    If DB query returned results but system mentions unknown entity → hallucination.
 
     Args:
-        predicted_slots: System's tracked slots, format: {"hotel": {"area": "south"}}
-        ground_truth_slots: Annotated ground truth, same format
-        current_domain: If specified, only evaluate hallucinations for this domain/turn (no consideration of accumulated slots over dialogue)
+        system_response: System's natural language response for this turn
+        valid_entities:  Entity names returned by DB this turn (from find_entity/book_entity)
 
     Returns:
-        (hallucination_rate, num_hallucinated, num_predicted): Rate, hallucination count, total predicted
+        (hallucination_rate, num_hallucinated, num_mentioned)
     """
+    # No DB query made this turn — nothing to hallucinate about
+    if not valid_entities:
+        return 0.0, 0, 0
+
+    response_lower = system_response.lower()
+
+    # Check which valid entities are mentioned and which unknown ones appear
+    num_mentioned = 0
     num_hallucinated = 0
-    num_predicted = 0
 
-    # Filter to current domain only if specified
-    if current_domain:
-        predicted_slots = {current_domain: predicted_slots.get(current_domain, {})}
-        ground_truth_slots = {current_domain: ground_truth_slots.get(current_domain, {})}
+    # Count valid entity mentions
+    valid_mentioned = [e for e in valid_entities if e.lower() in response_lower]
+    num_mentioned += len(valid_mentioned)
 
-    # Count all predicted slot-value pairs
-    for domain, slots in predicted_slots.items():
-        for slot, value in slots.items():
-            num_predicted += 1
+    # Load all known entity names from DB to detect unknown mentions
+    from src.core.tools import load_db
+    all_known = []
+    for domain in ["hotel", "restaurant"]:
+        try:
+            db = load_db(domain)
+            all_known.extend([e["name"].lower() for e in db if "name" in e])
+        except Exception as e:
+            print(f"Error loading DB for {domain}: {e}")
+            pass
 
-            # Hallucination = predicting a slot key that doesn't exist in GT
-            # Check if ground truth has this exact slot-value pair
-            if domain not in ground_truth_slots:
-                num_hallucinated += 1
-            # elif ground_truth_slots[domain].get(slot) != value:
-            #     num_hallucinated += 1
-            elif slot not in ground_truth_slots[domain]:  # ← key check only, not value
-                num_hallucinated += 1
+    # Any DB entity name mentioned in response that is NOT in valid_entities = hallucination
+    for name in all_known:
+        if name in response_lower and name not in [e.lower() for e in valid_entities]:
+            num_hallucinated += 1
+            num_mentioned += 1
 
-    # Avoid division by zero
-    hallucination_rate = num_hallucinated / num_predicted if num_predicted > 0 else 0.0
+    hallucination_rate = num_hallucinated / num_mentioned if num_mentioned > 0 else 0.0
 
-    return hallucination_rate, num_hallucinated, num_predicted
-
-
-def calculate_memory_transfer_accuracy(dialogue_history: list[dict[str, Any]], transferable_slots: list[str] = None) -> tuple[float, int, int, list[dict[str, Any]]]:
-    """
-    Calculate cross-domain memory transfer accuracy.
-
-    Detects domain switches and checks if shared constraints were carried over.
-    Only evaluates turns where a domain switch occurred.
-
-    Args:
-        dialogue_history: List of turn states, each with:
-            - "turn_id": int
-            - "domain": str (current domain)
-            - "predicted_slots": Dict[str, Dict[str, str]]
-        transferable_slots: Slots that should transfer (default: ["area", "pricerange"])
-
-    Returns:
-        (accuracy, correct_transfers, total_transfers, transfer_events):
-        Accuracy score, correct count, total count, and list of transfer event details
-    """
-    if transferable_slots is None:
-        transferable_slots = ["area", "pricerange"]
-
-    correct_transfers = 0
-    total_transfers = 0
-    transfer_events = []
-
-    # Need at least 2 turns to detect a switch
-    if len(dialogue_history) < 2:
-        return 0.0, 0, 0, []
-
-    for i in range(1, len(dialogue_history)):
-        current_turn = dialogue_history[i]
-        previous_turn = dialogue_history[i - 1]
-
-        current_domain = current_turn.get("domain")
-        previous_domain = previous_turn.get("domain")
-
-        # Detect domain switch
-        if current_domain != previous_domain and current_domain and previous_domain:
-            # Check each transferable slot
-            previous_slots = previous_turn.get("predicted_slots", {}).get(previous_domain, {})
-            current_slots = current_turn.get("predicted_slots", {}).get(current_domain, {})
-
-            for slot in transferable_slots:
-                if slot in previous_slots and previous_slots[slot]:
-                    # This slot was present in previous domain, should transfer
-                    total_transfers += 1
-
-                    transferred_correctly = (
-                            slot in current_slots and
-                            current_slots[slot] == previous_slots[slot]
-                    )
-
-                    if transferred_correctly:
-                        correct_transfers += 1
-
-                    transfer_events.append({
-                        "turn_id": current_turn.get("turn_id"),
-                        "from_domain": previous_domain,
-                        "to_domain": current_domain,
-                        "slot": slot,
-                        "value": previous_slots[slot],
-                        "transferred": transferred_correctly
-                    })
-
-    accuracy = correct_transfers / total_transfers if total_transfers > 0 else 0.0
-
-    return accuracy, correct_transfers, total_transfers, transfer_events
+    return hallucination_rate, num_hallucinated, num_mentioned
 
 
 def calculate_policy_compliance(action_taken: str, required_slots: dict[str, list[str]], current_slots: dict[str, dict[str, str]]) -> tuple[bool, str]:
@@ -326,155 +277,76 @@ def calculate_policy_compliance(action_taken: str, required_slots: dict[str, lis
     return True, f"All required slots present for {action_taken}"
 
 
-def calculate_system_correctness(predicted_action: str, predicted_intent: str, predicted_slots: dict[str, dict[str, str]], hallucination_detected: bool, policy_compliant: bool, current_domain: str) -> tuple[bool, str]:
+def calculate_system_correctness(hallucination_detected: bool, policy_compliant: bool) -> tuple[bool, str]:
     """
-    Determine if the system responded appropriately to the user's input.
+    Determine if the system responded correctly for a single turn.
 
-    System is correct if it chose the right action given:
-    - User's intent
-    - Available slot information
-    - Policy constraints
-    - No hallucinations
+    System correctness is a composite binary metric: a turn is correct if and only if no hallucination occurred AND policy was respected.
 
     Args:
-        predicted_action: Action taken by system ("search", "book", "request", "inform")
-        predicted_intent: User's intent ("find_hotel", "book_hotel", etc.)
-        predicted_slots: Current slot state for the domain
-        hallucination_detected: Whether system hallucinated
-        policy_compliant: Whether system followed policies
-        current_domain: The active domain for this turn
+        hallucination_detected: Whether system mentioned entities not returned by DB
+        policy_compliant: Whether system followed booking policy constraints
 
     Returns:
         (is_correct, reason): True if system behaved correctly, plus explanation
     """
-    # Rule 1: System must not hallucinate
     if hallucination_detected:
-        return False, "System hallucinated slot values"
-
-    # Rule 2: System must follow policies
+        return False, "Entity hallucination detected in response"
     if not policy_compliant:
-        # Special case: If action is "request" and policy not compliant, system is correctly asking for missing info
-        if predicted_action == "request":
-            return True, "System correctly requested missing policy-required slots"
-        return False, "System violated policy"
-
-    # Rule 3: Match action to the intent and slot completeness
-    domain_slots = predicted_slots.get(current_domain, {})
-
-    # For booking intents
-    if "book" in predicted_intent or predicted_action.startswith("book_"):
-        domain_required = BOOKING_REQUIRED_SLOTS.get(f"book_{current_domain}", [])
-        missing_slots = [s for s in domain_required if s not in domain_slots]
-
-        if missing_slots:
-            # Should request missing info
-            if predicted_action == "request" or predicted_action in VALID_ACTION_TYPES:
-                return True, "System correctly requested missing booking slots"
-            else:
-                return False, f"System should request missing slots: {missing_slots}"
-        else:
-            # All slots present, should book
-            if predicted_action == "book" or predicted_action.startswith("book_"):
-                return True, "System correctly completed booking with all slots"
-            else:
-                return False, "System had all slots but didn't book"
-
-    # For search/find intents
-    if "find" in predicted_intent or "search" in predicted_intent:
-        if predicted_action in ["search", "inform", "offer"] or predicted_action in VALID_ACTION_TYPES:
-            return True, "System correctly handled search intent"
-        else:
-            return False, f"System used wrong action for search: {predicted_action}"
-
-    # For general info intents
-    if "inform" in predicted_intent or predicted_intent == "none":
-        if predicted_action in ["inform", "request"]:
-            return True, "System correctly handled info exchange"
-        else:
-            return False, f"Unexpected action for info intent: {predicted_action}"
-
-    # Default: if we reach here, accept the action as reasonable
-    return True, "System action reasonable for intent"
+        return False, "Policy violation detected"
+    return True, "System response correct"
 
 
-def calculate_task_success(turn_results: list[dict[str, Any]], ground_truth_goal: dict[str, Any]) -> tuple[bool, str]:
+def calculate_booking_success(turn_results: list[dict[str, Any]], services: list[str], requires_booking: bool,) -> tuple[bool, str]:
     """
-    Determine if the dialogue successfully completed the user's goal.
+    Determine if the dialogue successfully completed a booking goal.
 
-    Task success requires:
+    Booking success requires:
     - All required domains were addressed
-    - For booking intents: All required slots filled AND booking action occurred
-    - For info intents: Search/inform action occurred
+    - A booking action occurred
+    - All required booking slots were filled by end of dialogue
 
     Args:
-        turn_results: List of turn metric dicts with 'domain', 'action', 'accumulated_slots'
-        ground_truth_goal: User's goal, format: {"domains": ["hotel"], "requires_booking": True}
+        turn_results: List of turn metric dicts from DialogueEvaluator
+        services: Domains required for this dialogue (from dialogue["services"])
+        requires_booking: True if any turn had a booking intent (from extract_booking())
 
     Returns:
-        (is_successful, reason): True if task completed, plus explanation
+        (is_successful, reason): True if booking completed, plus explanation
     """
-    required_domains = ground_truth_goal.get("domains", [])
-    requires_booking = ground_truth_goal.get("requires_booking", False)
+    # Not a booking dialogue -> return None, skip
+    if not requires_booking:
+        return None, "No booking required — not applicable"
 
-    # Collect domains and check final state
     addressed_domains = set()
     booking_action_occurred = False
-    info_provided = False
-
-    # Get final accumulated slots from last turn
-    final_slots = {}
-    if turn_results:
-        final_slots = turn_results[-1].get("predicted_slots", {})
+    final_slots = turn_results[-1].get("predicted_slots", {}) if turn_results else {}
 
     for turn in turn_results:
         domain = turn.get("domain", "")
         action = turn.get("action", "")
 
-        # Track which domains were addressed (skip 'none' domain)
         if domain and domain != "none":
             addressed_domains.add(domain)
 
-        # Check for booking actions
-        if action in ["book", "reserve"] or "book" in action:
+        if "book" in action:
             booking_action_occurred = True
 
-        # Check for info actions
-        if action in ["search", "inform", "offer", "request"]:
-            info_provided = True
-
-    # Validate all domains were addressed
-    missing_domains = set(required_domains) - addressed_domains
+    # All required domains must be addressed
+    missing_domains = set(services) - addressed_domains
     if missing_domains:
         return False, f"Missing domains: {missing_domains}"
 
-    # Validate booking requirement
-    if requires_booking:
-        # Check if booking action occurred
-        if not booking_action_occurred:
-            return False, "Booking was required but no booking action occurred"
+    # Booking action must have occurred
+    if not booking_action_occurred:
+        return False, "Booking required but no booking action occurred"
 
-        # Check if all required slots are filled
-        required_slots = {
-            "hotel": ["name", "bookday", "bookpeople", "bookstay"],
-            "restaurant": ["name", "bookday", "bookpeople", "booktime"]
-        }
+    # All required slots must be filled at end of dialogue
+    for domain in services:
+        required = BOOKING_REQUIRED_SLOTS.get(f"book_{domain}", [])
+        domain_slots = final_slots.get(domain, {})
+        missing_slots = [s for s in required if s not in domain_slots]
+        if missing_slots:
+            return False, f"Missing booking slots in {domain}: {missing_slots}"
 
-        for domain in required_domains:
-            if domain in required_slots:
-                domain_slots = final_slots.get(domain, {})
-                missing_slots = [s for s in required_slots[domain] if s not in domain_slots]
-                if missing_slots:
-                    return False, f"Booking required but missing slots in {domain}: {missing_slots}"
-
-    # Validate information requirement
-    if not requires_booking and not info_provided:
-        return False, "Information was required but not provided"
-
-    return True, "All goals achieved"
-
-
-
-
-
-
-
+    return True, "Booking completed successfully"

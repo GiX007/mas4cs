@@ -1,217 +1,151 @@
 # Dataset: MultiWOZ 2.2
 
-The **MultiWOZ 2.2** dataset is the backbone of the MAS4CS system, providing a structured multi-domain environment (hotel, restaurant, taxi) to test agentic coordination and state tracking.
+The **MultiWOZ 2.2** dataset is the backbone of the MAS4CS system, providing a structured multi-domain environment to test agentic coordination and state tracking.
 
-Detailed structural exploration results (raw prints, inspection logs, and structural details) are available in `docs/dataset_inspection/` directory.
+Detailed structural exploration results are available in `docs/dataset_inspection/`.
 
 ---
 
 ## Data Overview
 
-The dataset is loaded via HuggingFace `datasets` as a `DatasetDict`.
+- **Total Dialogues**: 10.437 across Train: 8.437 / Validation: 1.000 / Test: 1.000
+- Each dialogue contains multi-domain conversations of multiple turns between `USER` and `SYSTEM`
+- **Average dialogue length**: ~13–14 turns
 
-- **Total Dialogues**: 10,437 dialogues across 
-  - Train: 8,437 
-  - Validation: 1,000 
-  - Test: 1,000
-- Each dialogue contains **multi-domain conversations** of multiple turns between `USER` and `SYSTEM` 
-- **Average dialogue length**: ~ 13-14 turns
+---
+
+## Loading Strategy
+
+### HuggingFace (Phase 1, initial development)
+
+The dataset was first loaded via HuggingFace `datasets` (`load_dataset("multi_woz_v22")`) due to its simplicity as a starting point: one function call, automatic caching, and familiar `DatasetDict` structure. 
+Although the dialogue samples are identical to the official GitHub version, the HF version differs in two important ways:
+
+- **Structure**: turns are stored as a **dict of parallel lists** (`turns['utterance'][i]`, `turns['speaker'][i]`), whereas the official version uses a **list of dicts** (each turn is its own dict)
+- **Missing DB files and eval scripts**: the HF version packages dialogue annotations only. It does not include the domain database files (`hotel_db.json`, `restaurant_db.json`) or the official evaluation scripts needed to compute Inform Rate, Success Rate, and BLEU
+
+The HF dataset lives in `dataset/mw22_filtered.json` (preprocessed) and `hf_cache/` (raw). It was used for Experiment 1 and Experiment 2 with custom metrics only.
+
+### Official GitHub (Phase 1 Revisited, DB integration + official metrics)
+
+The official repository (`budzianowski/multiwoz`) was cloned locally to provide full access for EuroHPC (no internet available on the cluster):
+
+```bash
+git clone https://github.com/budzianowski/multiwoz.git data/multiwoz_github
+```
+
+Key additions over the HF version: domain DB files in `data/multiwoz_github/db/` (`hotel_db.json`, `restaurant_db.json`), official evaluation script (`evaluate.py`), and `schema.json` defining all slot types. 
+The official version is required for computing Inform Rate, Success Rate, BLEU, and Combined Score, and for building role-specific fine-tuning datasets for Experiment 3.
+
+The loader for this version lives in `src/data/load_dataset_v2.py`. Splits: train 8.437 / dev 1.000 / test 1.000 (same counts as HF). 
+After filtering to hotel + restaurant only: train 2.850 / dev 171 / test 186.
 
 ---
 
 ## General Structure
 
-Each dialogue contains:
-- `dialogue_id`
-- `services`
-- `turns`
+Each dialogue contains: `dialogue_id`, `services`, `turns`.
+Each turn contains: `turn_id`, `speaker`, `utterance`, `frames`, `dialogue_acts`.
+Each frame contains: `service`, `state` (`active_intent`, `requested_slots`, `slots_values`), `slots`.
 
-Each turn contains:
-- `turn_id`
-- `speaker`
-- `utterance`
-- `frames`
-- `dialogue_acts`
-
-Each frame contains:
-- `service`
-- `state`: 
-  - `active_intent`
-  - `requested_slots`
-  - `slots_values`
-- `slots`
-
-- `frames` vs. `dialogue_acts`
-  - `frames` represent the dialogue state layer. They store the current belief state of the conversation: the `active intent`, `requested slots`, and accumulated constraints (`slots_values`). They answer "What is the current task and what does the system believe so far?"
-  - `dialogue_acts` represent the action layer. They describe the communicative action performed in a specific turn (e.g., inform, request, book). They answer "What action happened in this turn?"
+**`frames` vs. `dialogue_acts`**
+- `frames` = the state layer. Stores the current belief state: active intent, requested slots, accumulated constraints. Answers "What is the current task and what does the system believe so far?"
+- `dialogue_acts` = the action layer. Describes the communicative action performed in a turn (e.g., inform, request, book). Answers "What action happened in this turn?"
 
 Each dialogue act contains:
-- `dialogue_act`
-  - `act_type`: the semantic action performed in the turn (e.g., `Restaurant-Inform`, `Booking-Book`)
-  - `act_slots`: the structured slot–value pairs associated with that action (e.g., `area = north`, `bookday = Saturday`)
-- `span_info`
-  - `act_type`
-  - `act_slot_name`
-  - `act_slot_value`
-  - `span_start`
-  - `span_end`
+- `dialogue_act`: `act_type` (e.g., `Restaurant-Inform`, `Booking-Book`) and `act_slots` (slot–value pairs)
+- `span_info`: `act_type`, `act_slot_name`, `act_slot_value`, `span_start`, `span_end`
 
-- `dialogue_act` vs. `span_info`
-  - `dialogue_act` represents the semantic action annotation of the turn. It describes what action occurred and which slot–value pairs are associated with that action at the intent level. It answers "What does this turn mean?"
-  - `span_info` represents the text-grounded evidence of slot values. It indicates where in the utterance a slot value explicitly appears, using character offsets. It answers "Where is that meaning located in the text?"
-  - Not every semantic slot in `dialogue_act` must appear in `span_info`. When present, `span_info` enables grounding validation and hallucination detection 
+**`dialogue_act` vs. `span_info`**
+- `dialogue_act` = semantic annotation. Describes what action occurred and which slots are involved. Answers "What does this turn mean?"
+- `span_info` = text-grounded evidence. Indicates where in the utterance a slot value explicitly appears using character offsets. Answers "Where is that meaning in the text?" Not every semantic slot must appear in `span_info`
 
 - Three conceptual layers in MultiWOZ 2.2
   - State layer → `frames` → What does the system currently believe about the user’s goal?
   - Action layer → `dialogue_acts` → What action happened in this turn?
   - Text-grounding layer → `span_info` → Where in the text does this value appear?
 
+**Three conceptual layers:**
+- State layer → `frames` → What does the system currently believe about the user's goal?
+- Action layer → `dialogue_acts` → What action happened in this turn?
+- Text-grounding layer → `span_info` → Where in the text does this value appear?
+
 ---
 
-## Feature Selection 
+## Basic Features 
 
 ### 1. dialogue_id
-- Name: `dialogue_id`
-- What it represents: the unique name of a full conversation
-- Example: `PMUL4398.json`
-- Where we use it: logging, tracing errors, grouping results
-- Which agent: all agents, evaluator
-- How we use it in evaluation: pointer to a specific dialogue
+- **Represents:** unique name of a full conversation, e.g., `PMUL4398.json`
+- **Used by:** evaluator for logging, tracing, grouping results
 
 ### 2. turn_id
-- Name: `turns[].turn_id`
-- What it represents: the order of turns inside a dialogue
-- Example: `0`, `1`, `2`, ...
-- Where we use it: maintain correct chronological state
-- Which agent: Memory, Evaluator
-- How we use it for evaluation: ensure per-turn predictions are aligned correctly with ground truth
+- **Represents:** chronological order of turns inside a dialogue, e.g., `0`, `1`, `2`
+- **Used by:** evaluator and Memory to align per-turn predictions with ground truth
 
 ### 3. services (dialogue-level)
-- Name: `services`
-- What it represents: the list of domains involved in the dialogue
-- Example: `["restaurant", "hotel"]`
-- Where we use it: domain routing and limiting search space
-- Which agent: Triage, Policy 
-- How we use it in evaluation: check if correct domain was selected (or verify if the system operates only within the dialogue's permissible domains)
+- **Represents:** domains involved in the dialogue, e.g., `["restaurant", "hotel"]`
+- **Used by:** Triage, Policy when domain routing, search space restriction
 
 ### 4. speaker + utterance
-- Names:
-  - `turns[].speaker`
-  - `turns[].utterance`
-- What it represents: who is speaking (`USER` or `SYSTEM`) and what they say
-- Example: `[USER]: "I want an expensive hotel in the south."`
-- Where we use it: build conversation history and generate responses
-- Which agent: Triage, Action, Memory, Supervisor
-- How we use it in evaluation: calculate task success and detect hallucinations
+- **Represents:** who speaks (`USER`/`SYSTEM`) and what they say
+- **Used by:** Triage, Action, Memory, Supervisor to build conversation history, generate responses, detect hallucinations
 
 ### 5. active_intent
-- Name: `turns[].frames[].state.active_intent`
-- What it represents: the task the user wants to perform
-- Example: `find_restaurant`, `book_hotel`
-- Where we use it: decide which tool to call (search, book, inform)
-- Which agent: Triage, Action, Policy
-- How we use it in evaluation: measure intent accuracy
+- **Represents:** the task the user wants to perform, e.g., `find_restaurant`, `book_hotel`
+- **Used by:** Triage, Action, Policy to decide which tool to call and measure intent accuracy
 
 ### 6. requested_slots
-- Name: `turns[].frames[].state.requested_slots`
-- What it represents: information the user asks for
-- Example: `["hotel-phone"]`
-- Where we use it: detect what data to fetch from the database (identify specific information the user expects the system to provide)
-- Which agent: Policy, Action
-- How we use it in evaluation: measure if the system provided all requested information
+- **Represents:** information the user explicitly asks for, e.g., `["hotel-phone"]`
+- **Used by:** Policy, Action to fetch specific data from DB, drives Success Rate evaluation
 
 ### 7. slots_values
-- Name: `turns[].frames[].state.slots_values`
-- What it represents: the requirements (constraints) the user has specified so far
-- Example: `restaurant-area = north`, `restaurant-pricerange = expensive`
-- Where we use it: state tracking, booking inputs
-- Which agent: Triage (extraction), Memory (state update), Action (tool input), Supervisor (validation)
-- How we use it in evaluation: calculate Joint Goal Accuracy (JGA), slot accuracy, state tracking correctness
+- **Represents:** constraints the user has specified so far, e.g., `restaurant-area = north`
+- **Used by:** Triage (extraction), Action (tool usage), Supervisor (validation), drives JGA and slot accuracy
 
 ### 8. dialogue_acts (act_type)
-- Name: `turns[].dialogue_acts.dialog_act.act_type`
-- What it represents: the type of communicative action
-- Example: `Restaurant-Inform`, `Hotel-Book`, `Restaurant-Request`
-- Where we use it: simulate tool calls and validate chosen action
-- Which agent: Action, Supervisor
-- How we will use it for evaluation: measure action-level correctness
-
-### 9. dialogue_acts (act_slots)
-- Name: `turns[].dialogue_acts.dialog_act.act_slots`
-- What it represents: slot-value pairs associated with an action
-- Example: `slot_name=area`, `slot_value=south`
-- Where we use it: validate slot extraction and tool inputs 
-- Which agent: Triage, Memory, Supervisor
-- How we will use it in evaluation: slot extraction accuracy
-
-### 10. span_info
-- Name: `turns[].dialogue_acts.span_info`
-- What it represents: exact character positions where slot values appear in text
-- Example: `north` appears at character 32–37
-- Where we use it: check if slot values are grounded in text 
-- Which agent: Supervisor
-- How we use it in evaluation: hallucination detection
+- **Represents:** type of action, e.g., `Restaurant-Inform`, `Booking-Book`
+- **Used by:** Action, Supervisor to simulate tool calls and validate action correctness
 
 ---
 
 ## Dataset Preprocessing
 
-The original MultiWOZ structure is nested and complex. For MAS4CS, we apply lightweight preprocessing to simplify access and stabilize evaluation.
+The original MultiWOZ structure is nested and complex. Lightweight preprocessing makes selected features directly accessible, avoids repeated parsing inside agents, ensures consistent internal state format, and aligns structure with evaluation metrics.
 
-### Goals of preprocessing
-- Make selected features directly accessible
-- Avoid repeated parsing inside agents
-- Ensure consistent internal state format
-- Align dataset structure with evaluation metrics
+### HuggingFace version
 
-### 1. Transformations
-- **Slot-pair normalization**
-  - Convert slots_values from parallel name/value lists into a direct slot → value mapping
-  - Example:
-    - Raw: `{'slots_values_name': ['restaurant-area'], 'slots_values_list': [['north']]}`
-    - Normalized: `{'restaurant-area': 'north'}`
-    - If a slot contains multiple values in `slots_values_list`, **only the first value is retained** during preprocessing (multivalued slots are not explicitly modeled in MAS4CS), e.g., we keep `north` from [`north`, `east`]
-- **Unified Turn Record construction**
-  - Flatten each turn into a clean internal structure:
-    - turn_id
-    - speaker
-    - utterance
-    - active_intent
-    - requested_slots
-    - normalized slots_values
-    - dialogue acts
-    - span_info
-- **No full database reconstruction**
-  - We do not rebuild the official MultiWOZ database
-  - Tool simulation relies only on annotated state and dialogue acts
+Slot-pair normalization converts `slots_values` from parallel name/value lists into a direct `slot → value` mapping. Example: `{'hotel': {'slots_values_name': ['restaurant-area'], 'slots_values_list': [['north']]}}` → `{'hotel': {'restaurant-area': 'north'}}`. If a slot has multiple values, only the first is retained.
+Each turn is flattened into a unified turn record with: turn_id, speaker, utterance, active_intent, requested_slots, normalized slots_values, dialogue acts, act_slots, span_info.
+No full database reconstruction as tool simulation relies only on annotated state and dialogue acts.
 
-### 2. Dataset Filtering
+### Official GitHub version
 
-MAS4CS utilizes a controlled subset of the MultiWOZ 2.2 dataset to ensure consistent domain structure and evaluation conditions.
+The official version uses a **list of dicts** structure. Each turn is already a self-contained dict, so no parallel-list flattening is needed. 
+The key transformation is extracting the active frame per domain from `frames` (one frame per service, skipping `active_intent == "NONE"`) and normalizing `slot_values` from `{slot: [value_list]}` to `{slot: value}` (first value retained).
+Additionally, dialogue acts are not embedded inside each turn's dict in the official format. They live in a separate file, `data/multiwoz_github/data/MultiWOZ_2.2/dialog_acts.json`, keyed by dialogue_id and turn_id. 
+During preprocessing, we load this file separately and join the relevant acts onto each turn by matching on those two keys, producing the same unified turn record as the HF version.
+`span_info` is not extracted in the v2 pipeline since hallucination detection in MAS4CS is handled by the Action and Supervisor agents.
+Each turn is flattened to: turn_id, speaker, utterance, active_intent, requested_slots, normalized slots_values, dialogue acts.
 
-The system is restricted to the **Hotel** and **Restaurant** domains. These domains are chosen because they provide rich slot structures and natural cross-domain transitions (e.g., restaurant ↔ hotel).
+### Dataset Filtering
 
-We retain dialogues where the set of services satisfies: `services ⊆ {hotel, restaurant}`. This means:
-- Dialogues containing only `hotel`
-- Dialogues containing only `restaurant`
-- Dialogues containing both `hotel` and `restaurant`
+MAS4CS is restricted to **Hotel** and **Restaurant** domains with rich slot structures, natural cross-domain transitions, consistent schema. 
+We retain dialogues where `services ⊆ {hotel, restaurant}`, excluding any dialogue that includes taxi, train, attraction, or other domains even if it also contains hotel or restaurant. 
+Filtering is applied consistently across all splits.
 
-We exclude dialogues that include any additional domains such as: `taxi`, `train`, `attraction` even if they also contain `hotel` or `restaurant` (although in frames, you can see slots from other domains; this is the structure of multiwoz).
+| Split | Total | Hotel + Restaurant only |
+|-------|-------|-------------------------|
+| Train | 8.437 | 2.850 (33.8%)           |
+| Dev   | 1.000 | 171 (17.1%)             |
+| Test  | 1.000 | 186 (18.6%)             |
 
-This restriction:
-- Reduces schema complexity
-- Avoids introducing unused policy and slot types
-- Ensures consistent slot structure
-- Preserves multi-domain behavior
-
-All filtering is applied consistently across train, validation, and test splits.
-
+---
 
 ### Example of processed dialogue format
 
-After preprocessing, each dialogue is converted into a simplified internal structure:
+### HuggingFace version
 
-```
+```json
 {
   "dialogue_id": "PMUL4398.json",
   "services": ["restaurant", "hotel"],
@@ -219,7 +153,7 @@ After preprocessing, each dialogue is converted into a simplified internal struc
     {
       "turn_id": 0,
       "speaker": "USER",
-      "utterance": "i need a place to dine in the center thats expensive",
+      "utterance": "i need a place to dine in the center that's expensive",
       "frames": {
         "restaurant": {
           "active_intent": "find_restaurant",
@@ -248,6 +182,43 @@ After preprocessing, each dialogue is converted into a simplified internal struc
   ]
 }
 ```
-This structure preserves all essential semantic information (state, actions, and text grounding) while removing nested complexity. It separates the state layer (`frames`), action layer (`dialogue_acts`), and text-grounding layer (`span_info`) into a clean, directly accessible format, making the dataset easier to use for MAS4CS reasoning and evaluation without altering the original annotations.
+
+### Official GitHub version
+
+```json
+{
+  "dialogue_id": "PMUL4398.json",
+  "services": ["restaurant", "hotel"],
+  "turns": [
+    {
+      "turn_id": "0",
+      "speaker": "USER",
+      "utterance": "i need a place to dine in the center that's expensive",
+      "frames": {
+        "restaurant": {
+          "active_intent": "find_restaurant",
+          "requested_slots": [],
+          "slots_values": {
+            "restaurant-area": "centre",
+            "restaurant-pricerange": "expensive"
+          }
+        },
+        "hotel": {
+          "active_intent": "NONE",
+          "requested_slots": [],
+          "slots_values": {}
+        }
+      },
+      "dialogue_acts": ["Restaurant-Inform"],
+      "dialogue_act_slots": [
+        {"slot": "area", "value": "centre"},
+        {"slot": "pricerange", "value": "expensive"}
+      ]
+    }
+  ]
+}
+```
+
+Key differences from HF version: `turn_id` is a `str` (not `int`), frames with `active_intent == "NONE"` are kept in the raw structure but skipped during processing, `span_info` is not extracted. 
 
 ---

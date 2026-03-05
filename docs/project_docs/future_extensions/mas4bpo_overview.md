@@ -37,9 +37,9 @@ This combination of selective automation and centralized agentic coordination en
 
 Modern restaurant operations, especially large-scale and seasonal ones, face persistent operational and decision-making challenges:
 
-- **Fragmented data and independent tools**: Even when robust ERP, POS, CRM, and review platforms are in place, these systems rarely communicate in a way that supports cross-domain reasoning. Vendor solutions are typically effective at optimizing individual tasks (e.g. invoice processing, inventory tracking, reservations) but perform poorly when decisions require integrating signals across functions.
-- **High reliance on manual coordination**: Many operational workflows assume that multiple people will execute tasks correctly, on time, and with shared context across systems. In practice, this assumption breaks down under realistic operating conditions such as long operating periods, high staff turnover, and limited technical expertise, leading to inconsistent data and delayed reactions.
-- **Delayed or inconsistent decisions and issue detection**: Because information is distributed across systems and roles, management decisions are often based on partial, delayed, or subjective inputs rather than integrated, real-time signals. As a result, issues such as stockouts, margin erosion, or customer dissatisfaction are frequently detected late.
+- **Fragmented data and independent tools:** Even when robust ERP, POS, CRM, and review platforms are in place, these systems rarely communicate in a way that supports cross-domain reasoning. Vendor solutions are typically effective at optimizing individual tasks (e.g. invoice processing, inventory tracking, reservations) but perform poorly when decisions require integrating signals across functions.
+- **High reliance on manual coordination:** Many operational workflows assume that multiple people will execute tasks correctly, on time, and with shared context across systems. In practice, this assumption breaks down under realistic operating conditions such as long operating periods, high staff turnover, and limited technical expertise, leading to inconsistent data and delayed reactions.
+- **Delayed or inconsistent decisions and issue detection:** Because information is distributed across systems and roles, management decisions are often based on partial, delayed, or subjective inputs rather than integrated, real-time signals. As a result, issues such as stockouts, margin erosion, or customer dissatisfaction are frequently detected late.
 
 Even when advanced software systems are deployed, these structural problems persist due to the lack of coordinated, cross-domain intelligence and the limited application of full automation to isolated tasks.
 
@@ -91,29 +91,17 @@ Use of real and synthetic restaurant data including ERP records, POS transaction
 
 ---
 
-## Indicative Timeline (Now – 15 June)
-
-**Phase 1**: Literature review completion, Architecture finalization, and Data Collection (February)
-
-**Phase 2**: Implementation of all Agents and Coordination Logic (March)
-
-**Phase 3**: Evaluation, Analysis, and Reporting (April - May)
-
-**Phase 4**: Final Revisions, Writing and Delivery (Early June)
-
----
-
 ## Challenges
 
-- **Depth and scope of individual agents**:
+- **Depth and scope of individual agents:**
   
   Each agent represents a complex problem domain that could independently require separate dedicated modeling choices, datasets, and independent experiments and evaluations. For example: 
-  - *Invoice processing*: comparison between LLM-only approaches and hybrid OCR + LLM pipelines.
-  - *Inventory Management*: evaluation of demand forecasting (statistical methods vs time-series ML vs LLM-based reasoning), anomaly detection, and waste-related signals.
-  - *Revenue Management*: assessment of pricing and upselling recommendations using simulations and comparison against human decision baselines.
-  - *Customer Review Analysis*: sentiment classification, topic extraction, and trend detection across unstructured feedback.
-  - *Marketing*: content generation and campaign suggestions, potentially involving vision-language models and other evaluation techniques.
-  - *Scout Agent*: continuous data collection (web scraping), integration of external sources, and market trend analysis.
+  - *Invoice processing:* comparison between LLM-only approaches and hybrid OCR + LLM pipelines.
+  - *Inventory Management:* evaluation of demand forecasting (statistical methods vs time-series ML vs LLM-based reasoning), anomaly detection, and waste-related signals.
+  - *Revenue Management:* assessment of pricing and upselling recommendations using simulations and comparison against human decision baselines.
+  - *Customer Review Analysis:* sentiment classification, topic extraction, and trend detection across unstructured feedback.
+  - *Marketing:* content generation and campaign suggestions, potentially involving vision-language models and other evaluation techniques.
+  - *Scout Agent:* continuous data collection (web scraping), integration of external sources, and market trend analysis.
 
 - **Agent orchestration and prioritization** 
   

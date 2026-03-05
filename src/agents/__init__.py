@@ -8,7 +8,6 @@ This module contains all agent implementations for the MAS4CS system:
 - memory_agent: Dialogue state management
 - supervisor_agent: Output validation and correction
 """
-
 from .triage import triage_agent
 from .policy import policy_agent
 from .action import action_agent
@@ -22,4 +21,3 @@ __all__ = [
     "memory_agent",
     "supervisor_agent",
 ]
-

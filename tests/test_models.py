@@ -1,5 +1,4 @@
 """Open-Source and API-based LLM call tests."""
-
 import sys
 import json
 from typing import Any
@@ -534,4 +533,3 @@ if __name__ == "__main__":
 
     keys = sys.argv[1:] if len(sys.argv) > 1 else ["responses", "reasoning"]
     run_tests(keys)
-

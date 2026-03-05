@@ -1,134 +1,126 @@
 # MAS4CS Agents 
 
-## 1: Agent Fundamentals
+## Agent Fundamentals
 
-Before building MAS4CS, a thorough exploration of three agent architectures took place to understand the progression from raw LLM to structured reasoning, see `scripts/explore_agents.py`.
+Before building MAS4CS, three agent architectures were explored to understand the progression from raw LLM to structured reasoning. See `scripts/explore_agents.py`.
 
 ### Agent Types
 
-- **Standard LLM (No Tools)**
-  - Pure text generation from training data
-  - No tool access, no reasoning loop
-  - Use case: general questions, policy explanations
-
-- **Simple Agent (Single-Turn Tool Use)**
-  - Flow: User query → LLM decides → Execute tool(s) once → Final answer
-  - Total LLM calls: 2 (decision + response)
-  - Cannot iterate or reason across multiple steps
-  - Use case: single lookup tasks ("Find cheap hotels in south")
-
-- **ReAct Agent (Multi-Turn Reasoning)**
-  - Flow: User query → [LLM thinks → Execute tools → Observe]* → Final answer
-  - Can iterate multiple times until task is complete
-  - Maintains conversation context across **iterations**
-  - Use case: complex multi-step tasks ("Compare cheap vs expensive hotels")
+- **Standard LLM (No Tools):** Pure text generation from training data. No tool access, no reasoning loop. Use case: general questions, policy explanations
+- **Simple Agent (Single-Turn Tool Use):** Flow: User query → LLM decides → Execute tool(s) once → Final answer. Cannot iterate or reason across multiple steps. Use case: single lookup tasks ("Find cheap hotels in south")
+- **ReAct Agent (Multi-Turn Reasoning):** Flow: User query → [LLM thinks → Execute tools → Observe]* → Final answer. Can iterate multiple times until task is complete. Maintains conversation context across iterations. Use case: complex multi-step tasks ("Compare cheap vs expensive hotels")
 
 ### What is an Iteration?
 
-An **iteration** in ReAct is one complete reasoning cycle:
-- One call to the LLM -> `THINK`
-- Zero or more tool executions (based on LLM's decision) -> `ACTION`
-- Results added to conversation history -> `OBSERVE`
-
-Example Breakdown
-```
-Iteration 1:
-  └─ LLM Call 1 → "I need to search for cheap AND expensive hotels"
-      ├─ Tool execution 1: search cheap
-      └─ Tool execution 2: search expensive
-
-Iteration 2:
-  └─ LLM Call 2 → "Here's the comparison: [answer]"
-```
-
-Tool executions happen **within** iterations. An iteration = "thinking moment" for the agent, which may trigger multiple actions.
-
-The three agent types differ in reasoning depth: 
-- a Standard LLM makes one call with no tools
-- a Simple Agent makes two calls (one to decide, one to respond) with a single tool execution
-- a ReAct Agent makes N calls iterating between reasoning and tool use until the task is complete
+An iteration in ReAct is one complete reasoning cycle: one LLM call (THINK), zero or more tool executions based on the LLM's decision (ACTION), and results added to conversation history (OBSERVE). 
+Tool executions happen within iterations. An iteration is a "thinking moment" for the agent, which may trigger multiple actions.
 
 ---
 
-## 2. MAS4CS Workflow Architecture
+## MAS4CS Workflow Architecture
 
 ```
-User Message → Triage → Policy → Action → Memory → Supervisor
-                                    ↑                   |
-                                    |_____(retry)_______|
+User Message → Triage → Policy → Action  → Supervisor → Memory
+                                    ↑             |
+                                    |___(retry)___|
 ```
 
 The MAS4CS workflow is defined as a LangGraph StateGraph in `src/core/workflow.py`, connecting all agents as nodes with edges encoding both normal flow and the conditional retry loop.
 
 ### Why LangGraph over sequential Python calls?
 
-LangGraph provides three capabilities that plain function calls cannot:
-- **State Management**: automatically passes and updates shared state between nodes
-- **Conditional Routing**: dynamically chooses next agent based on state flags (retry loop)
-- **Visualization & Debugging**: generates graph diagrams and tracks execution flow
+LangGraph provides three capabilities that plain function calls cannot: automatic state passing and updating between nodes, conditional routing that dynamically chooses the next agent based on state flags, and graph visualization for debugging execution flow.
 
 ### Retry Loop
 
+If the Supervisor marks `validation_passed=False` and `attempt_count < 2`, the workflow loops back to Action for self-correction. The full retry path is:
+
 ```
-USER turn → Triage → Policy → Action → Memory → Supervisor
-                                                     ↓
-                                         If valid: workflow ends
-                                         If invalid: retry → Action
+Action → Supervisor → (if invalid and attempt_count < 2) → Action → Supervisor → Memory
 ```
 
-The Supervisor validates the Action agent's response. If validation fails and `attempt_count < 2`, the workflow loops back to Action for self-correction.
+Memory only saves after Supervisor approves or max retries are exhausted. If both attempts fail, the last Action response enters history uncorrected.
 
 ---
 
-## 3. Agent Roles
+## Tool Usage Design by Experiment
 
-- **Triage**
+Tool routing is handled differently in Exp1 and Exp2, by design.
+
+**Exp2 (MAS Graph):** Tool usage is rule-based and deterministic. The Action agent's code reads the intent (`find_` or `book_`) and calls `find_entity` or `book_entity` directly, no LLM decision needed. The LLM only generates the natural language response using the DB results it receives. This is intentional: tool routing is architectural (code decides), not generative (LLM decides), which eliminates one source of hallucination.
+**Exp1 (Single-Agent Baseline):** The single LLM cannot call tools itself, so tool usage is simulated with two LLM calls per turn. Call 1 extracts slots and intent without DB results. The code then runs the DB query using those slots. Call 2 receives the actual DB results and generates the final grounded response. This two-call design is the honest and fair way to include tool usage in a single-agent system that mirrors what a real LLM with tool calling would do and keeps Exp1 directly comparable to Exp2.
+
+---
+
+## Agent Roles
+
+- **Triage (LLM)**
   - entry point of the workflow
-  - detects active domain, intent, and extracts slot values from the user message
-  - no policy enforcement here — only parsing and routing
-
-- **Policy** 
-  - rule-based validation (no LLM) 
+  - detects `current_domain`, `active_intent`, and extracts `slot_values` from the `user_utterance`
+  - uses `conversation_history` for reference resolution
+  - no policy validation, no DB calls
+  
+- **Policy (rule-based, no LLM)** 
+  - validates required slots for booking intents  
   - checks if required slots are present for booking intents and populates `policy_violations` if slots are missing
-  - acts as a hard block before Action executes
+  - acts as a hard gate before book/search execution
 
-- **Action** 
-  - generates the customer service response using domain, intent, slots, and policy violations as context 
-  - determines `action_taken` and `dialogue_acts` 
-  - handles retry logic via `attempt_count`
+- **Action (LLM + internal DB tools** 
+  - generates the user's response 
+  - calls `find_entity` or `book_entity` based on `intent`
+  - prevents double booking
+  - sets `action_taken` and `dialogue_acts`
+  - supports retry via `attempt_count` and `supervisor_feedback`
 
-- **Memory**
-  - pure state management (no LLM) 
-  - appends current turn to `conversation_history` 
-  - ensures user message and agent response persist across turns
+- **Supervisor (LLM judge)** 
+  - check correctness of Triage, Policy, and Action outputs
+  - detects hallucinations using `db_results` and `valid_entities`
+  - sets `validation_passed` if all checks pass 
+  - triggers retry if validation fails (max 2 attempts))
 
-- **Supervisor** 
-  - quality control via LLM 
-  - validates agent response against known valid entities to detect hallucinations. Sets `validation_passed` and `hallucination_flags` 
-  - triggers retry if validation fails
+- **Memory (no LLM)**
+  - appends user + assistant messages to `conversation_history` within a turn
+  - saves only after validation passes or max retries exhausted
+  - prevents duplicate history entries during retries
 
 All agents are implemented as single-purpose functions in `src/agents/`.
 
-**Important note on "agents":** In MAS4CS, agents are structured LLM nodes with  distinct roles, not autonomous tool-using agents in the classical sense. 
-No external tools or APIs are called. Each agent reads from and writes to  a shared state, with the workflow graph enforcing execution order and retry logic. 
-This is an intentional design choice: the goal is to study whether architectural structure alone improves reliability, before introducing the added complexity of real tool use.
+**Important note on "agents"**: 
+Agents are structured workflow nodes that read/write shared state and are structured LLM nodes with  distinct roles, not autonomous tool-using agents in the classical sense. 
+No external tools or APIs are called. The goal is to study whether architectural structure alone improves reliability, before introducing the added complexity of real tool use.
 
 ---
 
-## 4. Shared State
+## DB Tools
 
-All agents read from and write to a single `AgentState` TypedDict defined in `src/core/state.py`.
+Two public tools in `src/tools/db_tools.py`, called by Action via rule-based routing:
 
-Key fields by category:
+- **`find_entity(domain, belief_state)`**
+  - Loads the domain DB (`hotel_db.json` / `restaurant_db.json`) with caching
+  - Normalizes slot values
+  - Filters entities by constraints and returns up to `MAX_DB_RESULTS` matches
+- **`book_entity(domain, belief_state)`**
+  - Calls `find_entity` to check for matches
+  - If matches exist, returns a success message with the first match's name
 
-- **Identifiers**: `dialogue_id`, `turn_id`, `services`
-- **Input**: `user_utterance`
-- **Triage outputs**: `current_domain`, `active_intent`, `slots_values`
-- **Conversation**: `conversation_history`
-- **Action outputs**: `agent_response`, `action_taken`, `dialogue_acts`
-- **Policy**: `policy_violations`
-- **Supervisor**: `validation_passed`, `hallucination_flags`, `valid_entities`
-- **Control**: `attempt_count`, `model_config`
+---
+
+## Shared State
+
+All workflow nodes read from and write to a single `AgentState` TypedDict defined in `src/core/state.py`.
+It carries the full context for one user turn, plus accumulated cross-turn memory.
+
+Key fields:
+
+- **IDs:** `dialogue_id`, `turn_id`, `services`
+- **Turn input:** `user_utterance`
+- **Triage outputs:** `current_domain`, `active_intent`, `slots_values` (accumulated across turns)
+- **Conversation:** `conversation_history`
+- **Action outputs:** `agent_response`, `action_taken`, `dialogue_acts`
+- **DB grounding:** `db_results`, `booked_entity`, `informed_entity`
+- **Policy:** `policy_violations`
+- **Supervisor:** `validation_passed`, `valid_entities`, `supervisor_feedback`
+- **Control/config:** `attempt_count`, `model_config`
 
 ---
 

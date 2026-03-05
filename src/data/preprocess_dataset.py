@@ -4,7 +4,6 @@ Dataset Preprocessing: MultiWOZ 2.2 transformation pipeline.
 Transforms raw MultiWOZ format into simplified turn-by-turn structure for MAS4CS.
 Includes filtering (hotel/restaurant only), caching, and documentation generation.
 """
-
 import os
 import json
 from typing import Any
@@ -422,4 +421,3 @@ def create_domain_summary(schema: dict, target_domains: list[str]) -> dict:
         "info_intents": sorted(i for i in schema['info_intents'] if i in all_target_intents),
         "all_intents": sorted(all_target_intents)
     }
-

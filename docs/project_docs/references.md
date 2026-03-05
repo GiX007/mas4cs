@@ -8,71 +8,91 @@
    - A corrected version of the large-scale multi-domain dialogue dataset MultiWOZ
    - Relation to MAS4CS: Serves as our primary dataset for simulating customer service domains and evaluating slot tracking (JGA) and task success
 
-2. **Yao et al. (2022) - ReAct** 
+2. **Jo et al. (2023) - Multi-User MultiWOZ**
+   - Extends MultiWOZ to multi-user task-oriented dialogues
+   - Shows that decomposing complex multi-user input into structured queries improves agent performance
+   - Relation to MAS4CS: Supports the hypothesis that task decomposition improves reliability in multi-turn dialogues and motivates potential dataset restructuring for role-specific fine-tuning
+
+3. **Yao et al. (2022) - ReAct** 
    - A framework that combines reasoning (Chain-of-Thought) with action (tool use) in LLMs
    - Relation to MAS4CS: Forms the reasoning backbone (in one of the implementation variants evaluated) of the Action Agent (reason → act → observe loop)
 
-3. **Schick et al. (2023) - Toolformer**
+4. **Schick et al. (2023) - Toolformer**
    - Demonstrates self-supervised tool-use learning in LLMs
    - Relation to MAS4CS: Conceptual foundation for structured tool invocation in Triage and Action agents
 
-4. **Shinn et al. (2023) - Reflexion**
+5. **Shinn et al. (2023) - Reflexion**
    - Introduces self-reflection and iterative correction in language agents
    - Relation to MAS4CS: Guides the Supervisor Agent to detect hallucinations and trigger corrective loops
 
-5. **Masterman et al. (2024) - AI Agent Architectures Survey**
+6. **Masterman et al. (2024) - AI Agent Architectures Survey**
    - Comprehensive survey of modern agent architectures and orchestration patterns
    - Relation to MAS4CS: Justifies hierarchical, modular agent decomposition
 
-6. **Hong et al. (2023) - MetaGPT** 
+7. **Hong et al. (2023) - MetaGPT** 
    - Role-based collaborative multi-agent framework for complex tasks
    - Relation to MAS4CS: Inspires role separation (Triage, Policy, Action, Supervisor)
 
-7. **Park et al. (2025) - Workflow Graphs**
+8. **Park et al. (2025) - Workflow Graphs**
    - Graph-based orchestration for reliable conversational systems
    - Relation to MAS4CS: Direct architectural blueprint for LangGraph workflow design
 
-8. **Wang et al. (2025) - TalkHier**
+9. **Wang et al. (2025) - TalkHier**
    - Structured communication and hierarchical coordination for multi-agent systems
    - Relation to MAS4CS: Supports controlled message passing between agents
 
-9. **Park et al. (2023) - Generative Agents**
-   - Introduces memory architectures and "reflection" for long-term agent behavior
-   - Relation to MAS4CS: Influences Memory Agent and history manipulation strategy
+10. **Park et al. (2023) - Generative Agents**
+    - Introduces memory architectures and "reflection" for long-term agent behavior
+    - Relation to MAS4CS: Influences Memory Agent and history manipulation strategy
 
-10. **Valentini et al. (2025) - MAS for Customer Experience**
+11. **Valentini et al. (2025) - MAS for Customer Experience**
     - Applies multi-agent LLM systems in customer service contexts
     - Relation to MAS4CS: Domain validation for customer experience automation
 
-11. **Choubey et al. (2025) - Turning Conversations into Workflows**
+12. **Choubey et al. (2025) - Turning Conversations into Workflows**
     - Extracts structured workflows from dialogue interactions
     - Relation to MAS4CS: Supports dialogue-to-graph execution mapping
 
-12. **Shen et al. (2023) - HuggingGPT** 
+13. **Shen et al. (2023) - HuggingGPT** 
     - Orchestrates multiple AI models for task execution
     - Relation to MAS4CS: Conceptual reference for heterogeneous model orchestration
 
-13. **Mohammadi et al. (2025) - Evaluation of LLM Agents Survey**
+14. **Gupta et al. (2024) - DARD**
+    - Multi-agent framework with a central dialog manager and domain-specific agents (DST + response generation) evaluated on MultiWOZ
+    - Decomposition is domain-based (hotel, restaurant)
+    - Relation to MAS4CS: Closely related structurally, but differs fundamentally — MAS4CS uses role-based decomposition (Triage, Policy, Action, Supervisor) within a deterministic graph and incorporates explicit self-correction loops
+
+15. **Acikgoz et al. (2025) - MAC**
+    - Manager + expert agent architecture designed for ambiguity resolution in multi-turn task-oriented dialogues (MultiWOZ 2.4)
+    - Focuses on interactive clarification mechanisms
+    - Relation to MAS4CS: Informs multi-agent coordination design, particularly the Supervisor’s role in validation, ambiguity detection, and corrective interaction
+
+16. **Feng et al. (2025) - DIMF**
+    - Three-agent architecture (Intent, Slot Filling, Response) fine-tuned on Qwen2.5-7B using DPO on MultiWOZ 2.2
+    - Demonstrates that role-specific fine-tuned small models can compete with larger systems
+    - Relation to MAS4CS: Closest conceptual match to Experiment 3, empirically supports role-specialized fine-tuning hypothesis
+
+17. **Mohammadi et al. (2025) - Evaluation of LLM Agents Survey**
     - Survey of evaluation methodologies for LLM-based agents
     - Relation to MAS4CS: Guides hybrid evaluation framework design
 
-14. **Liu et al. (2023) - G-Eval** 
+18. **Liu et al. (2023) - G-Eval** 
     - A framework for using GPT-4 as a judge for NLG evaluation
     - Relation to MAS4CS: Used for subjective policy-compliance scoring
 
-15. **Zheng et al. (2023) - Judging LLM-as-a-Judge** 
+19. **Zheng et al. (2023) - Judging LLM-as-a-Judge** 
     - Benchmarking LLM quality using model-as-judge evaluation
     - Relation to MAS4CS: Supports LLM-based evaluation
 
-16. **Balaji et al. (2026) - Beyond IVR**
+20. **Balaji et al. (2026) - Beyond IVR**
     - A benchmark specifically for customer support LLM agents
     - Relation to MAS4CS: Provides business-policy evaluation framework
 
-17. **Baidya et al. (2025) - The Behavior Gap**
+21. **Baidya et al. (2025) - The Behavior Gap**
     - Evaluates zero-shot LLM agents in complex task-oriented dialogues
     - Relation to MAS4CS: Highlights the gap between reasoning and task success
 
-18. **Liu et al. (2023) - BOLAA**
+22. **Liu et al. (2023) - BOLAA**
     - Benchmarking and orchestrating LLM-augmented autonomous agents
     - Relation to MAS4CS: Supports structured evaluation of multi-agent orchestration
 
